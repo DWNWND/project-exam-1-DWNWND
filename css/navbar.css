@@ -6,6 +6,7 @@ nav {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 nav a {
   text-decoration: none;
@@ -85,7 +86,9 @@ nav a {
 
 @media (min-width: 830px) {
   .hamburger-toggle,
-  .logo-mobile {
+  .logo-mobile,
+  .header-display-index,
+  .newsletter-signup-index {
     display: none;
   }
   .navbar-standard,
@@ -124,7 +127,7 @@ nav a {
   }
   .logo-big {
     display: block;
-    width: 30rem;
+    width: 35%;
     position: absolute;
     top: 50%;
     left: 50%;

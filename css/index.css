@@ -1,0 +1,47 @@
+/* Navbar index spesific */
+.header-display-index {
+  display: flex;
+}
+.header-img-index {
+  width: 100%;
+}
+
+.logo-big-index {
+  width: 60%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.newsletter-signup-index {
+  text-align: center;
+  font-weight: 600;
+  background-color: white;
+}
+.newsletter-signup-index a {
+  display: block;
+  color: black;
+  padding: 0.3rem 1rem;
+}
+.header-display-index.active,
+.newsletter-signup-index.active {
+  display: none;
+}
+.logo-mobile-index {
+  display: none;
+}
+.logo-mobile-index.active {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 0;
+}
+.logo-mobile-index img {
+  width: 6rem;
+}
+@media (min-width: 830px) {
+  .header-display-index,
+  .newsletter-signup-index {
+    display: none;
+  }
+}
