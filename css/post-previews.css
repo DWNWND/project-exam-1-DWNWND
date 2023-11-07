@@ -19,22 +19,13 @@ article h2 {
   font-size: 1.1rem;
 }
 article p,
-article a,
-.about-us-section p,
-.about-us-section a {
+article a {
   color: black;
   font-size: 0.8rem;
   font-weight: 200;
 }
 .newly-published-section .continue-btn {
   text-align: right;
-}
-.about-us-section p,
-.about-us-section a {
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-}
-.about-us-section p {
-  margin-bottom: 1rem;
 }
 figure {
   height: 100px;

@@ -56,15 +56,20 @@
 }
 .about-us-section {
   background-color: #f5f5f5;
-  padding: 2rem 1rem;
+  padding: 4rem 2rem 2.7rem 2rem; /* er lik 2rem mellom, 4 over og 4 under + 1 i gap */
 }
 
 /* convert to all h1?? if applicable later on*/
 .newly-published-section h1,
-.popular-topics-section h1,
-.about-us-section h1 {
+.popular-topics-section h1 {
   text-align: center;
   margin: 2rem 0;
+  font-size: 2rem;
+}
+
+.about-us-section h1 {
+  text-align: center;
+  margin-bottom: 0.7rem;
   font-size: 2rem;
 }
 .grid-display {
@@ -84,11 +89,14 @@
 }
 
 /* about us */
-.about-us-section div {
-  padding: 1rem;
+.about-us-section article {
   max-width: 350px;
   margin-left: auto;
   margin-right: auto;
+  gap: 1rem;
+}
+.about-us-section figure {
+  display: none;
 }
 
 @media (min-width: 490px) {
@@ -116,6 +124,30 @@
     margin-top: auto;
   }
 }
+@media (min-width: 800px) {
+  .about-us-section {
+    padding-bottom: 4rem; /* er lik 4rem mellom, 4 over og 4 under + 1 i gap */
+  }
+  .about-us-section h1 {
+    margin-bottom: 2.7rem;
+  }
+  .about-us-section .grid-display {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 2rem;
+  }
+  .about-us-section figure {
+    display: flex;
+    height: auto;
+  }
+  .about-us-section article {
+    max-width: none;
+  }
+}
+
 @media (min-width: 900px) {
   .popular-topics-section .grid-display {
     grid-template-columns: 1fr 1fr 1fr;
