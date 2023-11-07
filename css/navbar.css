@@ -84,7 +84,7 @@ nav a {
   display: none;
 }
 
-@media (min-width: 830px) {
+@media (min-width: 1000px) {
   .hamburger-toggle,
   .logo-mobile,
   .header-display-index,
