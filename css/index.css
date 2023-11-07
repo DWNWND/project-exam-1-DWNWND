@@ -129,6 +129,13 @@
     display: flex;
     margin-top: auto;
   }
+  .about-us-section figure {
+    display: flex;
+    height: auto;
+  }
+  .about-us-section h1 {
+    margin-bottom: 2.7rem;
+  }
 }
 @media (min-width: 750px) {
   .slider {
@@ -202,9 +209,6 @@
   .about-us-section {
     padding-bottom: 4rem; /* er lik 4rem mellom, 4 over og 4 under + 1 i gap */
   }
-  .about-us-section h1 {
-    margin-bottom: 2.7rem;
-  }
   .about-us-section .grid-display {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -212,10 +216,6 @@
     margin-left: auto;
     margin-right: auto;
     gap: 2rem;
-  }
-  .about-us-section figure {
-    display: flex;
-    height: auto;
   }
   .about-us-section article {
     max-width: none;
