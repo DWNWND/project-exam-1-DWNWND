@@ -38,6 +38,11 @@
 .logo-mobile-index img {
   width: 6rem;
 }
+
+.prev-btn,
+.next-btn {
+  display: none;
+}
 @media (min-width: 830px) {
   .header-display-index,
   .newsletter-signup-index {
@@ -63,7 +68,7 @@
 .newly-published-section h1,
 .popular-topics-section h1 {
   text-align: center;
-  margin: 2rem 0;
+  margin: 2rem 0 3rem 0;
   font-size: 2rem;
 }
 
@@ -99,6 +104,67 @@
   display: none;
 }
 
+@media (min-width: 450px) {
+  /* -------- carousel ---------- */
+  .slider {
+    width: 283px;
+    display: flex;
+    /* max-width: 1000px; */
+    gap: 2rem;
+    justify-content: start;
+    padding: 2rem;
+    scroll-behavior: smooth;
+    transition: all 0.25s ease-in;
+    overflow: auto;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .slider::-webkit-scrollbar {
+    display: none;
+  }
+  .prev-btn,
+  .next-btn {
+    display: block;
+    background-color: transparent;
+    border-color: transparent;
+    cursor: pointer;
+  }
+  .prev-btn i,
+  .next-btn i {
+    font-size: 3rem;
+    color: white;
+  }
+  .prev-btn i:hover,
+  .next-btn i:hover {
+    color: rgb(190, 194, 226);
+  }
+  .carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+  .slider article {
+    /* max-width: none; */
+    filter: drop-shadow(4px 5px 5px rgba(0, 0, 0, 0.15));
+    scroll-snap-align: center;
+    min-width: 250px;
+    max-width: 250px;
+  }
+  .slider figure {
+    height: 130px;
+    order: 1;
+  }
+  .slider article h2 {
+    order: 2;
+    padding: 1rem 0;
+  }
+  .slider .continue-btn {
+    order: 3;
+  }
+}
+
 @media (min-width: 490px) {
   .popular-topics-section {
     padding: 4rem;
@@ -106,6 +172,7 @@
 }
 
 @media (min-width: 600px) {
+  /* -------- popular topics-section ---------- */
   .popular-topics-section {
     padding: 5rem;
   }
@@ -124,7 +191,18 @@
     margin-top: auto;
   }
 }
+@media (min-width: 750px) {
+  .slider {
+    width: 580px;
+  }
+}
+
 @media (min-width: 800px) {
+  article h2 {
+    font-size: 1.3rem;
+  }
+
+  /* -------- about us-section ---------- */
   .about-us-section {
     padding-bottom: 4rem; /* er lik 4rem mellom, 4 over og 4 under + 1 i gap */
   }
@@ -149,11 +227,29 @@
 }
 
 @media (min-width: 900px) {
+  /* -------- carousel ---------- */
+  .slider figure {
+    height: 175px;
+  }
+
+  /* -------- popular topics-section ---------- */
   .popular-topics-section .grid-display {
     grid-template-columns: 1fr 1fr 1fr;
   }
   .popular-topics-section figure {
     display: flex;
     margin-top: auto;
+  }
+}
+
+@media (min-width: 950px) {
+  .slider {
+    width: 860px;
+  }
+}
+
+@media (min-width: 1300px) {
+  .slider {
+    width: 1150px;
   }
 }

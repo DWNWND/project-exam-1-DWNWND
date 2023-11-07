@@ -5,7 +5,7 @@ article {
   padding: 1.3rem;
 }
 .newly-published-section article {
-  width: 300px;
+  max-width: 300px;
   background-color: white;
   gap: 0.5rem;
 }
