@@ -1,26 +1,51 @@
-.post-preview {
-  width: 300px;
+article {
   display: flex;
   flex-direction: column;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   padding: 1.3rem;
+}
+.newly-published-section article {
+  width: 300px;
   background-color: white;
   gap: 0.5rem;
 }
-.thumbnail {
-  display: flex;
-  height: 100px;
+.popular-topics-section article {
+  width: auto;
+  background-color: #eef1e9;
+  filter: drop-shadow(4px 5px 5px rgba(0, 0, 0, 0.1));
+  gap: 1rem;
 }
-.thumbnail img {
-  width: 100%;
-  object-fit: cover;
-}
-.post-preview h2 {
+article h2 {
   font-size: 1.1rem;
 }
-.post-preview a {
-  text-align: right;
+article p,
+article a,
+.about-us-section p,
+.about-us-section a {
   color: black;
   font-size: 0.8rem;
   font-weight: 200;
+}
+.newly-published-section .continue-btn {
+  text-align: right;
+}
+.about-us-section p,
+.about-us-section a {
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+.about-us-section p {
+  margin-bottom: 1rem;
+}
+figure {
+  height: 100px;
+}
+figure img {
+  width: 100%;
+  object-fit: cover;
+}
+.newly-published-section figure {
+  display: flex;
+}
+.popular-topics-section figure {
+  display: none;
 }

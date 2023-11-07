@@ -1,0 +1,34 @@
+/* footer */
+footer:first-of-type {
+  background-color: #eef1e9;
+  padding: 1rem;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  color: #53584a;
+  text-align: center;
+}
+.some-icons a {
+  color: #53584a;
+  padding: 1rem;
+  display: inline-block;
+}
+.some-icons i {
+  font-size: 1.5rem;
+}
+.some-icons {
+  padding: 1rem;
+}
+.some-cta {
+  padding: 2rem 1rem 0 1rem;
+  font-size: 1.2rem;
+}
+footer:last-of-type {
+  display: flex;
+  margin: 2rem;
+  text-align: center;
+  display: block;
+}
+.logo-gray-footer img {
+  width: 60%;
+  object-fit: cover;
+}
