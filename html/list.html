@@ -51,7 +51,7 @@
         </div>
         <div class="header-display">
           <img src="/img/header-img_unsplash.jpg" class="header-img" />
-          <img src="/img/logo-big-2.svg" class="logo-big" />
+          <img src="/img/logo-white-big.svg" class="logo-big" />
         </div>
         <div class="navbar-categories on">
           <ul class="navbar-categories-alignement">
@@ -71,15 +71,26 @@
         <div class="header-general off">
           <img src="/img/header-img_unsplash.jpg" class="header-img-general" />
         </div>
-        <h1 class="pagetitle">micro living</h1>
+        <h1 class="pagetitle off">micro living</h1>
         <!-- this should be replaced by java lateron -->
       </nav>
     </header>
     <main>
-      <div class="directory"></div>
+      <div class="directory"><a href="#">Home</a> > <a href="#">Archive</a> > <a href="#">Category: Micro living</a></div>
       <!-- this should be replaced by java lateron -->
       <section class="sorting-section">
-        <div class="sorting-options"></div>
+        <div class="sorting-header">Sort posts by:</div>
+        <div class="sorting-box">
+          <select name="sort-sub-category" id="sort-sub-category" class="sorting-options">
+            <option value="no-selection">sub category</option>
+          </select>
+          <select name="sort-year" id="sort-year" class="sorting-options">
+            <option value="no-selection">year</option>
+          </select>
+          <select name="sort-author" id="sort-author" class="sorting-options">
+            <option value="no-selection">author</option>
+          </select>
+        </div>
         <!-- this should be replaced by java lateron -->
       </section>
       <section class="archive-result-section">

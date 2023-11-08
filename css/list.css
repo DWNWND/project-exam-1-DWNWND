@@ -4,7 +4,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: "Times New Roman", Times, serif;
-  font-size: 3rem;
+  font-size: 15vw;
   text-align: center;
   color: white;
   width: 100%;
@@ -28,16 +28,48 @@
 .archive-result-section figure {
   display: flex;
 }
+.sorting-options {
+  padding: 1rem;
+  margin-right: 1rem;
+}
+#sort-sub-category {
+  border-width: 0;
+  border-style: none;
+  border-color: none;
+  font-size: 1rem;
+}
+#sort-year,
+#sort-author {
+  border-width: 0 0 0 2px;
+  border-style: solid;
+  border-color: black;
+  font-size: 1rem;
+}
+.sorting-box {
+  display: flex;
+  border-width: 2px 0;
+  border-style: solid;
+  border-color: black;
+  background-color: white;
+}
+.sorting-header {
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  background-color: white;
+  padding: 2rem 0.8rem 1rem 0.8rem;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: 700;
+}
 @media (min-width: 400px) {
-  .pagetitle {
+  /* .pagetitle {
     font-size: 4rem;
-  }
+  } */
 }
 
 @media (min-width: 470px) {
-  .pagetitle {
+  /* .pagetitle {
     font-size: 5rem;
-  }
+  } */
 }
 @media (min-width: 730px) {
   .archive-result-section {

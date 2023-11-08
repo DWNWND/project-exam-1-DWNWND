@@ -70,7 +70,7 @@ nav a {
   background-color: white;
 }
 .navbar-categories {
-  background-color: black;
+  background-color: rgb(134, 134, 134, 0.5);
 }
 .navbar-standard a {
   color: black;
@@ -144,11 +144,12 @@ nav a {
   }
   .logo-big {
     display: block;
-    width: 35%;
+    width: 40vw;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    filter: drop-shadow(4px 5px 5px rgba(0, 0, 0, 0.501));
   }
   .header-display {
     position: relative;

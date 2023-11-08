@@ -9,7 +9,7 @@ footer:first-of-type {
 .some-cta {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   color: #53584a;
-  font-size: 1.2rem;
+  font-size: 5vw;
   font-weight: 600;
   padding: 1rem;
   text-align: center;
@@ -29,13 +29,16 @@ footer:last-of-type {
   text-align: center;
 }
 .logo-gray-footer img {
-  width: 60%;
+  width: 40vw;
   object-fit: cover;
 }
 @media (min-width: 500px) {
   .logo-gray-footer img {
-    width: 20rem;
+    width: 30vw;
     filter: none;
+  }
+   .some-cta {
+    font-size: 4vw;
   }
 }
 @media (min-width: 800px) {
@@ -49,7 +52,7 @@ footer:last-of-type {
     font-size: 2rem;
   }
   .some-cta {
-    font-size: 1.5rem;
+    font-size: 2vw;
   }
 }
 @media (min-width: 1000px) {
@@ -62,7 +65,7 @@ footer:last-of-type {
   .some-icons i {
     font-size: 2.5rem;
   }
-  .some-cta {
+  /* .some-cta {
     font-size: 1.8rem;
-  }
+  } */
 }

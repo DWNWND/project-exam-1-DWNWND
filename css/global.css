@@ -33,6 +33,18 @@ body {
   display: block;
   padding: 2rem 0;
 }
+.directory {
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: 200;
+  font-size: 0.7rem;
+  display: block;
+  padding: 0.5rem 1rem;
+  background-color: white;
+}
+.directory a {
+  text-decoration: none;
+  color: black;
+}
 
 @media (min-width: 1300px) {
   .more-btn {
