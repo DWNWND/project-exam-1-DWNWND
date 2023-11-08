@@ -35,6 +35,7 @@ footer:last-of-type {
 @media (min-width: 500px) {
   .logo-gray-footer img {
     width: 20rem;
+    filter: none;
   }
 }
 @media (min-width: 800px) {
@@ -42,5 +43,26 @@ footer:last-of-type {
     flex-direction: row;
     justify-content: center;
     gap: 2rem;
+    height: 150px;
+  }
+  .some-icons i {
+    font-size: 2rem;
+  }
+  .some-cta {
+    font-size: 1.5rem;
+  }
+}
+@media (min-width: 1000px) {
+  footer:first-of-type {
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+    height: 200px;
+  }
+  .some-icons i {
+    font-size: 2.5rem;
+  }
+  .some-cta {
+    font-size: 1.8rem;
   }
 }

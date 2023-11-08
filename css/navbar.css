@@ -76,7 +76,9 @@ nav a {
 .navbar-standard li,
 .navbar-categories li {
   padding: 0.3rem 0;
-  width: 100%;
+}
+.navbar-categories li {
+  /* width: 100%; */
 }
 .line-separation,
 .icon-links,
@@ -102,25 +104,29 @@ nav a {
   }
   .line-separation {
     height: 30px;
-    width: 10px;
+    width: 2px;
     background-color: white;
   }
   .navbar-standard-alignment {
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 270px 1fr 270px;
+    align-items: center;
   }
   .navbar-categories-alignement {
     display: flex;
     align-items: center;
-    gap: 0.3rem;
+    justify-content: center;
+    gap: 1.6rem;
   }
   .navbar-standard a {
     text-align: center;
     width: 100%;
   }
-  .navbar-categories,
+  .navbar-categories {
+    padding: 0.3rem 1rem;
+  }
   .navbar-standard {
-    padding: 0.4rem;
+    padding: 0.6rem;
   }
   .navbar-categories a {
     text-align: center;
@@ -136,16 +142,52 @@ nav a {
   .header-display {
     position: relative;
     display: flex;
+    max-height: 400px;
+    overflow: clip;
   }
   .header-img {
     width: 100%;
+    height: 100%;
   }
   .standard-links,
   .icon-links {
     display: flex;
-    gap: 5px;
+    align-items: center;
+  }
+  .icon-links {
+    width: 205px;
+    margin-left: auto;
+    /* margin-right: auto; */
+    gap: 20px;
   }
   .navbar-standard li {
     padding: 0;
+  }
+  .nav-icon-stand i {
+    font-size: 1.5rem;
+  }
+}
+@media (min-width: 1100px) {
+  .navbar-categories {
+    padding: 0.7rem 4rem;
+  }
+}
+@media (min-width: 1300px) {
+  .navbar-standard {
+    padding: 0.8rem 4rem;
+  }
+}
+@media (min-width: 1400px) {
+  .navbar-categories-alignement {
+    gap: 3rem;
+  }
+}
+@media (min-width: 1600px) {
+  .standard-links,
+  .newsletter-signup {
+    font-size: 1.1rem;
+  }
+  .navbar-categories {
+    font-size: 1.2rem;
   }
 }
