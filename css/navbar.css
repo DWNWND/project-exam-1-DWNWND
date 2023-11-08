@@ -1,3 +1,10 @@
+/* Navbar general-mobile */
+.header-general {
+  display: flex;
+}
+.header-img-general {
+  width: 100%;
+}
 /* -----------NAVBAR------------- */
 ul {
   list-style-type: none;
@@ -10,6 +17,15 @@ nav {
 }
 nav a {
   text-decoration: none;
+}
+.on.active {
+  display: block;
+}
+.off.active {
+  display: none;
+}
+.on-ex.active {
+  display: flex;
 }
 .navbar li:hover {
   background-color: rgb(118, 118, 118);
@@ -46,8 +62,6 @@ nav a {
 .navbar-categories {
   display: none;
 }
-.navbar-standard.active,
-.navbar-categories.active,
 .nav-item-stand a,
 .newsletter-signup a {
   display: block;
@@ -76,9 +90,6 @@ nav a {
 .navbar-standard li,
 .navbar-categories li {
   padding: 0.3rem 0;
-}
-.navbar-categories li {
-  /* width: 100%; */
 }
 .line-separation,
 .icon-links,

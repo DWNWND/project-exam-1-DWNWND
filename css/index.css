@@ -28,12 +28,13 @@
 }
 .logo-mobile-index {
   display: none;
+  width: 100%;
+  justify-content: center;
+  padding: 0.5rem 0;
 }
 .logo-mobile-index.active {
   width: 100%;
   display: flex;
-  justify-content: center;
-  padding: 0.5rem 0;
 }
 .logo-mobile-index img {
   width: 6rem;
@@ -42,12 +43,6 @@
 .prev-btn,
 .next-btn {
   display: none;
-}
-@media (min-width: 1000px) {
-  .header-display-index,
-  .newsletter-signup-index {
-    display: none;
-  }
 }
 
 /* sections */
@@ -81,13 +76,6 @@
   margin-top: 2rem;
   margin-bottom: 5rem;
 }
-.grid-display {
-  display: grid;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-left: auto;
-  margin-right: auto;
-}
 .popular-topics-section .grid-display,
 .about-us-section .grid-display {
   display: grid;
@@ -97,31 +85,36 @@
   margin-left: auto;
   margin-right: auto;
 }
-
 .popular-topics-section .grid-display {
   margin-bottom: 2rem;
 }
-
-.more-btn {
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-weight: 600;
-  color: black;
-  font-size: 0.9rem;
-  text-align: center;
-  display: block;
-  padding: 2rem 0;
+.newly-published-section article {
+  background-color: white;
+  gap: 0.5rem;
 }
-
-/* about us */
+.popular-topics-section article {
+  width: auto;
+  background-color: #eef1e9;
+  filter: drop-shadow(4px 5px 5px rgba(0, 0, 0, 0.1));
+  gap: 1rem;
+}
 .about-us-section article {
   max-width: 350px;
   margin-left: auto;
   margin-right: auto;
   gap: 1rem;
 }
-.about-us-section figure {
+.about-us-section figure,
+.popular-topics-section figure {
   display: none;
 }
+.newly-published-section figure {
+  display: flex;
+}
+.newly-published-section .continue-btn {
+  text-align: right;
+}
+
 @media (min-width: 490px) {
   .popular-topics-section {
     padding: 4rem;
@@ -129,11 +122,12 @@
 }
 
 @media (min-width: 600px) {
-  /* -------- popular topics-section ---------- */
   .newly-published-section,
   .popular-topics-section {
     padding: 5rem;
   }
+  /* kan paddingen bli en global stil på alle sections? */
+
   .popular-topics-section .grid-display,
   .newly-published-section .grid-display {
     grid-template-columns: 1fr 1fr;
@@ -155,10 +149,6 @@
   }
 }
 @media (min-width: 750px) {
-  /* .slider {
-    width: 580px;
-  } */
-
   .newly-published-section h1,
   .popular-topics-section h1,
   .about-us-section h1 {
@@ -184,14 +174,17 @@
     gap: 2rem;
   }
 }
-@media (min-width: 1130px) {
-  .slider {
-    width: 860px;
+@media (min-width: 1000px) {
+  .header-display-index,
+  .newsletter-signup-index {
+    display: none;
   }
+}
+@media (min-width: 1130px) {
   /* -------- carousel ---------- */
   .slider {
+    width: 860px;
     display: flex;
-    /* max-width: 1000px; */
     gap: 2rem;
     justify-content: start;
     padding: 2rem;
@@ -228,7 +221,6 @@
     gap: 2rem;
   }
   .slider article {
-    /* max-width: none; */
     filter: drop-shadow(4px 5px 3px rgba(0, 0, 0, 0.15));
     scroll-snap-align: center;
     min-width: 250px;
@@ -257,16 +249,10 @@
 }
 
 @media (min-width: 1300px) {
-  /* .slider {
-    width: 730px;
-  } */
   .newly-published-section h1,
   .popular-topics-section h1,
   .about-us-section h1 {
     font-size: 3rem;
-  }
-  .more-btn {
-    font-size: 1.1rem;
   }
 }
 @media (min-width: 1370px) {
