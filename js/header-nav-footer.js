@@ -63,3 +63,18 @@ function onClick(event) {
   }
 }
 modal.addEventListener("click", onClick);
+
+// render footer
+const footer = document.querySelector("footer");
+footer.innerHTML += `
+<div class="some-footer-wrapper">
+<div class="some-cta">follow us for more inspiration</div>
+<div class="some-icons">
+  <a href="#"><i class="fa-brands fa-pinterest"></i></a>
+  <a href="#"><i class="fa-brands fa-amazon"></i></a>
+  <a href="#"><i class="fa-brands fa-youtube"></i></a>
+</div>
+</div>
+<div class="logo-footer-wrapper">
+<div class="logo-gray-footer"><img src="/img/logo-white-big.svg" /></div>
+</div>`;

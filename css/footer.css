@@ -1,5 +1,5 @@
 /* footer */
-footer:first-of-type {
+.some-footer-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,7 +23,7 @@ footer:first-of-type {
 .some-icons i {
   font-size: 1.5rem;
 }
-footer:last-of-type {
+.logo-footer-wrapper {
   display: block;
   padding: 4rem 2rem;
   text-align: center;
@@ -37,12 +37,12 @@ footer:last-of-type {
     width: 30vw;
     filter: none;
   }
-   .some-cta {
+  .some-cta {
     font-size: 4vw;
   }
 }
 @media (min-width: 800px) {
-  footer:first-of-type {
+  .some-footer-wrapper {
     flex-direction: row;
     justify-content: center;
     gap: 2rem;
@@ -56,7 +56,7 @@ footer:last-of-type {
   }
 }
 @media (min-width: 1000px) {
-  footer:first-of-type {
+  .some-footer-wrapper {
     flex-direction: row;
     justify-content: center;
     gap: 2rem;
