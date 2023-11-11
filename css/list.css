@@ -95,13 +95,13 @@
     filter: drop-shadow(4px 5px 5px rgba(0, 0, 0, 0.1));
   }
 }
-
+/* flytt/flyttet til nav/test
 @media (min-width: 1000px) {
   .header-general,
   .pagetitle {
     display: none;
   }
-}
+} */
 @media (min-width: 1130px) {
   .archive-result-section .grid-display {
     grid-template-columns: 1fr 1fr 1fr;
