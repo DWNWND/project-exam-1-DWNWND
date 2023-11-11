@@ -1,40 +1,4 @@
-/* Navbar general-mobile */
-.header-general {
-  display: flex;
-}
-.header-img-general {
-  width: 100%;
-}
-
-/* jS */
-.hamburger-toggle {
-  position: absolute;
-  top: 0.9rem;
-  right: 1rem;
-  font-size: 1.3rem;
-  color: black;
-}
-.modal {
-  width: 100%;
-  max-width: 100%;
-  max-height: 100%;
-  background: rgb(255, 255, 255);
-  transition: all ease 0.5s;
-  border: none;
-  position: fixed;
-}
-
-.closeBtn:hover {
-  color: rgb(80, 50, 50);
-  cursor: pointer;
-}
-
-dialog::backdrop {
-  background-color: rgba(0, 0, 0, 0.174);
-  cursor: pointer;
-}
-
-/* -----------NAVBAR------------- */
+/* Navbar/header general styles: Mobile */
 ul {
   list-style-type: none;
 }
@@ -65,9 +29,7 @@ nav li:hover {
   text-transform: uppercase;
 }
 .navbar-standard,
-.navbar-categories {
-  display: block;
-}
+.navbar-categories,
 .nav-item-stand a,
 .newsletter-signup a {
   display: block;
@@ -82,10 +44,6 @@ nav li:hover {
   color: black;
   padding: 0.3rem 1rem;
 }
-.newsletter-signup {
-  text-align: center;
-  font-weight: 600;
-}
 .navbar-categories a {
   color: white;
   display: block;
@@ -93,17 +51,29 @@ nav li:hover {
   font-weight: 500;
   text-align: right;
 }
+.newsletter-signup {
+  text-align: center;
+  font-weight: 600;
+}
 .navbar-standard li,
 .navbar-categories li {
   padding: 0.3rem 0;
 }
 .icon-links,
-.header-display {
+.header-general-wrapper {
   display: none;
 }
 
-/* Navbar index spesific */
-.header-display-index {
+/* Navbar general(exl.index.html): Mobile */
+.header-general-mobile-wrapper {
+  display: flex;
+}
+.header-img-general {
+  width: 100%;
+}
+
+/* Navbar index spesific: Mobile */
+.header-index-mobile-wrapper {
   display: flex;
 }
 .header-img-index {
@@ -127,6 +97,7 @@ nav li:hover {
   color: black;
   padding: 0.3rem 1rem;
 }
+
 /* .logo-mobile-index {
   justify-content: center;
   padding: 0.5rem 0;
@@ -137,13 +108,40 @@ nav li:hover {
   width: 6rem;
 } */
 
+/* Modal menu: Mobile */
+.hamburger-toggle {
+  position: absolute;
+  top: 0.9rem;
+  right: 1rem;
+  font-size: 1.3rem;
+  color: black;
+}
+.modal {
+  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  background: rgb(255, 255, 255);
+  transition: all ease 0.5s;
+  border: none;
+  position: fixed;
+}
+.closeBtn:hover {
+  color: rgb(80, 50, 50);
+  cursor: pointer;
+}
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.174);
+  cursor: pointer;
+}
+
+/* Open screensize header */
 @media (min-width: 800px) {
   .hamburger-toggle,
   .logo-mobile,
-  .header-display-index,
+  .header-index-mobile-wrapper,
   .newsletter-signup-index,
   .logo-mobile-index,
-  .header-general,
+  .header-general-mobile-wrapper,
   .pagetitle {
     display: none;
   }
@@ -153,13 +151,24 @@ nav li:hover {
   .nav-icon-stand {
     display: block;
   }
-  .modal {
-    position: relative;
-  }
   .nav-icon-stand a {
     display: inline-block;
   }
-  .navbar-categories-alignement {
+  .modal {
+    position: relative;
+  }
+  .navbar-standard {
+    padding: 0.6rem;
+  }
+  .navbar-categories {
+    padding: 0.3rem 1rem;
+  }
+  .navbar-standard-alignment {
+    display: grid;
+    grid-template-columns: 270px 1fr 270px;
+    align-items: center;
+  }
+  .navbar-categories-alignment {
     display: grid;
     grid-template-columns: 170px 170px 170px;
     align-items: center;
@@ -167,20 +176,9 @@ nav li:hover {
     gap: 0.5rem;
     padding: 0 5rem;
   }
-  .navbar-standard-alignment {
-    display: grid;
-    grid-template-columns: 270px 1fr 270px;
-    align-items: center;
-  }
   .navbar-standard a {
     text-align: center;
     width: 100%;
-  }
-  .navbar-categories {
-    padding: 0.3rem 1rem;
-  }
-  .navbar-standard {
-    padding: 0.6rem;
   }
   .navbar-categories a {
     text-align: center;
@@ -194,7 +192,7 @@ nav li:hover {
     transform: translate(-50%, -50%);
     filter: drop-shadow(4px 5px 5px rgba(0, 0, 0, 0.501));
   }
-  .header-display {
+  .header-general-wrapper {
     position: relative;
     display: flex;
     max-height: 400px;
@@ -222,23 +220,23 @@ nav li:hover {
   }
 }
 @media (min-width: 1000px) {
-  .navbar-categories-alignement {
+  .navbar-categories-alignment {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1.6rem;
   }
   /* usikker på om disse er plassert riktig */
-  .header-display-index,
+  /* .header-index-mobile-wrapper,
   .newsletter-signup-index {
     display: none;
-  }
+  } */
 }
 @media (min-width: 1100px) {
   .navbar-categories {
     padding: 0.7rem 4rem;
   }
-  .navbar-categories-alignement {
+  .navbar-categories-alignment {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -251,7 +249,7 @@ nav li:hover {
   }
 }
 @media (min-width: 1400px) {
-  .navbar-categories-alignement {
+  .navbar-categories-alignment {
     gap: 3rem;
   }
 }
