@@ -5,12 +5,12 @@ modal.innerHTML += `
   <i class="fa-solid fa-xmark"></i>
 </a>
 <div class="logo-mobile">
-  <a href="#"><img src="/img/logo-black.png" /></a>
+  <a href="/index.html"><img src="/img/logo-black.png" /></a>
 </div>
 <div class="navbar-standard">
   <ul class="navbar-standard-alignment">
     <div class="standard-links">
-      <li class="nav-item-stand"><a href="#">Home</a></li>
+      <li class="nav-item-stand"><a href="/index.html">Home</a></li>
       <li class="nav-item-stand"><a href="html/about.html">About</a></li>
       <li class="nav-item-stand"><a href="html/contact.html">Contact</a></li>
    </div>
