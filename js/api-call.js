@@ -7,18 +7,14 @@
 // }
 
 //API-CALL
-const url = "https://www.dwnwnd-api.online/wp-json/wp/v2/posts";
-//getting the IDs
-const queryString = document.location.search;
-const params = new URLSearchParams(queryString);
-const id = params.get("key");
+const url = "https://www.dwnwnd-api.online/wp-json/wp/v2/";
 
 //API call ALL blogposts (list)
+const postQueryString = "posts?_embed";
 export async function fetchAllBlogPosts() {
   try {
-    const response = await fetch(url);
+    const response = await fetch(url + postQueryString);
     const results = await response.json();
-    console.log(results);
     return results;
   } catch (error) {
     // const main = document.querySelector("main");
@@ -26,7 +22,12 @@ export async function fetchAllBlogPosts() {
   }
 }
 
-//API call ALL categories (list)
+//API call post SPESIFIC (id-call)
+//getting the IDs
+const queryString = document.location.search;
+const params = new URLSearchParams(queryString);
+const id = params.get("key");
+
 export async function fetchJacketById() {
   try {
     const response = await fetch(url + "/" + id);
@@ -38,4 +39,18 @@ export async function fetchJacketById() {
   }
 }
 
-//API call post SPESIFIC (id-call)
+//API call categories
+
+//API call pages
+const pagesQueryString = "pages?_embed";
+export async function fetchAllPages() {
+  try {
+    const response = await fetch(url + pagesQueryString);
+    const results = await response.json();
+    // console.log(results);
+    return results;
+  } catch (error) {
+    // const main = document.querySelector("main");
+    // main.innerHTML = `<div class="error-message montserrat bold red">${errorMessage}</div>`;
+  }
+}

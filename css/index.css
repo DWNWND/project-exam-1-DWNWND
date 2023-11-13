@@ -6,7 +6,7 @@
 /* sections */
 .newly-published-section {
   background-color: #e4eaf7;
-  padding: 2rem 1rem;
+  padding: 3rem;
 }
 .popular-topics-section {
   background-color: white;
@@ -45,13 +45,14 @@
 }
 .popular-topics-section .grid-display {
   margin-bottom: 2rem;
+  justify-content: center;
 }
 .newly-published-section article {
   background-color: white;
   gap: 0.5rem;
+  width: auto;
 }
 .popular-topics-section article {
-  width: auto;
   background-color: #eef1e9;
   filter: drop-shadow(4px 5px 5px rgba(0, 0, 0, 0.1));
   gap: 1rem;
@@ -74,6 +75,7 @@
 }
 
 @media (min-width: 490px) {
+  .newly-published-section,
   .popular-topics-section {
     padding: 4rem;
   }
@@ -101,12 +103,12 @@
     display: flex;
     margin-top: auto;
   }
+}
+@media (min-width: 750px) {
   .about-us-section figure {
     display: flex;
     height: auto;
   }
-}
-@media (min-width: 750px) {
   .newly-published-section h1,
   .popular-topics-section h1,
   .about-us-section h1 {
