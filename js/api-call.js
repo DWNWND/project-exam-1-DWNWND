@@ -40,9 +40,21 @@ export async function fetchJacketById() {
 }
 
 //API call categories
+const categoriesQueryString = "categories";
+export async function fetchAllCategories() {
+  try {
+    const response = await fetch(url + categoriesQueryString);
+    const results = await response.json();
+    // console.log(results);
+    return results;
+  } catch (error) {
+    // const main = document.querySelector("main");
+    // main.innerHTML = `<div class="error-message montserrat bold red">${errorMessage}</div>`;
+  }
+}
 
 //API call pages
-const pagesQueryString = "pages?_embed";
+const pagesQueryString = "pages";
 export async function fetchAllPages() {
   try {
     const response = await fetch(url + pagesQueryString);

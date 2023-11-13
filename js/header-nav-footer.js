@@ -34,14 +34,26 @@ modal.innerHTML += `
 </div>
 <div class="navbar-categories">
   <ul class="navbar-categories-alignment">
-    <li class="nav-item-cat"><a href="/html/list.html">Micro living</a></li>
-    <li class="nav-item-cat"><a href="#">Vanlife</a></li>
-    <li class="nav-item-cat"><a href="#">Boatlife</a></li>
-    <li class="nav-item-cat"><a href="#">Self Reliance</a></li>
-    <li class="nav-item-cat"><a href="#">DIY</a></li>
-    <li class="nav-item-cat"><a href="#">Tinyhouse</a></li>
   </ul>
 </div>`;
+
+//render categories
+import { fetchAllCategories } from "./api-call.js";
+
+async function renderCategories() {
+  const allCategories = await fetchAllCategories();
+  const categoriesUl = document.querySelector(".navbar-categories-alignment");
+
+  for (let i = 0; i < allCategories.length; i++) {
+    if (allCategories[i].id === 1) {
+      continue;
+    }
+    categoriesUl.innerHTML += `
+    <li class="nav-item-cat"><a href="/html/list.html">${allCategories[i].name}</a></li>`;
+  }
+  //add a slug with the category-name in the href?
+}
+renderCategories();
 
 // open hamburger menu
 const openBtn = document.querySelector("[data-open-modal]");
