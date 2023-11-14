@@ -33,7 +33,7 @@ async function renderNewlyPublishedPosts() {
     <article>
       <h2>${postTitle}</h2>
       <figure><img src="${featuredImg}" alt="${altText}"/></figure>
-      <a href="#" class="continue-btn">continue reading...</a>
+      <a href="/html/post.html?key=${allPosts[i].id}" class="continue-btn">continue reading...</a>
     </article>`;
     //add alt-text in WP and link to the blogspeficis here
 
@@ -61,7 +61,7 @@ async function renderPopularPosts() {
       <article>
         <h2>${postTitle}</h2>
         <p>${excerpt}</p>
-        <a href="#">continue reading...</a>
+        <a href="/html/post.html?key=${allPosts[i].id}">continue reading...</a>
         <figure><img src="${featuredImg}" alt="${altText}"/></figure>
       </article>`;
     }
