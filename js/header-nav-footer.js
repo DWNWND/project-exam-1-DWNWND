@@ -49,10 +49,11 @@ async function renderCategories() {
       continue;
     }
     categoriesUl.innerHTML += `
-    <li class="nav-item-cat"><a href="/html/list.html">${allCategories[i].name}</a></li>`;
+    <li class="nav-item-cat"><a href="/html/list.html?key=${allCategories[i].id}">${allCategories[i].name}</a></li>`;
   }
   //add a slug with the category-name in the href?
 }
+
 renderCategories();
 
 // open hamburger menu

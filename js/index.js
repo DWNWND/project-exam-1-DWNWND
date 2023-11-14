@@ -45,7 +45,7 @@ async function renderNewlyPublishedPosts() {
 renderNewlyPublishedPosts();
 
 //render posts for "most popular topics"
-async function renderBlogPosts() {
+async function renderPopularPosts() {
   const allPosts = await fetchAllBlogPosts();
 
   for (let i = 0; i < allPosts.length; i++) {
@@ -71,4 +71,4 @@ async function renderBlogPosts() {
     }
   }
 }
-renderBlogPosts();
+renderPopularPosts();
