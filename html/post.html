@@ -8,10 +8,13 @@
     <meta name="description" content="abc" />
     <meta name="author" content="Thea Oland" />
 
-    <script defer type="module" src="/js/javascript.js"></script>
-    <link rel="stylesheet" href="/css/global.css" />
-
     <script src="https://kit.fontawesome.com/279950e6bf.js" crossorigin="anonymous"></script>
+
+    <script defer type="module" src="/js/header-nav-footer.js"></script>
+    <script defer type="module" src="/js/post.js"></script>
+
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/post.css" />
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   </head>
@@ -25,13 +28,67 @@
           <a href="#"><img src="/img/logo-black.png" /></a>
         </div>
         <dialog data-modal class="modal"></dialog>
-        <div class="header-general off">
+        <div class="header-general-mobile-wrapper">
           <img src="/img/header-img_unsplash.jpg" class="header-img-general" />
         </div>
-        <h1 class="pagetitle off">micro living</h1>
       </nav>
     </header>
-    <main></main>
+    <main>
+      <div class="directory"><a href="#">Home</a> > <a href="#">Archive</a> > <a href="#">Category: Micro living</a></div>
+      <section class="blogpost-section">
+        <!-- <div class="post-title">
+          <h1>title</h1>
+        </div>
+        <div class="post-body">
+          <section class="post-info-section">
+            <div class="filter-data">
+              <div>sub-category: abc</div>
+              <div>tags: abc</div>
+            </div>
+            <div class="share-CTA">
+              <a href="#">share this post</a>
+            </div>
+            <div class="meta-data">
+              <div class="date">updated: xx.xx.xxxx</div>
+              <div class="author">author: Abc Def</div>
+            </div>
+          </section>
+          <section class="post-img-section">
+            <figure>
+              <img src="/img/placeholder.jpg" alt="" />
+              <figcaption>caption</figcaption>
+            </figure>
+          </section>
+          <section class="post-copy-section"></section>
+          <section class="post-comment-section">
+            <button class="view-more-comments-CTA">x comments</button>
+          </section>
+        </div> -->
+      </section>
+      <section class="related-posts-section">
+        <div class="related-posts-title">
+          <h3>related posts</h3>
+        </div>
+        <div class="grid-display related-posts">
+          <article>
+            <h2>abc</h2>
+            <p>abc</p>
+            <a href="/html/post.html?key=${allPosts[i].id}">continue reading...</a>
+          </article>
+          <article>
+            <h2>abc</h2>
+            <p>abc</p>
+            <a href="/html/post.html?key=${allPosts[i].id}">continue reading...</a>
+          </article>
+          <article>
+            <h2>abc</h2>
+            <p>abc</p>
+            <a href="/html/post.html?key=${allPosts[i].id}">continue reading...</a>
+          </article>
+          <a href="#" class="more-btn">load more posts</a>
+        </div>
+      </section>
+    </main>
     <footer></footer>
   </body>
 </html>

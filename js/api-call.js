@@ -28,15 +28,28 @@ const queryString = document.location.search;
 const params = new URLSearchParams(queryString);
 export const id = params.get("key");
 
+const postsQueryString = "posts/";
 export async function fetchPostById() {
   try {
-    const response = await fetch(url + id);
+    const response = await fetch(url + postsQueryString + id);
     const results = await response.json();
-    console.log(results);
     return results;
   } catch (error) {
     // const main = document.querySelector("main");
     // main.innerHTML = `<div class="error-message montserrat bold brown">${errorMessage}</div>`;
+  }
+}
+
+//API call fetch comments
+export async function fetchComments(commentUrl) {
+  try {
+    const response = await fetch(commentUrl);
+    const results = await response.json();
+    // console.log(results);
+    return results;
+  } catch (error) {
+    // const main = document.querySelector("main");
+    // main.innerHTML = `<div class="error-message montserrat bold red">${errorMessage}</div>`;
   }
 }
 

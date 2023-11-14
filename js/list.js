@@ -1,4 +1,5 @@
 import { fetchPostsByCategory, fetchSpesificImages, fetchCategory } from "./api-call.js";
+import { formatDate } from "./global.js";
 
 //render category name/pagetitle
 async function renderCategoryName() {
@@ -18,19 +19,8 @@ async function renderCategoriezedPosts() {
     const postTitle = allCategorizedPosts[i].title.rendered;
     const excerpt = allCategorizedPosts[i].excerpt.rendered;
 
-    //formatting the date that is displayed on each post
-    const initialWpPublishedDate = allCategorizedPosts[i].date;
-    const formattableDate = new Date(initialWpPublishedDate).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: false,
-    });
-    const dateArr = formattableDate.split(",");
-    const displayedDate = dateArr[0];
-    const displayedYearAndTime = dateArr[1];
+    //fetch and format date
+    const date = formatDate(allCategorizedPosts[i].date);
 
     //formatting the linked imageurl for each post
     const imageApi = allCategorizedPosts[i]._links["wp:featuredmedia"]["0"].href;
@@ -46,7 +36,7 @@ async function renderCategoriezedPosts() {
       <p>${excerpt}</p>
       <figure><img src="${featuredImg}" alt="${altText}" /></figure>
       <div class="post-info">
-        <div class="publish-date"><date>${displayedDate}, ${displayedYearAndTime}</date></div>
+        <div class="publish-date"><date>${date[0]}, ${date[1]}</date></div>
         <a href="/html/post.html?key=${allCategorizedPosts[i].id}" class="continue-btn">continue reading...</a>
       </div>
     </article>
