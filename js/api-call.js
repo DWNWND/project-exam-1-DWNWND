@@ -67,9 +67,22 @@ export async function fetchAllCategories() {
   }
 }
 
+//API call category SPESIFIC (id-call)
+export async function fetchCategory() {
+  try {
+    const response = await fetch(url + categoriesQueryString + "/" + id);
+    const results = await response.json();
+    // console.log(results);
+    return results;
+  } catch (error) {
+    // const main = document.querySelector("main");
+    // main.innerHTML = `<div class="error-message montserrat bold red">${errorMessage}</div>`;
+  }
+}
+
 // https://www.dwnwnd-api.online/wp-json/wp/v2/posts?categories=8
 
-//API call posts category SPESIFIC (id-call)
+//API call posts in category SPESIFIC (id-call)
 const categoryIDQueryString = "posts?categories=";
 export async function fetchPostsByCategory() {
   try {

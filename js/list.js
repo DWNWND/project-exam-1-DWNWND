@@ -1,6 +1,18 @@
-import { fetchPostsByCategory, fetchSpesificImages } from "./api-call.js";
+import { fetchPostsByCategory, fetchSpesificImages, fetchCategory } from "./api-call.js";
 
-// fetchPostsByCategory();
+//render category name
+
+async function renderCategoryName() {
+  const currentCategory = await fetchCategory();
+
+  console.log(currentCategory);
+
+  const pageTitle = document.querySelector(".pagetitle");
+
+  pageTitle.innerHTML += `${currentCategory.name}`;
+}
+
+renderCategoryName();
 
 async function renderCategoriezedPosts() {
   const allCategorizedPosts = await fetchPostsByCategory();
