@@ -39,9 +39,11 @@ figcaption {
   font-weight: 200;
   font-size: 0.8rem;
 }
-.post-comment-section {
+.comment-section {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
 }
 .view-more-comments-CTA {
   background-color: #8b786a;
@@ -52,6 +54,9 @@ figcaption {
   border-radius: 30px;
   padding: 0.5rem;
   min-width: 200px;
+  /* margin-left: auto;
+  margin-right: auto; */
+  cursor: pointer;
 }
 .related-posts-section article {
   background-color: #eef1e9;
@@ -76,4 +81,32 @@ h3 {
 }
 .post-copy-section {
   padding: 2rem 0;
+}
+
+.post-comment-section.active {
+  background-color: #9b9696;
+}
+.fa-chevron-down.active {
+  transform: rotate(180deg);
+}
+.open-comment-section,
+.formelement {
+  display: none;
+}
+.formelement.active {
+  display: flex;
+  flex-direction: column;
+}
+.open-comment-section.active {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.comment {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 15px;
+}
+.comment-content {
+  padding-top: 0.5rem;
 }

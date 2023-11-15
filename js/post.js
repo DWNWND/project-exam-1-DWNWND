@@ -1,4 +1,5 @@
 import { fetchPostById, fetchSpesificImages, fetchComments } from "./api-call.js";
+import { renderComments } from "./comments.js";
 import { formatDate } from "./global.js";
 
 //render blog-post
@@ -9,12 +10,6 @@ async function renderBlogPost() {
   const title = blogPost.title.rendered;
   const copy = blogPost.content.rendered;
 
-  //fetch comments - NEXT FIX COMMENT SECTION
-  const comments = await fetchComments(blogPost._links.replies["0"].href);
-  for (let i = 0; i < comments.length; i++) {
-    console.log(comments[i]);
-  }
-
   //fetch and format date
   const date = formatDate(blogPost.date);
 
@@ -23,6 +18,10 @@ async function renderBlogPost() {
   const img = await fetchSpesificImages(imageApi);
   const featuredImg = img.source_url;
   const altText = img.alt_text;
+
+  //fetch comments - WORKING ON COMMENT SECTION RN
+  const commentsUrl = blogPost._links.replies["0"].href;
+  const allComments = await fetchComments(commentsUrl);
 
   //post HTML
   const displayPost = document.querySelector(".blogpost-section");
@@ -51,9 +50,44 @@ async function renderBlogPost() {
       </figure>
     </section>
     <section class="post-copy-section">${copy}</section>
-    <section class="post-comment-section">
-      <button class="view-more-comments-CTA">x comments</button>
+    <section class="comment-section">
+      <button class="view-more-comments-CTA">${allComments.length} comments <i class="fa-solid fa-chevron-down"></i></button>
     </section>
     </div>`;
+
+  //generate the active/open comment-section
+  const commentSection = document.querySelector(".comment-section");
+  const commentsDiv = document.createElement("div");
+  commentsDiv.classList.add("open-comment-section");
+
+  //add comments
+  renderComments(allComments, commentsDiv);
+  commentSection.appendChild(commentsDiv);
+
+  // add comment-form
+  const addNewCommentsForm = document.createElement("form");
+  addNewCommentsForm.classList.add("formelement");
+  addNewCommentsForm.innerHTML += `
+  <h4>Write us a comment</h3>
+  <fieldset>
+    <label for="author">abc</label>
+    <input type="text" name="author" id="author" placeholder="x" required>
+    <label for="author">abc</label>
+    <textarea name="comment" id="comment" placeholder="Type comment here..." required></textarea>
+  </fieldset>
+  <input type="submit" value="send">`;
+  commentSection.appendChild(addNewCommentsForm);
+
+  //open/close the comment section
+  const commentSectionBtn = document.querySelector(".view-more-comments-CTA");
+  const commentBtnArrow = document.querySelector(".fa-chevron-down");
+
+  commentSectionBtn.addEventListener("click", () => {
+    // console.log("open comment section");
+    commentSection.classList.toggle("active");
+    commentBtnArrow.classList.toggle("active");
+    commentsDiv.classList.toggle("active");
+    addNewCommentsForm.classList.toggle("active");
+  });
 }
 renderBlogPost();
