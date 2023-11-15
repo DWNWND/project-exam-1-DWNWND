@@ -32,7 +32,7 @@ async function renderNewlyPublishedPosts() {
     slider.innerHTML += `
     <article>
       <h2>${postTitle}</h2>
-      <figure><img src="${featuredImg}" alt="${altText}"/></figure>
+      <figure class="figure-general"><img src="${featuredImg}" alt="${altText}"/></figure>
       <a href="/html/post.html?key=${allPosts[i].id}" class="continue-btn">continue reading...</a>
     </article>`;
     //add alt-text in WP and link to the blogspeficis here
@@ -62,7 +62,7 @@ async function renderPopularPosts() {
         <h2>${postTitle}</h2>
         <p>${excerpt}</p>
         <a href="/html/post.html?key=${allPosts[i].id}">continue reading...</a>
-        <figure><img src="${featuredImg}" alt="${altText}"/></figure>
+        <figure class="figure-general"><img src="${featuredImg}" alt="${altText}"/></figure>
       </article>`;
     }
 
@@ -84,7 +84,7 @@ async function renderAboutSectionIndex() {
   //to get this to work on the about us page aswell, the sections needs to have the same class as on the index-page
 
   aboutUs.innerHTML += `
-      <figure><img src="/img/placeholder-2.jpg" /></figure>
+      <figure class="figure-general"><img src="/img/placeholder-2.jpg" /></figure>
       <article>
         ${copy}
         <a href="#">more about us</a>

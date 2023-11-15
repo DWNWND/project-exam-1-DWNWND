@@ -43,11 +43,11 @@ async function renderBlogPost() {
         <div class="author">author: xxx </div>
       </div>
     </section>
-    <section class="post-img-section">
-      <figure>
-        <img src="${featuredImg}" alt="${altText}" />
-        <figcaption>caption</figcaption>
-      </figure>
+    <section data-open-modal class="post-img-section">
+        <figure class="post-img-wrapper" >
+          <img src="${featuredImg}" alt="${altText}" class="post-img" />
+          <figcaption>caption</figcaption>
+        </figure>
     </section>
     <section class="post-copy-section">${copy}</section>
     <section class="comment-section">

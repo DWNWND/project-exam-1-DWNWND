@@ -36,7 +36,7 @@ async function renderCategoriezedPosts() {
     <article>
       <h2>${postTitle}</h2>
       <p>${excerpt}</p>
-      <figure><img src="${featuredImg}" alt="${altText}" /></figure>
+      <figure class="figure-general"><img src="${featuredImg}" alt="${altText}" /></figure>
       <div class="post-info">
         <div class="publish-date"><date>${date[0]}, ${date[1]}</date></div>
         <a href="/html/post.html?key=${allCategorizedPosts[i].id}" class="continue-btn">continue reading...</a>

@@ -14,9 +14,8 @@ article a,
   font-size: 0.8rem;
   font-weight: 200;
 }
-figure {
+.figure-general {
   height: 100px;
-  /* this style does not work in the post spesific page */
 }
 figure img {
   width: 100%;
