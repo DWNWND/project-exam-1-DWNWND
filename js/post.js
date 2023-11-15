@@ -1,29 +1,31 @@
 import { fetchPostById, fetchSpesificImages, fetchComments } from "./api-call.js";
-import { renderComments } from "./comments.js";
-import { formatDate } from "./global.js";
+import { formatDate, renderComments } from "./global.js";
 
 //render blog-post
 async function renderBlogPost() {
+  //fetch blogpost
   const blogPost = await fetchPostById();
+
+  //fetch comments
+  const commentsUrl = blogPost._links.replies["0"].href;
+  const allComments = await fetchComments(commentsUrl);
+
+  console.log(commentsUrl);
+
+  //fetch and format publishdate
+  const date = formatDate(blogPost.date);
 
   //render content
   const title = blogPost.title.rendered;
   const copy = blogPost.content.rendered;
 
-  //fetch and format date
-  const date = formatDate(blogPost.date);
-
-  //formatting the linked imageurl
+  //format and render linked img
   const imageApi = blogPost._links["wp:featuredmedia"]["0"].href;
   const img = await fetchSpesificImages(imageApi);
   const featuredImg = img.source_url;
   const altText = img.alt_text;
 
-  //fetch comments - WORKING ON COMMENT SECTION RN
-  const commentsUrl = blogPost._links.replies["0"].href;
-  const allComments = await fetchComments(commentsUrl);
-
-  //post HTML
+  //add post HTML
   const displayPost = document.querySelector(".blogpost-section");
   displayPost.innerHTML += `
   <div class="post-title">
@@ -55,27 +57,27 @@ async function renderBlogPost() {
     </section>
     </div>`;
 
-  //generate the active/open comment-section
+  //add active/open comment-section
   const commentSection = document.querySelector(".comment-section");
   const commentsDiv = document.createElement("div");
   commentsDiv.classList.add("open-comment-section");
 
-  //add comments
+  //render comments
   renderComments(allComments, commentsDiv);
   commentSection.appendChild(commentsDiv);
 
-  // add comment-form
+  //add new-comment-form
   const addNewCommentsForm = document.createElement("form");
   addNewCommentsForm.classList.add("formelement");
   addNewCommentsForm.innerHTML += `
-  <h4>Write us a comment</h3>
-  <fieldset>
-    <label for="author">abc</label>
-    <input type="text" name="author" id="author" placeholder="x" required>
-    <label for="author">abc</label>
-    <textarea name="comment" id="comment" placeholder="Type comment here..." required></textarea>
-  </fieldset>
-  <input type="submit" value="send">`;
+  <h4>Write us a comment</h4>
+  <form class="comment-form">
+    <label for="author">Author</label>
+    <input class="new-comment-field" type="text" name="author" id="author" placeholder="Name" required>
+    <label for="author">Comment</label>
+    <textarea class="new-comment-field" name="comment" id="comment" placeholder="Type comment here..." required></textarea>
+  </form>
+  <input type="button" value="post comment" class="send-CTA">`;
   commentSection.appendChild(addNewCommentsForm);
 
   //open/close the comment section
@@ -88,6 +90,36 @@ async function renderBlogPost() {
     commentBtnArrow.classList.toggle("active");
     commentsDiv.classList.toggle("active");
     addNewCommentsForm.classList.toggle("active");
+  });
+
+  function addComment() {
+    const postId = blogPost.id;
+    const commentAuthor = document.querySelector("#author").value;
+    const commentContent = document.querySelector("#comment").value;
+
+    const commentObj = {
+      post: postId,
+      author_name: commentAuthor,
+      content: commentContent,
+    };
+
+    const postComment = {
+      method: "POST",
+      body: JSON.stringify(commentObj),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    fetch(commentsUrl, postComment)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        // location.reload();
+      });
+  }
+  const sendBtn = document.querySelector(".send-CTA");
+  sendBtn.addEventListener("click", () => {
+    addComment();
   });
 }
 renderBlogPost();
