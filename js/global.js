@@ -16,7 +16,7 @@ export function formatDate(rawDate) {
 //render comments
 export function renderComments(comments, div) {
   if (comments.length === 0) {
-    div.innerHTML += `<div>no comments</div>`;
+    div.innerHTML += `<div class="no-comments">no comments yet</div>`;
   } else {
     for (let i = 0; i < comments.length; i++) {
       //fetch and format date

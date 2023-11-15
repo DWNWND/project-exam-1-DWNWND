@@ -1,4 +1,4 @@
-import { fetchPostById, fetchSpesificImages, fetchComments } from "./api-call.js";
+import { fetchPostById, fetchSpesificImages, fetchComments, fetchAllBlogPosts } from "./api-call.js";
 import { formatDate, renderComments } from "./global.js";
 
 //render blog-post
@@ -9,8 +9,6 @@ async function renderBlogPost() {
   //fetch comments
   const commentsUrl = blogPost._links.replies["0"].href;
   const allComments = await fetchComments(commentsUrl);
-
-  console.log(commentsUrl);
 
   //fetch and format publishdate
   const date = formatDate(blogPost.date);
@@ -34,7 +32,7 @@ async function renderBlogPost() {
   <div class="post-body">
     <section class="post-info-section">
       <div class="filter-data">
-        <div>sub-category: abc</div>
+        <div class="sub-category">abc</div>
         <div>tags: abc</div>
       </div>
       <div class="share-CTA">
@@ -92,34 +90,60 @@ async function renderBlogPost() {
     addNewCommentsForm.classList.toggle("active");
   });
 
-  function addComment() {
-    const postId = blogPost.id;
-    const commentAuthor = document.querySelector("#author").value;
-    const commentContent = document.querySelector("#comment").value;
-
-    const commentObj = {
-      post: postId,
-      author_name: commentAuthor,
-      content: commentContent,
-    };
-
-    const postComment = {
-      method: "POST",
-      body: JSON.stringify(commentObj),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    fetch(commentsUrl, postComment)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        // location.reload();
-      });
-  }
-  const sendBtn = document.querySelector(".send-CTA");
-  sendBtn.addEventListener("click", () => {
-    addComment();
-  });
+  //This function does not yet work
+  //send new comment - POST to REST API
+  // function addComment() {
+  //   const postId = blogPost.id;
+  //   const commentAuthor = document.querySelector("#author").value;
+  //   const commentContent = document.querySelector("#comment").value;
+  //   const commentObj = {
+  //     post: postId,
+  //     author_name: commentAuthor,
+  //     content: commentContent,
+  //   };
+  //   const postComment = {
+  //     method: "POST",
+  //     body: JSON.stringify(commentObj),
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   };
+  //   // FIX THIS IF YOU HAVE TIME/
+  //   // fetch(commentsUrl, postComment)
+  //   //   .then((response) => response.json())
+  //   //   .then((data) => {
+  //   //     console.log(data);
+  //   //     // location.reload();
+  //   //   });
+  // }
+  // const sendBtn = document.querySelector(".send-CTA");
+  // sendBtn.addEventListener("click", () => {
+  //   console.log("this function is now working yet");
+  //   // addComment();
+  // });
 }
 renderBlogPost();
+
+//render related posts-section(this function does not fetch related posts (yet))
+async function renderRelatedPosts() {
+  const allPosts = await fetchAllBlogPosts();
+
+  for (let i = 0; i < allPosts.length; i++) {
+    const postTitle = allPosts[i].title.rendered;
+    const excerpt = allPosts[i].excerpt.rendered;
+
+    const relatedPosts = document.querySelector(".related-posts");
+
+    relatedPosts.innerHTML += `
+      <article>
+        <h2>${postTitle}</h2>
+        <p>${excerpt}</p>
+        <a href="/html/post.html?key=${allPosts[i].id}">continue reading...</a>
+      </article>`;
+
+    if (i === 2) {
+      break;
+    }
+  }
+}
+renderRelatedPosts();

@@ -68,13 +68,16 @@ label:last-of-type {
   border: none;
   border-radius: 30px;
   padding: 0.5rem;
-  min-width: 200px;
+  /* min-width: 200px; */
   cursor: pointer;
 }
 .related-posts-section article {
   background-color: #eef1e9;
   /* filter: drop-shadow(4px 5px 5px rgba(0, 0, 0, 0.1)); */
   gap: 1rem;
+}
+.related-posts-section {
+  background-color: white;
 }
 .related-posts-section .grid-display {
   background-color: white;
@@ -112,6 +115,7 @@ h3 {
   padding: 1rem;
   background-color: #e5e4e4;
   border-radius: 15px;
+  gap: 0.5rem;
 }
 .open-comment-section.active {
   display: flex;
@@ -141,4 +145,8 @@ h3 {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   font-weight: 200;
   font-size: 0.8rem;
+}
+.no-comments {
+  text-align: center;
+  font-style: italic;
 }

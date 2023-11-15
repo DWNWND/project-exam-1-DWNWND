@@ -13,22 +13,24 @@ renderCategoryName();
 
 //render categorizes posts
 async function renderCategoriezedPosts() {
+  //fetch categorized posts
   const allCategorizedPosts = await fetchPostsByCategory();
 
   for (let i = 0; i < allCategorizedPosts.length; i++) {
+    //render content
     const postTitle = allCategorizedPosts[i].title.rendered;
     const excerpt = allCategorizedPosts[i].excerpt.rendered;
 
-    //fetch and format date
+    //fetch and format publishdate
     const date = formatDate(allCategorizedPosts[i].date);
 
-    //formatting the linked imageurl for each post
+    //format and render linked img
     const imageApi = allCategorizedPosts[i]._links["wp:featuredmedia"]["0"].href;
     const img = await fetchSpesificImages(imageApi);
     const featuredImg = img.source_url;
     const altText = img.alt_text;
 
-    //render article
+    //add post-articles HTML
     const displayCategorizedPosts = document.querySelector(".categorized-posts");
     displayCategorizedPosts.innerHTML += `
     <article>
