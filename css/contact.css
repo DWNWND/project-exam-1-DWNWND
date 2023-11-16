@@ -1,0 +1,92 @@
+.contact-section {
+  background-color: white;
+  padding: 3rem 3rem 5rem 3rem;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+.contact-section form,
+.contact-section fieldset {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  gap: 0.5rem;
+}
+.contact-section form {
+  padding: 2rem;
+  background-color: #faf8f7;
+  border-radius: 15px;
+  box-shadow: 4px 5px 5px 0px rgba(21, 48, 63, 0.1);
+  gap: 1rem;
+}
+.info input,
+.message input,
+.contact-section textarea {
+  border: none;
+  background-color: white;
+  padding: 0.6rem;
+}
+.contact-section input::placeholder,
+.contact-section textarea::placeholder {
+  color: black;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 0.9rem;
+}
+.message label,
+.info label {
+  display: none;
+}
+.contact-section legend {
+  text-align: center;
+  padding-bottom: 2rem;
+}
+#subject::placeholder {
+  font-weight: 500;
+}
+#message::placeholder {
+  font-weight: 200;
+}
+#message {
+  min-height: 100px;
+}
+.terms {
+  font-size: 0.8rem;
+  color: #840303;
+}
+/* .terms input {
+  border-radius: 50%;
+} */
+
+.send-CTA {
+  font-weight: 200;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+.send-CTA {
+  background-color: #840303;
+  color: rgb(255, 255, 255);
+  border: none;
+  margin-top: 1rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.validation-message-subject,
+.validation-message-message,
+.validation-message-name,
+.validation-message-email {
+  font-size: 0.8rem;
+  color: #840303;
+  padding-bottom: 0.8rem;
+}
+@media (min-width: 600px) {
+  .send-CTA {
+    padding: 0.8rem;
+  }
+  .contact-section form {
+    max-width: 550px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

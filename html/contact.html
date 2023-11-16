@@ -41,7 +41,35 @@
     <main>
       <div class="directory"><a href="#">Home</a> > <a href="#">Archive</a> > <a href="#">Category: Micro living</a></div>
       <!-- this should be replaced by java lateron -->
-      <section class="contact-section"></section>
+      <section class="contact-section">
+        <form action="" method="POST">
+          <fieldset class="message">
+            <legend>Write us a letter, a poem, a prince, a price, what ever you may think suffice</legend>
+            <label for="subject">Subject</label>
+            <input type="text" name="subject" id="subject" placeholder="Subject" required />
+            <p class="validation-message-subject">Without 15 characters we will not suffice</p>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Fill this box with your favourite song lyrics or something else thats on your mind."></textarea>
+            <p class="validation-message-message">This box is hungry for more</p>
+          </fieldset>
+          <fieldset class="info">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" placeholder="Your preferred reference" required />
+            <p class="validation-message-name">Size does matter</p>
+            <label for="email">Email address</label>
+            <input type="email" name="email" id="email" placeholder="Your email of choice" required />
+            <p class="validation-message-email">You know what an email address looks like, bring it</p>
+          </fieldset>
+          <fieldset class="terms">
+            <label for="checkbox">
+              <input type="checkbox" name="terms" id="checkbox" value="terms" />
+              accept whatever to be able to send your message
+            </label>
+          </fieldset>
+          <!-- fix this submitbutton thing befor delivering (here an in the commentsection) -->
+          <input type="button" value="SEND" class="send-CTA" />
+        </form>
+      </section>
     </main>
     <footer></footer>
   </body>

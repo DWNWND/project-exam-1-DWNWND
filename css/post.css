@@ -73,6 +73,8 @@ figcaption {
   background-color: #8b786a;
   color: white;
 }
+
+/* same on the contact page */
 .send-CTA {
   background-color: #aea7a2;
   color: rgb(255, 255, 255);
@@ -136,6 +138,7 @@ label:last-of-type {
   text-align: center;
   font-style: italic;
 }
+/* same for the contact page */
 .view-more-comments-CTA,
 .send-CTA {
   font-weight: 200;
@@ -193,14 +196,11 @@ h3 {
   .post-title {
     padding: 3rem;
   }
+
+  /* same for the contact page */
   .view-more-comments-CTA,
   .send-CTA {
-    font-weight: 200;
-    font-size: 1.1rem;
-    border: none;
-    border-radius: 30px;
     padding: 0.8rem;
-    cursor: pointer;
   }
 }
 @media (min-width: 800px) {

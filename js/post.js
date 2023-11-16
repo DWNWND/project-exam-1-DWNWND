@@ -65,6 +65,7 @@ async function renderBlogPost() {
   commentSection.appendChild(commentsDiv);
 
   //add new-comment-form
+  // fix this submitbutton thing befor delivering (here an in the contactpage)
   const addNewCommentsForm = document.createElement("form");
   addNewCommentsForm.classList.add("formelement");
   addNewCommentsForm.innerHTML += `
