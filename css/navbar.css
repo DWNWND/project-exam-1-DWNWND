@@ -38,14 +38,16 @@ nav li:hover {
   background-color: white;
 }
 .navbar-categories {
-  background-color: rgb(134, 134, 134, 0.5);
+  background-color: white;
+  border-bottom: 2px solid black;
+  border-top: 2px solid black;
 }
 .navbar-standard a {
   color: black;
   padding: 0.3rem 1rem;
 }
 .navbar-categories a {
-  color: white;
+  color: rgb(0, 0, 0);
   display: block;
   padding: 0.3rem 1rem;
   font-weight: 500;
@@ -169,13 +171,19 @@ dialog::backdrop {
     align-items: center;
   }
   .navbar-categories-alignment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.6rem;
+  }
+  /* .navbar-categories-alignment {
     display: grid;
     grid-template-columns: 170px 170px 170px;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
     padding: 0 5rem;
-  }
+  } */
   .navbar-standard a {
     text-align: center;
     width: 100%;
@@ -220,12 +228,12 @@ dialog::backdrop {
   }
 }
 @media (min-width: 1000px) {
-  .navbar-categories-alignment {
+  /* .navbar-categories-alignment {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1.6rem;
-  }
+  } */
   /* usikker på om disse er plassert riktig */
   /* .header-index-mobile-wrapper,
   .newsletter-signup-index {

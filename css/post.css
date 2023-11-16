@@ -218,4 +218,10 @@ h3 {
   .post-copy-section {
     padding-bottom: 4rem;
   }
+  h1 {
+    font-size: 2.5rem;
+  }
+  .post-title {
+    padding: 4rem;
+  }
 }
