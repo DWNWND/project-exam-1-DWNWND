@@ -81,7 +81,6 @@ async function renderAboutSectionIndex() {
 
   const copy = allPages[1].content.rendered;
   const aboutUs = document.querySelector(".about-us");
-  //to get this to work on the about us page aswell, the sections needs to have the same class as on the index-page
 
   aboutUs.innerHTML += `
       <figure class="figure-general"><img src="/img/placeholder-2.jpg" /></figure>
