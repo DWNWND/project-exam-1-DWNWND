@@ -1,0 +1,131 @@
+.about-section {
+  background-color: #f5f5f5;
+}
+.about-section article {
+  display: flex;
+  padding: 3rem;
+  gap: 1.5rem;
+}
+.about-section article:first-of-type {
+  padding-bottom: 0;
+}
+.about-section h2 {
+  font-family: "Vibur", cursive, "Times New Roman", Times, serif;
+  font-size: 3rem;
+  font-weight: 200;
+}
+.about-section figcaption {
+  font-size: 0.8rem;
+  font-weight: 200;
+}
+.about-section img {
+  width: 100%;
+  height: 250px;
+}
+.our-vision-img {
+  order: 3;
+}
+.icons {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  justify-content: space-evenly;
+}
+.icons figure {
+  border-radius: 50%;
+  background-color: #d4d4d4;
+  color: #53584a;
+  height: 2.7rem;
+  width: 2.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+/* related post section --- same styles as in the post */
+.related-posts-section {
+  background-color: white;
+}
+.related-posts-section .grid-display {
+  background-color: white;
+  padding: 3rem 3rem 1rem 3rem;
+  max-width: 1100px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.related-posts-section article {
+  background-color: #eef1e9;
+  /* filter: drop-shadow(4px 5px 5px rgba(0, 0, 0, 0.1)); */
+  gap: 1rem;
+}
+.related-posts-title {
+  background-color: #f9f9f9;
+  border-top: 1.5px solid #000;
+  border-bottom: 1.5px solid #000;
+  text-align: center;
+  padding: 1rem;
+}
+h3 {
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+@media (min-width: 450px) {
+  .icons figure {
+    height: 3.5rem;
+    width: 3.5rem;
+    font-size: 1.7rem;
+  }
+}
+@media (min-width: 550px) {
+  .icons {
+    padding: 0 3rem;
+  }
+}
+@media (min-width: 600px) {
+  .about-section article {
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* related post section --- same styles as in the post */
+@media (min-width: 800px) {
+  .related-posts-section .grid-display {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding-top: 5rem;
+  }
+  .related-posts-section {
+    padding-bottom: 2rem;
+  }
+}
+
+@media (min-width: 1100px) {
+  .about-section article {
+    width: 1100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 3rem;
+    gap: 1.5rem;
+  }
+  .our-vision-img {
+    order: 0;
+  }
+  .about-section img {
+    height: 350px;
+  }
+  .about-section article {
+    padding: 7rem 3rem;
+    gap: 3rem;
+  }
+  article > div {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

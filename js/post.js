@@ -1,5 +1,5 @@
-import { fetchPostById, fetchSpesificImages, fetchComments, fetchAllBlogPosts } from "./api-call.js";
-import { formatDate, renderComments } from "./global.js";
+import { fetchPostById, fetchSpesificImages, fetchComments } from "./api-call.js";
+import { formatDate, renderComments, renderRelatedPosts } from "./global.js";
 
 //render blog-post
 async function renderBlogPost() {
@@ -124,26 +124,4 @@ async function renderBlogPost() {
 }
 renderBlogPost();
 
-//render related posts-section(this function does not fetch related posts (yet))
-async function renderRelatedPosts() {
-  const allPosts = await fetchAllBlogPosts();
-
-  for (let i = 0; i < allPosts.length; i++) {
-    const postTitle = allPosts[i].title.rendered;
-    const excerpt = allPosts[i].excerpt.rendered;
-
-    const relatedPosts = document.querySelector(".related-posts");
-
-    relatedPosts.innerHTML += `
-      <article>
-        <h2>${postTitle}</h2>
-        <p>${excerpt}</p>
-        <a href="/html/post.html?key=${allPosts[i].id}">continue reading...</a>
-      </article>`;
-
-    if (i === 2) {
-      break;
-    }
-  }
-}
 renderRelatedPosts();
