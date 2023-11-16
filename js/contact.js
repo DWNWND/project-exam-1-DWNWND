@@ -1,44 +1,114 @@
+//show error message when submitting form - does not work yet(fix the send button so that it actually submits)
 const form = document.querySelector("form");
-const email = document.querySelector("#email");
-const emailError = document.querySelector(".validation-message-email");
-
-console.log(emailError.textContent);
-
-email.addEventListener("input", (event) => {
-  // Each time the user types something, we check if the form fields are valid.
-
-  if (email.validity.valid) {
-    // In case there is an error message visible, if the field is valid, we remove the error message.
-    emailError.textContent = ""; // Reset the content of the message
-    emailError.className = "error"; // Reset the visual state of the message
-  } else {
-    // If there is still an error, show the correct error
-    showError();
-  }
-});
-
 form.addEventListener("submit", (event) => {
-  // if the email field is valid, we let the form submit
+  if (!subject.validity.valid) {
+    showSubjectError();
+    event.preventDefault();
+  }
   if (!email.validity.valid) {
-    // If it isn't, we display an appropriate error message
-    showError();
-    // Then we prevent the form from being sent by canceling the event
+    showEmailError();
+    event.preventDefault();
+  }
+  if (!message.validity.valid) {
+    showMessageError();
+    event.preventDefault();
+  }
+  if (!nameInput.validity.valid) {
+    showNameError();
     event.preventDefault();
   }
 });
 
-function showError() {
+// Name validation
+const nameInput = document.querySelector("#name");
+const nameError = document.querySelector(".validation-message-name");
+
+nameInput.addEventListener("input", (event) => {
+  if (nameInput.validity.valid) {
+    nameError.textContent = "";
+    nameError.className = "error";
+  } else {
+    showNameError();
+  }
+});
+
+// Email validation
+const email = document.querySelector("#email");
+const emailError = document.querySelector(".validation-message-email");
+
+email.addEventListener("input", (event) => {
+  if (email.validity.valid) {
+    emailError.textContent = "";
+    emailError.className = "error";
+  } else {
+    showEmailError();
+  }
+});
+
+// Subject validation
+const subject = document.querySelector("#subject");
+const subjectError = document.querySelector(".validation-message-subject");
+
+subject.addEventListener("input", (event) => {
+  if (subject.validity.valid) {
+    subjectError.textContent = "";
+    subjectError.className = "error";
+  } else {
+    showSubjectError();
+  }
+});
+
+// Message validation
+const message = document.querySelector("#message");
+const messageError = document.querySelector(".validation-message-message");
+
+message.addEventListener("input", (event) => {
+  if (message.validity.valid) {
+    messageError.textContent = "";
+    messageError.className = "error";
+  } else {
+    showMessageError();
+  }
+});
+
+// error-messages
+function showSubjectError() {
+  if (subject.validity.valueMissing) {
+    subjectError.textContent = "You need to enter an subject.";
+  } else if (subject.validity.typeMismatch) {
+    subjectError.textContent = "Entered value needs to be a subject.";
+  } else if (subject.validity.tooShort) {
+    subjectError.textContent = `The subject should be at least ${subject.minLength} characters; you entered ${subject.value.length}.`;
+  }
+  subjectError.className = "error active";
+}
+function showEmailError() {
   if (email.validity.valueMissing) {
-    // If the field is empty, display the following error message.
     emailError.textContent = "You need to enter an email address.";
   } else if (email.validity.typeMismatch) {
-    // If the field doesn't contain an email address, display the following error message.
     emailError.textContent = "Entered value needs to be an email address.";
   } else if (email.validity.tooShort) {
-    // If the data is too short, display the following error message.
     emailError.textContent = `Email should be at least ${email.minLength} characters; you entered ${email.value.length}.`;
   }
-
-  // Set the styling appropriately
   emailError.className = "error active";
+}
+function showMessageError() {
+  if (message.validity.valueMissing) {
+    messageError.textContent = "You need to enter a message.";
+  } else if (message.validity.typeMismatch) {
+    messageError.textContent = "Entered value needs to be a message.";
+  } else if (message.validity.tooShort) {
+    messageError.textContent = `The message should be at least ${message.minLength} characters; you entered ${message.value.length}.`;
+  }
+  messageError.className = "error active";
+}
+function showNameError() {
+  if (nameInput.validity.valueMissing) {
+    nameError.textContent = "You need to enter a name.";
+  } else if (nameInput.validity.typeMismatch) {
+    nameError.textContent = "Entered value needs to be a name.";
+  } else if (nameInput.validity.tooShort) {
+    nameError.textContent = `The name should be at least ${nameInput.minLength} characters; you entered ${nameInput.value.length}.`;
+  }
+  nameError.className = "error active";
 }
