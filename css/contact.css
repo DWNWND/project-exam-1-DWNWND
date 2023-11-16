@@ -1,10 +1,21 @@
+input:valid,
+textarea:valid {
+  color: green;
+  /* border: 1px solid black; */
+}
+input:invalid,
+textarea:invalid {
+  color: #840303;
+  /* border: 1px dashed #840303; */
+}
 .contact-section {
   background-color: white;
   padding: 3rem 3rem 5rem 3rem;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 .contact-section form,
-.contact-section fieldset {
+.message,
+.info {
   display: flex;
   flex-direction: column;
   border: none;
@@ -23,6 +34,7 @@
   border: none;
   background-color: white;
   padding: 0.6rem;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 .contact-section input::placeholder,
 .contact-section textarea::placeholder {
@@ -36,10 +48,13 @@
 }
 .contact-section legend {
   text-align: center;
-  padding-bottom: 2rem;
+  padding: 2rem 3rem 3rem 3rem;
+  font-size: 1.2rem;
 }
+#subject,
 #subject::placeholder {
   font-weight: 500;
+  font-size: 1rem;
 }
 #message::placeholder {
   font-weight: 200;
@@ -50,6 +65,10 @@
 .terms {
   font-size: 0.8rem;
   color: #840303;
+  display: flex;
+  flex-direction: row;
+  border: none;
+  gap: 1rem;
 }
 /* .terms input {
   border-radius: 50%;
@@ -76,6 +95,12 @@
 .validation-message-message,
 .validation-message-name,
 .validation-message-email {
+  font-size: 0.8rem;
+  color: #000000;
+  padding-bottom: 0.8rem;
+}
+
+.error.active {
   font-size: 0.8rem;
   color: #840303;
   padding-bottom: 0.8rem;
