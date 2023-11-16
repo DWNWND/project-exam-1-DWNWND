@@ -10,9 +10,9 @@ modal.innerHTML += `
 <div class="navbar-standard">
   <ul class="navbar-standard-alignment">
     <div class="standard-links">
-      <li class="nav-item-stand"><a href="/index.html">Home</a></li>
-      <li class="nav-item-stand"><a href="/about.html">About</a></li>
-      <li class="nav-item-stand"><a href="/contact.html">Contact</a></li>
+      <li class="nav-item-stand"><a href="/html/index.html">Home</a></li>
+      <li class="nav-item-stand"><a href="/html/about.html">About</a></li>
+      <li class="nav-item-stand"><a href="/html/contact.html">Contact</a></li>
    </div>
    <li class="newsletter-signup"><a href="#">newsletter signup</a></li>
    <div class="icon-links">

@@ -8,12 +8,19 @@
     <meta name="description" content="abc" />
     <meta name="author" content="Thea Oland" />
 
-    <script defer type="module" src="/js/javascript.js"></script>
-    <link rel="stylesheet" href="/css/global.css" />
-
     <script src="https://kit.fontawesome.com/279950e6bf.js" crossorigin="anonymous"></script>
 
+    <script defer type="module" src="/js/contact.js"></script>
+    <script defer type="module" src="/js/header-nav-footer.js"></script>
+
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/contact.css" />
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Vibur&display=swap" rel="stylesheet" />
   </head>
   <body>
     <header>
@@ -25,13 +32,17 @@
           <a href="#"><img src="/img/logo-black.png" /></a>
         </div>
         <dialog data-modal class="modal"></dialog>
-        <div class="header-general off">
+        <div class="header-general-mobile-wrapper">
           <img src="/img/header-img_unsplash.jpg" class="header-img-general" />
         </div>
-        <h1 class="pagetitle off">micro living</h1>
+        <h1 class="pagetitle off"></h1>
       </nav>
     </header>
-    <main></main>
+    <main>
+      <div class="directory"><a href="#">Home</a> > <a href="#">Archive</a> > <a href="#">Category: Micro living</a></div>
+      <!-- this should be replaced by java lateron -->
+      <section class="contact-section"></section>
+    </main>
     <footer></footer>
   </body>
 </html>
