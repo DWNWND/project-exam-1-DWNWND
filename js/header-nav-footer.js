@@ -41,15 +41,19 @@ navModal.innerHTML += `
 import { fetchAllCategories } from "./api-call.js";
 
 async function renderCategories() {
-  const allCategories = await fetchAllCategories();
-  const categoriesUl = document.querySelector(".navbar-categories-alignment");
+  try {
+    const allCategories = await fetchAllCategories();
+    const categoriesUl = document.querySelector(".navbar-categories-alignment");
 
-  for (let i = 0; i < allCategories.length; i++) {
-    if (allCategories[i].id === 1) {
-      continue;
-    }
-    categoriesUl.innerHTML += `
+    for (let i = 0; i < allCategories.length; i++) {
+      if (allCategories[i].id === 1) {
+        continue;
+      }
+      categoriesUl.innerHTML += `
     <li class="nav-item-cat"><a href="/html/list.html?key=${allCategories[i].id}">${allCategories[i].name}</a></li>`;
+    }
+  } catch (error) {
+    console.log(error);
   }
   //add a slug with the category-name in the href?
 }

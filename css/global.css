@@ -42,7 +42,25 @@ body {
   text-decoration: none;
   color: black;
 }
-
+.error-message-wrapper {
+  color: red;
+  font-size: 1rem;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  width: 1000px;
+  padding: 5rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+.error-message-wrapper span {
+  margin-top: 0.3rem;
+  display: block;
+}
+.error-message {
+  margin-bottom: 3rem;
+}
+.error-section {
+  background-color: white;
+}
 @media (min-width: 1300px) {
   .more-btn {
     font-size: 1.1rem;
