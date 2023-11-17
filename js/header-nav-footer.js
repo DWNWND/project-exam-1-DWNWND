@@ -1,3 +1,6 @@
+//render categories
+import { fetchAllCategories } from "./api-call.js";
+
 // render header/navbar
 const navModal = document.querySelector(".nav-modal");
 navModal.innerHTML += `
@@ -10,7 +13,7 @@ navModal.innerHTML += `
 <div class="navbar-standard">
   <ul class="navbar-standard-alignment">
     <div class="standard-links">
-      <li class="nav-item-stand"><a href="/html/index.html">Home</a></li>
+      <li class="nav-item-stand"><a href="/./index.html">Home</a></li>
       <li class="nav-item-stand"><a href="/html/about.html">About</a></li>
       <li class="nav-item-stand"><a href="/html/contact.html">Contact</a></li>
    </div>
@@ -37,23 +40,16 @@ navModal.innerHTML += `
   </ul>
 </div>`;
 
-//render categories
-import { fetchAllCategories } from "./api-call.js";
-
 async function renderCategories() {
-  try {
-    const allCategories = await fetchAllCategories();
-    const categoriesUl = document.querySelector(".navbar-categories-alignment");
+  const allCategories = await fetchAllCategories();
+  const categoriesUl = document.querySelector(".navbar-categories-alignment");
 
-    for (let i = 0; i < allCategories.length; i++) {
-      if (allCategories[i].id === 1) {
-        continue;
-      }
-      categoriesUl.innerHTML += `
-    <li class="nav-item-cat"><a href="/html/list.html?key=${allCategories[i].id}">${allCategories[i].name}</a></li>`;
+  for (let i = 0; i < allCategories.length; i++) {
+    if (allCategories[i].id === 1) {
+      continue;
     }
-  } catch (error) {
-    console.log(error);
+    categoriesUl.innerHTML += `
+    <li class="nav-item-cat"><a href="/html/list.html?key=${allCategories[i].id}">${allCategories[i].name}</a></li>`;
   }
   //add a slug with the category-name in the href?
 }

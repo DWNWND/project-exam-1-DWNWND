@@ -46,18 +46,18 @@
           <fieldset class="message">
             <legend>Write us a letter, a poem, a prince, a price, what ever you may think suffice</legend>
             <label for="subject">Subject</label>
-            <input type="text" name="subject" id="subject" placeholder="Subject" minlength="15" maxlength="30" required />
+            <input type="text" name="subject" id="subject" placeholder="Subject" minlength="15" maxlength="30" autocomplete="off" required />
             <p class="validation-message-subject error">Required*</p>
             <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Fill this box with your favourite song lyrics or something else thats on your mind." minlength="25" maxlength="300" required></textarea>
+            <textarea id="message" name="message" placeholder="Fill this box with your favourite song lyrics or something else thats on your mind." minlength="25" maxlength="300" autocomplete="off" required></textarea>
             <p class="validation-message-message error">Required*</p>
           </fieldset>
           <fieldset class="info">
             <label for="name">Name</label>
-            <input type="text" name="name" id="name" placeholder="Your preferred reference" minlength="5" maxlength="30" required />
+            <input type="text" name="name" id="name" placeholder="Your preferred reference" minlength="5" maxlength="30" autocomplete="given-name" required />
             <p class="validation-message-name error">Required*</p>
             <label for="email">Email address</label>
-            <input type="email" name="email" id="email" placeholder="Your email of choice" required />
+            <input type="email" name="email" id="email" placeholder="Your email of choice" autocomplete="email" required />
             <p class="validation-message-email error">Required*</p>
           </fieldset>
           <fieldset class="terms">
