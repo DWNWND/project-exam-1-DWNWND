@@ -1,26 +1,21 @@
 import { fetchAllBlogPosts } from "./api-call.js";
-
-// slider function
-const prev = document.querySelector(".prev-btn");
-const next = document.querySelector(".next-btn");
-const carouselSlider = document.querySelector(".slider");
-
-//how far the slider should scroll:
-const itemWidth = 250;
-const padding = 0;
-
-//scroll eventlisteners
-prev.addEventListener("click", () => {
-  carouselSlider.scrollLeft -= itemWidth + padding;
-});
-
-next.addEventListener("click", () => {
-  carouselSlider.scrollLeft += itemWidth + padding;
-});
+import { showLoadingIndicator, showMoreBtn } from "./global.js";
 
 //render newly published blogposts to slider
 async function renderNewlyPublishedPosts() {
+  const sliderView = document.querySelector(".slider-wrapper");
+  showLoadingIndicator(sliderView);
+
   const allPosts = await fetchAllBlogPosts();
+
+  sliderView.innerHTML = `
+  <button id="prev-btn" class="prev-btn">
+    <i class="fa-solid fa-chevron-left"></i>
+  </button>
+  <div class="grid-display slider"></div>
+  <button id="next-btn" class="next-btn">
+    <i class="fa-solid fa-chevron-right"></i>
+  </button>`;
 
   for (let i = 0; i < allPosts.length; i++) {
     const postTitle = allPosts[i].title.rendered;
@@ -41,12 +36,39 @@ async function renderNewlyPublishedPosts() {
       break;
     }
   }
+  // slider function
+  const prev = document.querySelector(".prev-btn");
+  const next = document.querySelector(".next-btn");
+  const carouselSlider = document.querySelector(".slider");
+
+  //how far the slider should scroll:
+  const itemWidth = 250;
+  const padding = 0;
+
+  //scroll eventlisteners
+  prev.addEventListener("click", () => {
+    carouselSlider.scrollLeft -= itemWidth + padding;
+  });
+
+  next.addEventListener("click", () => {
+    carouselSlider.scrollLeft += itemWidth + padding;
+  });
+
+  //add a link here to show more
+  const newlyPublishedSection = document.querySelector(".newly-published-section");
+  showMoreBtn(newlyPublishedSection, "link");
 }
 renderNewlyPublishedPosts();
 
 //render posts for "most popular topics"
 async function renderPopularPosts() {
+  const popularTopicsWrapper = document.querySelector(".popular-topics-wrapper");
+  showLoadingIndicator(popularTopicsWrapper);
+
   const allPosts = await fetchAllBlogPosts();
+
+  popularTopicsWrapper.innerHTML = `
+  <div class="grid-display popular-topics"></div>`;
 
   for (let i = 0; i < allPosts.length; i++) {
     if (allPosts[i].tags[0] === 11) {
@@ -70,6 +92,9 @@ async function renderPopularPosts() {
       break;
     }
   }
+  //add a link here to show more
+  const popularTopicsSection = document.querySelector(".popular-topics-section");
+  showMoreBtn(popularTopicsSection, "link");
 }
 renderPopularPosts();
 

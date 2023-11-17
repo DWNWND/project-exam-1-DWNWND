@@ -61,6 +61,11 @@ body {
 .error-section {
   background-color: white;
 }
+.loader {
+  font-size: 1rem;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  text-align: center;
+}
 @media (min-width: 1300px) {
   .more-btn {
     font-size: 1.1rem;

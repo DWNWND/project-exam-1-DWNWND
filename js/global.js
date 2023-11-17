@@ -1,5 +1,19 @@
 import { fetchAllBlogPosts } from "./api-call.js";
 
+//show-more-button
+export function showMoreBtn(htmlElement, link) {
+  const moreBtn = document.createElement("a");
+  moreBtn.setAttribute("href", link);
+  moreBtn.classList.add("more-btn");
+  moreBtn.innerText = "more like this";
+  htmlElement.appendChild(moreBtn);
+}
+
+// loading-indicator
+export function showLoadingIndicator(section) {
+  section.innerHTML = `<div class="loader">LOADING...</div>`;
+}
+
 //formatting publishdate
 export function formatDate(rawDate) {
   const initialWpPublishedDate = rawDate;

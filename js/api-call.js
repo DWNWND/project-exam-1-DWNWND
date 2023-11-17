@@ -10,10 +10,6 @@ function generateErrorMessage(err) {
   <span><b>Error name:</b> ${err.name}</span>
   <span><b>Error message:</b> ${err.message}</span>`;
 }
-//loading-indicator
-// export function showLoadingIndicator(section) {
-//   section.innerHTML = `<div class="loader"></div>`;
-// }
 
 //API-URL
 const url = "https://www.dwnwnd-api.online/wp-json/wp/v2/";

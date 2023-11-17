@@ -1,5 +1,5 @@
 import { fetchPostsByCategory, fetchSpesificImages, fetchCategory } from "./api-call.js";
-import { formatDate } from "./global.js";
+import { formatDate, showLoadingIndicator } from "./global.js";
 
 //render category name/pagetitle
 async function renderCategoryName() {
@@ -11,10 +11,20 @@ renderCategoryName();
 
 //render filepath.....
 
+const listView = document.querySelector(".archive-result-section");
+
 //render categorizes posts
 async function renderCategoriezedPosts() {
+  showLoadingIndicator(listView);
+
   //fetch categorized posts
   const allCategorizedPosts = await fetchPostsByCategory();
+
+  listView.innerHTML = `
+  <div class="grid-display categorized-posts"></div>
+  <a href="#" class="more-btn">load more posts</a>`;
+
+  //fix the more-btn so tat is renders last + so that it only renders if theres more posts
 
   for (let i = 0; i < allCategorizedPosts.length; i++) {
     //render content
@@ -30,8 +40,9 @@ async function renderCategoriezedPosts() {
     const featuredImg = img.source_url;
     const altText = img.alt_text;
 
-    //add post-articles HTML
     const displayCategorizedPosts = document.querySelector(".categorized-posts");
+
+    //add post-articles HTML
     displayCategorizedPosts.innerHTML += `
     <article>
       <h2>${postTitle}</h2>

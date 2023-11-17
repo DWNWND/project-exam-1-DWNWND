@@ -168,7 +168,7 @@
   .next-btn i:hover {
     color: rgb(190, 194, 226);
   }
-  .carousel {
+  .slider-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
