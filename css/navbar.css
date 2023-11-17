@@ -118,7 +118,7 @@ nav li:hover {
   font-size: 1.3rem;
   color: black;
 }
-.modal {
+.nav-modal {
   width: 100%;
   max-width: 100%;
   max-height: 100%;
@@ -127,6 +127,7 @@ nav li:hover {
   border: none;
   position: fixed;
 }
+/* everything considering closeBtn can be moved to global - because its also on the modals for img- maybe everything considering modal. an maybe use the modal pseudo command */
 .closeBtn:hover {
   color: rgb(80, 50, 50);
   cursor: pointer;
@@ -156,7 +157,7 @@ dialog::backdrop {
   .nav-icon-stand a {
     display: inline-block;
   }
-  .modal {
+  .nav-modal {
     position: relative;
   }
   .navbar-standard {

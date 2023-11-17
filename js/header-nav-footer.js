@@ -1,7 +1,7 @@
 // render header/navbar
-const modal = document.querySelector("[data-modal]");
-modal.innerHTML += `
-<a data-close-modal href="#" class="hamburger-toggle closeBtn">
+const navModal = document.querySelector(".nav-modal");
+navModal.innerHTML += `
+<a href="#" class="hamburger-toggle closeBtn">
   <i class="fa-solid fa-xmark"></i>
 </a>
 <div class="logo-mobile">
@@ -53,29 +53,27 @@ async function renderCategories() {
   }
   //add a slug with the category-name in the href?
 }
-
 renderCategories();
 
 // open hamburger menu
-const openBtn = document.querySelector("[data-open-modal]");
+const openBtn = document.querySelector(".openBtn");
 openBtn.addEventListener("click", () => {
-  // modal.style.opacity = "1";
-  modal.showModal();
+  navModal.showModal();
 });
 
 // close hamburger menu by clicking X
-const closeBtn = document.querySelector("[data-close-modal]");
+const closeBtn = document.querySelector(".closeBtn");
 closeBtn.addEventListener("click", () => {
-  modal.close();
+  navModal.close();
 });
 
-// close hamburger menu by clicking outside the menu
+//close modal by clicking outside
 function onClick(event) {
-  if (event.target === modal) {
-    modal.close();
+  if (event.target === navModal) {
+    navModal.close();
   }
 }
-modal.addEventListener("click", onClick);
+navModal.addEventListener("click", onClick);
 
 // render footer
 const footer = document.querySelector("footer");

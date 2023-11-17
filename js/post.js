@@ -43,7 +43,7 @@ async function renderBlogPost() {
         <div class="author">author: xxx </div>
       </div>
     </section>
-    <section data-open-modal class="post-img-section">
+    <section class="post-img-section">
         <figure class="post-img-wrapper" >
           <img src="${featuredImg}" alt="${altText}" class="post-img" />
           <figcaption>caption</figcaption>
@@ -55,6 +55,51 @@ async function renderBlogPost() {
     </section>
     </div>`;
 
+  //img-modal
+  function addImgModal(src) {
+    //modal-dialog-element
+    const imgModal = document.createElement("dialog");
+    imgModal.classList.add("img-modal");
+    document.querySelector("main").append(imgModal);
+
+    //modal-content
+    const closeBtn = document.createElement("i");
+    closeBtn.classList.add("fa-solid", "fa-xmark", "closeBtn");
+    imgModal.append(closeBtn);
+
+    const bigImage = document.createElement("img");
+    bigImage.setAttribute("src", src);
+    imgModal.append(bigImage);
+
+    // close modal clicking X
+    closeBtn.addEventListener("click", () => {
+      imgModal.remove();
+    });
+
+    //close modal by clicking outside
+    function onClick(event) {
+      if (event.target === imgModal) {
+        imgModal.remove();
+      }
+    }
+    imgModal.addEventListener("click", onClick);
+  }
+
+  //get src-link, add it to dialog and open as modal
+  const image = document.querySelectorAll(".post-img");
+  image.forEach(function (img) {
+    img.addEventListener("click", (event) => {
+      const imgSrc = event.target.src;
+
+      //add dialog to DOM and add the fetched img src to the dialog
+      addImgModal(imgSrc);
+
+      //fetch dialoge and open it as modal
+      const newModal = document.querySelector(".img-modal");
+      newModal.showModal();
+    });
+  });
+
   //add active/open comment-section
   const commentSection = document.querySelector(".comment-section");
   const commentsDiv = document.createElement("div");
@@ -65,7 +110,7 @@ async function renderBlogPost() {
   commentSection.appendChild(commentsDiv);
 
   //add new-comment-form
-  // fix this submitbutton thing befor delivering (here an in the contactpage)
+  // fix this submitbutton thing before delivering (here an in the contactpage)
   const addNewCommentsForm = document.createElement("form");
   addNewCommentsForm.classList.add("formelement");
   addNewCommentsForm.innerHTML += `
