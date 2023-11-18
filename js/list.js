@@ -2,12 +2,17 @@ import { fetchPostsByCategory, fetchSpesificImages, fetchCategory } from "./api-
 import { formatDate, showLoadingIndicator, showMoreBtn } from "./global.js";
 import { generalErrorMessage } from "./error-handling.js";
 
-//render category name/pagetitle
+//render category pagetitle (meta and displayed)
 async function renderCategoryName() {
   try {
+    //(displayed)
     const currentCategory = await fetchCategory();
     const pageTitle = document.querySelector(".pagetitle");
     pageTitle.innerHTML += `${currentCategory.name}`;
+
+    //(meta)
+    const metaTitle = document.querySelector("#title");
+    metaTitle.textContent = currentCategory.name;
   } catch (error) {
     generalErrorMessage(error);
   }

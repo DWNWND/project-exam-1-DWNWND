@@ -31,6 +31,16 @@ async function renderBlogPost() {
     const featuredImg = img.source_url;
     const altText = img.alt_text;
 
+    //update page-title with post-title (meta)
+    const metaTitle = document.querySelector("#title");
+    metaTitle.textContent = title;
+
+    //update page-description with post-excerpt (meta)
+    //THERES STILL P-TAGS AROUND THE EXCERPT - NEEDS TO BE REMOVED
+    const excerpt = blogPost.excerpt.rendered;
+    const metaDescription = document.querySelector("#meta-description");
+    metaDescription.setAttribute("content", excerpt);
+
     //add post HTML
     const displayPost = document.querySelector(".blogpost-section");
     displayPost.innerHTML += `

@@ -12,7 +12,7 @@
 }
 .archive-result-section {
   background-color: white;
-  padding: 3rem;
+  /* padding: 3rem; */
 }
 .archive-result-section .grid-display {
   display: grid;
@@ -73,9 +73,9 @@
   } */
 }
 @media (min-width: 730px) {
-  .archive-result-section {
+  /* .archive-result-section {
     padding: 5rem;
-  }
+  } */
   .archive-result-section .grid-display {
     grid-template-columns: 1fr 1fr;
     gap: 2rem;

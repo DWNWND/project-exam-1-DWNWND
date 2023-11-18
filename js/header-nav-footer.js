@@ -93,5 +93,5 @@ footer.innerHTML += `
 </div>
 </div>
 <div class="logo-footer-wrapper">
-<div class="logo-gray-footer"><img src="/img/logo-white-big.svg" /></div>
+<div class="logo-gray-footer"><img src="/img/logo-big-3.svg" /></div>
 </div>`;
