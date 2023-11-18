@@ -54,7 +54,7 @@ figure img {
     grid-template-rows: 1fr 200px auto auto;
   }
   .popular-topics-section article:first-of-type {
-    grid-template-rows: 1fr 90px auto auto;
+    grid-template-rows: 1fr auto auto auto;
   }
 }
 @media (min-width: 700px) {
@@ -71,10 +71,16 @@ figure img {
   .publish-date {
     font-size: 0.9rem;
   }
+  .related-posts-section article {
+    grid-template-rows: 1fr 230px auto auto;
+  }
 }
 @media (min-width: 1000px) {
   .popular-topics-section article {
     grid-template-rows: 1fr 120px auto auto;
+  }
+  .related-posts-section article {
+    grid-template-rows: 1fr 180px auto auto;
   }
 }
 @media (min-width: 1130px) {

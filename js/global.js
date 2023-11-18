@@ -81,7 +81,7 @@ export async function renderRelatedPosts() {
       relatedPosts.innerHTML += `
       <article>
         <h2>${postTitle}</h2>
-        <p>${excerpt}</p>
+        ${excerpt}
         <a href="/html/post.html?key=${allPosts[i].id}">continue reading...</a>
       </article>`;
 

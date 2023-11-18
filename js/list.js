@@ -51,7 +51,7 @@ async function renderCategoriezedPosts() {
       displayCategorizedPosts.innerHTML += `
     <article>
       <h2>${postTitle}</h2>
-      <p>${excerpt}</p>
+      ${excerpt}
       <figure class="figure-general"><img src="${featuredImg}" alt="${altText}" /></figure>
       <div class="post-info">
         <div class="publish-date"><date>${date[0]}, ${date[1]}</date></div>
