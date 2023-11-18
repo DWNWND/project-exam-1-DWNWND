@@ -98,6 +98,7 @@
     grid-column-end: 3;
     grid-row-start: 1;
     grid-row-end: 2;
+    /* height: 350px; */
   }
   .popular-topics-section article:first-of-type figure {
     display: flex;
@@ -135,6 +136,7 @@
   }
 }
 @media (min-width: 1130px) {
+
   /* -------- carousel ---------- */
   .slider {
     width: 860px;

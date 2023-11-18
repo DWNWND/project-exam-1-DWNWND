@@ -80,7 +80,7 @@ async function renderPopularPosts() {
         popularTopics.innerHTML += `
       <article>
         <h2>${postTitle}</h2>
-        <p>${excerpt}</p>
+        ${excerpt}
         <a href="/html/post.html?key=${allPosts[i].id}">continue reading...</a>
         <figure class="figure-general"><img src="${featuredImg}" alt="${altText}"/></figure>
       </article>`;
