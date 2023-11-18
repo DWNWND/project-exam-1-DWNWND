@@ -1,15 +1,4 @@
-//error-handling fetching API
-let errorMessage;
-function generateErrorMessage(err) {
-  errorMessage = `
-  <div class="error-message">
-    <span>Our apologies, we have encoutered an issue with our database.</span>
-    <span>Please refresh your site and give us a few minutes to figure this one out.</span>
-  </div>
-  <span>If the error continues please reach out to our customer service and present the following information:</span>
-  <span><b>Error name:</b> ${err.name}</span>
-  <span><b>Error message:</b> ${err.message}</span>`;
-}
+import { apiErrorMessage } from "./error-handling.js";
 
 //API-URL
 const url = "https://www.dwnwnd-api.online/wp-json/wp/v2/";
@@ -27,12 +16,7 @@ export async function fetchAllBlogPosts() {
     const results = await response.json();
     return results;
   } catch (error) {
-    generateErrorMessage(error);
-    const main = document.querySelector("main");
-    main.innerHTML = `
-    <section class="error-section">
-      <div class="error-message-wrapper">${errorMessage}</div>
-    </section>`;
+    apiErrorMessage(error);
   }
 }
 
@@ -44,12 +28,7 @@ export async function fetchPostById() {
     const results = await response.json();
     return results;
   } catch (error) {
-    generateErrorMessage(error);
-    const main = document.querySelector("main");
-    main.innerHTML = `
-    <section class="error-section">
-      <div class="error-message-wrapper">${errorMessage}</div>
-    </section>`;
+    apiErrorMessage(error);
   }
 }
 
@@ -61,12 +40,7 @@ export async function fetchAllCategories() {
     const results = await response.json();
     return results;
   } catch (error) {
-    generateErrorMessage(error);
-    const main = document.querySelector("main");
-    main.innerHTML = `
-    <section class="error-section">
-      <div class="error-message-wrapper">${errorMessage}</div>
-    </section>`;
+    apiErrorMessage(error);
   }
 }
 
@@ -77,12 +51,7 @@ export async function fetchCategory() {
     const results = await response.json();
     return results;
   } catch (error) {
-    generateErrorMessage(error);
-    const main = document.querySelector("main");
-    main.innerHTML = `
-    <section class="error-section">
-      <div class="error-message-wrapper">${errorMessage}</div>
-    </section>`;
+    apiErrorMessage(error);
   }
 }
 
@@ -94,12 +63,7 @@ export async function fetchPostsByCategory() {
     const results = await response.json();
     return results;
   } catch (error) {
-    generateErrorMessage(error);
-    const main = document.querySelector("main");
-    main.innerHTML = `
-    <section class="error-section">
-      <div class="error-message-wrapper">${errorMessage}</div>
-    </section>`;
+    apiErrorMessage(error);
   }
 }
 
@@ -111,12 +75,7 @@ export async function fetchAllPages() {
     const results = await response.json();
     return results;
   } catch (error) {
-    generateErrorMessage(error);
-    const main = document.querySelector("main");
-    main.innerHTML = `
-    <section class="error-section">
-      <div class="error-message-wrapper">${errorMessage}</div>
-    </section>`;
+    apiErrorMessage(error);
   }
 }
 //API call post-spesific comments
@@ -126,12 +85,7 @@ export async function fetchComments(commentUrl) {
     const results = await response.json();
     return results;
   } catch (error) {
-    generateErrorMessage(error);
-    const main = document.querySelector("main");
-    main.innerHTML = `
-    <section class="error-section">
-      <div class="error-message-wrapper">${errorMessage}</div>
-    </section>`;
+    apiErrorMessage(error);
   }
 }
 
@@ -142,11 +96,6 @@ export async function fetchSpesificImages(imgUrl) {
     const results = await response.json();
     return results;
   } catch (error) {
-    generateErrorMessage(error);
-    const main = document.querySelector("main");
-    main.innerHTML = `
-    <section class="error-section">
-      <div class="error-message-wrapper">${errorMessage}</div>
-    </section>`;
+    apiErrorMessage(error);
   }
 }

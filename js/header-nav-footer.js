@@ -1,6 +1,8 @@
 //render categories
 import { fetchAllCategories } from "./api-call.js";
+import { generalErrorMessage } from "./error-handling.js";
 
+//see if you can make this code more readable/clean it up so you can add error-handling to more content
 // render header/navbar
 const navModal = document.querySelector(".nav-modal");
 navModal.innerHTML += `
@@ -41,17 +43,21 @@ navModal.innerHTML += `
 </div>`;
 
 async function renderCategories() {
-  const allCategories = await fetchAllCategories();
-  const categoriesUl = document.querySelector(".navbar-categories-alignment");
+  try {
+    const allCategories = await fetchAllCategories();
+    const categoriesUl = document.querySelector(".navbar-categories-alignment");
 
-  for (let i = 0; i < allCategories.length; i++) {
-    if (allCategories[i].id === 1) {
-      continue;
-    }
-    categoriesUl.innerHTML += `
+    for (let i = 0; i < allCategories.length; i++) {
+      if (allCategories[i].id === 1) {
+        continue;
+      }
+      categoriesUl.innerHTML += `
     <li class="nav-item-cat"><a href="/html/list.html?key=${allCategories[i].id}">${allCategories[i].name}</a></li>`;
+    }
+    //add a slug with the category-name in the href?
+  } catch (error) {
+    generalErrorMessage(error);
   }
-  //add a slug with the category-name in the href?
 }
 renderCategories();
 

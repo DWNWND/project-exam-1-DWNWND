@@ -1,31 +1,34 @@
 import { fetchPostById, fetchSpesificImages, fetchComments } from "./api-call.js";
 import { formatDate, renderComments, renderRelatedPosts } from "./global.js";
+import { generalErrorMessage } from "./error-handling.js";
 
+//see if you can make this code more readable/clean it up
 //render blog-post
 async function renderBlogPost() {
-  //fetch blogpost
-  const blogPost = await fetchPostById();
+  try {
+    //fetch blogpost
+    const blogPost = await fetchPostById();
 
-  //fetch comments
-  const commentsUrl = blogPost._links.replies["0"].href;
-  const allComments = await fetchComments(commentsUrl);
+    //fetch comments
+    const commentsUrl = blogPost._links.replies["0"].href;
+    const allComments = await fetchComments(commentsUrl);
 
-  //fetch and format publishdate
-  const date = formatDate(blogPost.date);
+    //fetch and format publishdate
+    const date = formatDate(blogPost.date);
 
-  //render content
-  const title = blogPost.title.rendered;
-  const copy = blogPost.content.rendered;
+    //render content
+    const title = blogPost.title.rendered;
+    const copy = blogPost.content.rendered;
 
-  //format and render linked img
-  const imageApi = blogPost._links["wp:featuredmedia"]["0"].href;
-  const img = await fetchSpesificImages(imageApi);
-  const featuredImg = img.source_url;
-  const altText = img.alt_text;
+    //format and render linked img
+    const imageApi = blogPost._links["wp:featuredmedia"]["0"].href;
+    const img = await fetchSpesificImages(imageApi);
+    const featuredImg = img.source_url;
+    const altText = img.alt_text;
 
-  //add post HTML
-  const displayPost = document.querySelector(".blogpost-section");
-  displayPost.innerHTML += `
+    //add post HTML
+    const displayPost = document.querySelector(".blogpost-section");
+    displayPost.innerHTML += `
   <div class="post-title">
     <h1>${title}</h1>
   </div>
@@ -55,65 +58,65 @@ async function renderBlogPost() {
     </section>
     </div>`;
 
-  //img-modal
-  function addImgModal(src) {
-    //modal-dialog-element
-    const imgModal = document.createElement("dialog");
-    imgModal.classList.add("img-modal");
-    document.querySelector("main").append(imgModal);
+    //img-modal
+    function addImgModal(src) {
+      //modal-dialog-element
+      const imgModal = document.createElement("dialog");
+      imgModal.classList.add("img-modal");
+      document.querySelector("main").append(imgModal);
 
-    //modal-content
-    const closeBtn = document.createElement("i");
-    closeBtn.classList.add("fa-solid", "fa-xmark", "closeBtn");
-    imgModal.append(closeBtn);
+      //modal-content
+      const closeBtn = document.createElement("i");
+      closeBtn.classList.add("fa-solid", "fa-xmark", "closeBtn");
+      imgModal.append(closeBtn);
 
-    const bigImage = document.createElement("img");
-    bigImage.setAttribute("src", src);
-    imgModal.append(bigImage);
+      const bigImage = document.createElement("img");
+      bigImage.setAttribute("src", src);
+      imgModal.append(bigImage);
 
-    // close modal clicking X
-    closeBtn.addEventListener("click", () => {
-      imgModal.remove();
-    });
-
-    //close modal by clicking outside
-    function onClick(event) {
-      if (event.target === imgModal) {
+      // close modal clicking X
+      closeBtn.addEventListener("click", () => {
         imgModal.remove();
+      });
+
+      //close modal by clicking outside
+      function onClick(event) {
+        if (event.target === imgModal) {
+          imgModal.remove();
+        }
       }
+      imgModal.addEventListener("click", onClick);
     }
-    imgModal.addEventListener("click", onClick);
-  }
 
-  //get src-link, add it to dialog and open as modal
-  const image = document.querySelectorAll(".post-img");
-  image.forEach(function (img) {
-    img.addEventListener("click", (event) => {
-      const imgSrc = event.target.src;
+    //get src-link, add it to dialog and open as modal
+    const image = document.querySelectorAll(".post-img");
+    image.forEach(function (img) {
+      img.addEventListener("click", (event) => {
+        const imgSrc = event.target.src;
 
-      //add dialog to DOM and add the fetched img src to the dialog
-      addImgModal(imgSrc);
+        //add dialog to DOM and add the fetched img src to the dialog
+        addImgModal(imgSrc);
 
-      //fetch dialoge and open it as modal
-      const newModal = document.querySelector(".img-modal");
-      newModal.showModal();
+        //fetch dialoge and open it as modal
+        const newModal = document.querySelector(".img-modal");
+        newModal.showModal();
+      });
     });
-  });
 
-  //add active/open comment-section
-  const commentSection = document.querySelector(".comment-section");
-  const commentsDiv = document.createElement("div");
-  commentsDiv.classList.add("open-comment-section");
+    //add active/open comment-section
+    const commentSection = document.querySelector(".comment-section");
+    const commentsDiv = document.createElement("div");
+    commentsDiv.classList.add("open-comment-section");
 
-  //render comments
-  renderComments(allComments, commentsDiv);
-  commentSection.appendChild(commentsDiv);
+    //render comments
+    renderComments(allComments, commentsDiv);
+    commentSection.appendChild(commentsDiv);
 
-  //add new-comment-form
-  // fix this submitbutton thing before delivering (here an in the contactpage)
-  const addNewCommentsForm = document.createElement("form");
-  addNewCommentsForm.classList.add("formelement");
-  addNewCommentsForm.innerHTML += `
+    //add new-comment-form
+    // fix this submitbutton thing before delivering (here an in the contactpage)
+    const addNewCommentsForm = document.createElement("form");
+    addNewCommentsForm.classList.add("formelement");
+    addNewCommentsForm.innerHTML += `
   <h4>Write us a comment</h4>
   <form class="comment-form">
     <label for="author">Author</label>
@@ -122,51 +125,54 @@ async function renderBlogPost() {
     <textarea class="new-comment-field" name="comment" id="comment" placeholder="Type comment here..." required></textarea>
   </form>
   <input type="button" value="post comment" class="send-CTA">`;
-  commentSection.appendChild(addNewCommentsForm);
+    commentSection.appendChild(addNewCommentsForm);
 
-  //open/close the comment section
-  const commentSectionBtn = document.querySelector(".view-more-comments-CTA");
-  const commentBtnArrow = document.querySelector(".fa-chevron-down");
+    //open/close the comment section
+    const commentSectionBtn = document.querySelector(".view-more-comments-CTA");
+    const commentBtnArrow = document.querySelector(".fa-chevron-down");
 
-  commentSectionBtn.addEventListener("click", () => {
-    // console.log("open comment section");
-    commentSection.classList.toggle("active");
-    commentBtnArrow.classList.toggle("active");
-    commentsDiv.classList.toggle("active");
-    addNewCommentsForm.classList.toggle("active");
-  });
+    commentSectionBtn.addEventListener("click", () => {
+      // console.log("open comment section");
+      commentSection.classList.toggle("active");
+      commentBtnArrow.classList.toggle("active");
+      commentsDiv.classList.toggle("active");
+      addNewCommentsForm.classList.toggle("active");
+    });
 
-  //This function does not yet work
-  //send new comment - POST to REST API
-  // function addComment() {
-  //   const postId = blogPost.id;
-  //   const commentAuthor = document.querySelector("#author").value;
-  //   const commentContent = document.querySelector("#comment").value;
-  //   const commentObj = {
-  //     post: postId,
-  //     author_name: commentAuthor,
-  //     content: commentContent,
-  //   };
-  //   const postComment = {
-  //     method: "POST",
-  //     body: JSON.stringify(commentObj),
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   };
-  //   // FIX THIS IF YOU HAVE TIME/
-  //   // fetch(commentsUrl, postComment)
-  //   //   .then((response) => response.json())
-  //   //   .then((data) => {
-  //   //     console.log(data);
-  //   //     // location.reload();
-  //   //   });
-  // }
-  // const sendBtn = document.querySelector(".send-CTA");
-  // sendBtn.addEventListener("click", () => {
-  //   console.log("this function is now working yet");
-  //   // addComment();
-  // });
+    //This function does not yet work
+    //send new comment - POST to REST API
+    // function addComment() {
+    //   const postId = blogPost.id;
+    //   const commentAuthor = document.querySelector("#author").value;
+    //   const commentContent = document.querySelector("#comment").value;
+    //   const commentObj = {
+    //     post: postId,
+    //     author_name: commentAuthor,
+    //     content: commentContent,
+    //   };
+    //   const postComment = {
+    //     method: "POST",
+    //     body: JSON.stringify(commentObj),
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //   };
+    //   // FIX THIS IF YOU HAVE TIME/
+    //   // fetch(commentsUrl, postComment)
+    //   //   .then((response) => response.json())
+    //   //   .then((data) => {
+    //   //     console.log(data);
+    //   //     // location.reload();
+    //   //   });
+    // }
+    // const sendBtn = document.querySelector(".send-CTA");
+    // sendBtn.addEventListener("click", () => {
+    //   console.log("this function is now working yet");
+    //   // addComment();
+    // });
+  } catch (error) {
+    generalErrorMessage(error);
+  }
 }
 renderBlogPost();
 

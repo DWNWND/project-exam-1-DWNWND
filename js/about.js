@@ -1,23 +1,25 @@
 import { renderRelatedPosts } from "./global.js";
 import { fetchAllPages, fetchSpesificImages } from "./api-call.js";
+import { generalErrorMessage } from "./error-handling.js";
 
 //render our vision section
 async function renderOurVisionSection() {
-  const allPages = await fetchAllPages();
+  try {
+    const allPages = await fetchAllPages();
 
-  const title = allPages[1].title.rendered;
-  const copy = allPages[1].content.rendered;
+    const title = allPages[1].title.rendered;
+    const copy = allPages[1].content.rendered;
 
-  //  format and render linked img
-  const imageApi = allPages[1]._links["wp:featuredmedia"]["0"].href;
-  const img = await fetchSpesificImages(imageApi);
-  const featuredImg = img.source_url;
-  const altText = img.alt_text;
+    //  format and render linked img
+    const imageApi = allPages[1]._links["wp:featuredmedia"]["0"].href;
+    const img = await fetchSpesificImages(imageApi);
+    const featuredImg = img.source_url;
+    const altText = img.alt_text;
 
-  console.log(allPages[1]);
+    console.log(allPages[1]);
 
-  const aboutUs = document.querySelector(".about-section");
-  aboutUs.innerHTML += `
+    const aboutUs = document.querySelector(".about-section");
+    aboutUs.innerHTML += `
     <article class="our-vision">
       <figure class="our-vision-img">
           <img src="${featuredImg}" alt="${altText}" />
@@ -34,24 +36,28 @@ async function renderOurVisionSection() {
         </div>
       </div>
     </article>`;
+  } catch (error) {
+    generalErrorMessage(error);
+  }
 }
 renderOurVisionSection();
 
 //render our team section
 async function renderOurTeamSection() {
-  const allPages = await fetchAllPages();
+  try {
+    const allPages = await fetchAllPages();
 
-  const title = allPages[2].title.rendered;
-  const copy = allPages[2].content.rendered;
+    const title = allPages[2].title.rendered;
+    const copy = allPages[2].content.rendered;
 
-  //  format and render linked img
-  const imageApi = allPages[2]._links["wp:featuredmedia"]["0"].href;
-  const img = await fetchSpesificImages(imageApi);
-  const featuredImg = img.source_url;
-  const altText = img.alt_text;
+    //  format and render linked img
+    const imageApi = allPages[2]._links["wp:featuredmedia"]["0"].href;
+    const img = await fetchSpesificImages(imageApi);
+    const featuredImg = img.source_url;
+    const altText = img.alt_text;
 
-  const aboutUs = document.querySelector(".about-section");
-  aboutUs.innerHTML += `
+    const aboutUs = document.querySelector(".about-section");
+    aboutUs.innerHTML += `
     <article class="the-team">
       <div>
         <h2>${title}</h2>
@@ -62,6 +68,9 @@ async function renderOurTeamSection() {
         <figcaption>caption: ${altText}</figcaption>
       </figure>
     </article>`;
+  } catch (error) {
+    generalErrorMessage(error);
+  }
 }
 renderOurTeamSection();
 
