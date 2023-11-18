@@ -1,11 +1,19 @@
-import { renderRelatedPosts } from "./global.js";
+import { renderRelatedPosts, showLoadingIndicator, showMoreBtn } from "./global.js";
 import { fetchAllPages, fetchSpesificImages } from "./api-call.js";
 import { generalErrorMessage } from "./error-handling.js";
+
+//this variable is only outside of the function because in case your want a loadingindicator on the next function aswell
+const loader = document.querySelector(".loader");
 
 //render our vision section
 async function renderOurVisionSection() {
   try {
+    showLoadingIndicator(loader);
+
+    //fetch all pages
     const allPages = await fetchAllPages();
+
+    loader.innerHTML = "";
 
     const title = allPages[1].title.rendered;
     const copy = allPages[1].content.rendered;
@@ -38,6 +46,7 @@ async function renderOurVisionSection() {
     </article>`;
   } catch (error) {
     generalErrorMessage(error);
+    console.log(error);
   }
 }
 renderOurVisionSection();
@@ -45,7 +54,13 @@ renderOurVisionSection();
 //render our team section
 async function renderOurTeamSection() {
   try {
+    //having a loading indicator here is a bit wierd
+    // showLoadingIndicator(loader);
+
+    //fetch all pages
     const allPages = await fetchAllPages();
+
+    // loader.innerHTML = "";
 
     const title = allPages[2].title.rendered;
     const copy = allPages[2].content.rendered;
@@ -70,6 +85,7 @@ async function renderOurTeamSection() {
     </article>`;
   } catch (error) {
     generalErrorMessage(error);
+    console.log(error);
   }
 }
 renderOurTeamSection();

@@ -64,7 +64,13 @@ export function renderComments(comments, div) {
 //render related posts-section(this function does not fetch related posts (yet)- for the about page and blog spesific page)
 export async function renderRelatedPosts() {
   try {
+    const loader = document.querySelector(".loader-related-posts");
+    showLoadingIndicator(loader);
+
+    //fetch blogpost
     const allPosts = await fetchAllBlogPosts();
+
+    loader.innerHTML = "";
 
     for (let i = 0; i < allPosts.length; i++) {
       const postTitle = allPosts[i].title.rendered;

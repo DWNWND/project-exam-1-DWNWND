@@ -50,7 +50,7 @@
 }
 .related-posts-section .grid-display {
   background-color: white;
-  padding: 3rem 3rem 1rem 3rem;
+  padding: 0rem 3rem 1rem 3rem;
   max-width: 1100px;
   margin-right: auto;
   margin-left: auto;
@@ -98,7 +98,7 @@ h3 {
   .related-posts-section .grid-display {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    padding-top: 5rem;
+    /* padding-top: 5rem; */
   }
   .related-posts-section {
     padding-bottom: 2rem;

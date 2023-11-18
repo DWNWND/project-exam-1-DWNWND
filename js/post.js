@@ -1,13 +1,18 @@
 import { fetchPostById, fetchSpesificImages, fetchComments } from "./api-call.js";
-import { formatDate, renderComments, renderRelatedPosts } from "./global.js";
+import { formatDate, renderComments, renderRelatedPosts, showLoadingIndicator, showMoreBtn } from "./global.js";
 import { generalErrorMessage } from "./error-handling.js";
 
 //see if you can make this code more readable/clean it up
 //render blog-post
 async function renderBlogPost() {
   try {
+    const loader = document.querySelector(".loader-1");
+    showLoadingIndicator(loader);
+
     //fetch blogpost
     const blogPost = await fetchPostById();
+
+    loader.innerHTML = "";
 
     //fetch comments
     const commentsUrl = blogPost._links.replies["0"].href;

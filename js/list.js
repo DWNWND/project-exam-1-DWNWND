@@ -1,5 +1,5 @@
 import { fetchPostsByCategory, fetchSpesificImages, fetchCategory } from "./api-call.js";
-import { formatDate, showLoadingIndicator } from "./global.js";
+import { formatDate, showLoadingIndicator, showMoreBtn } from "./global.js";
 import { generalErrorMessage } from "./error-handling.js";
 
 //render category name/pagetitle
@@ -21,14 +21,13 @@ const listView = document.querySelector(".archive-result-section");
 //render categorizes posts
 async function renderCategoriezedPosts() {
   try {
-    showLoadingIndicator(listView);
+    const loader = document.querySelector(".loader-list");
+    showLoadingIndicator(loader);
 
     //fetch categorized posts
     const allCategorizedPosts = await fetchPostsByCategory();
 
-    listView.innerHTML = `
-  <div class="grid-display categorized-posts"></div>
-  <a href="#" class="more-btn">load more posts</a>`;
+    loader.innerHTML = "";
 
     //fix the more-btn so tat is renders last + so that it only renders if theres more posts
 
