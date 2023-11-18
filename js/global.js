@@ -73,20 +73,22 @@ export async function renderRelatedPosts() {
     loader.innerHTML = "";
 
     for (let i = 0; i < allPosts.length; i++) {
-      const postTitle = allPosts[i].title.rendered;
-      const excerpt = allPosts[i].excerpt.rendered;
+      if (allPosts[i].tags[0] === 11) {
+        const postTitle = allPosts[i].title.rendered;
+        const excerpt = allPosts[i].excerpt.rendered;
 
-      const relatedPosts = document.querySelector(".related-posts");
+        const relatedPosts = document.querySelector(".related-posts");
 
-      relatedPosts.innerHTML += `
-      <article>
-        <h2>${postTitle}</h2>
-        ${excerpt}
-        <a href="/html/post.html?key=${allPosts[i].id}">continue reading...</a>
-      </article>`;
+        relatedPosts.innerHTML += `
+        <article>
+          <h2>${postTitle}</h2>
+          ${excerpt}
+          <a href="/html/post.html?key=${allPosts[i].id}">continue reading...</a>
+        </article>`;
 
-      if (i === 2) {
-        break;
+        if (i === 2) {
+          break;
+        }
       }
     }
   } catch (error) {

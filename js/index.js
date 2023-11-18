@@ -78,12 +78,12 @@ async function renderPopularPosts() {
         const popularTopics = document.querySelector(".popular-topics");
 
         popularTopics.innerHTML += `
-      <article>
-        <h2>${postTitle}</h2>
-        ${excerpt}
-        <a href="/html/post.html?key=${allPosts[i].id}">continue reading...</a>
-        <figure class="figure-general"><img src="${featuredImg}" alt="${altText}"/></figure>
-      </article>`;
+        <article>
+          <h2>${postTitle}</h2>
+          ${excerpt}
+          <a href="/html/post.html?key=${allPosts[i].id}">continue reading...</a>
+          <figure class="figure-general"><img src="${featuredImg}" alt="${altText}"/></figure>
+        </article>`;
       }
       if (i === 4) {
         break;
