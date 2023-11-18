@@ -30,7 +30,7 @@ h1 {
 }
 .blogpost-section {
   background-color: white;
-  padding: 2rem 1rem;
+  padding: 1rem 1rem 2rem 1rem;
 }
 .post-title {
   background-color: #e4eaf7;
@@ -198,7 +198,7 @@ h3 {
 
 @media (min-width: 450px) {
   .blogpost-section {
-    padding: 2rem 2rem;
+    padding: 0rem 2rem 2rem 2rem;
   }
   .post-body {
     padding: 2rem;
@@ -206,7 +206,7 @@ h3 {
 }
 @media (min-width: 600px) {
   .blogpost-section {
-    padding: 3rem 3rem;
+    padding: 0rem 3rem 3rem 3rem;
   }
   .post-body {
     padding: 1.5rem 3rem 3rem 3rem;

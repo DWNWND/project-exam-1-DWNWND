@@ -65,3 +65,6 @@ async function renderCategoriezedPosts() {
   }
 }
 renderCategoriezedPosts();
+
+const archiveResultSection = document.querySelector(".archive-result-section");
+showMoreBtn(archiveResultSection, "link");

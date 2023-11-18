@@ -91,3 +91,7 @@ async function renderOurTeamSection() {
 renderOurTeamSection();
 
 renderRelatedPosts();
+
+//add a link here to show more
+const relatedPostsSection = document.querySelector(".related-posts-section");
+showMoreBtn(relatedPostsSection, "link");

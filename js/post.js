@@ -6,7 +6,7 @@ import { generalErrorMessage } from "./error-handling.js";
 //render blog-post
 async function renderBlogPost() {
   try {
-    const loader = document.querySelector(".loader-1");
+    const loader = document.querySelector(".loader");
     showLoadingIndicator(loader);
 
     //fetch blogpost
@@ -182,3 +182,7 @@ async function renderBlogPost() {
 renderBlogPost();
 
 renderRelatedPosts();
+
+//add a link here to show more
+const relatedPostsSection = document.querySelector(".related-posts-section");
+showMoreBtn(relatedPostsSection, "link");

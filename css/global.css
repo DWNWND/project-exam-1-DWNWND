@@ -70,13 +70,15 @@ body {
   margin-right: auto;
 }
 .loader-list,
-.loader-about {
+.loader-about,
+.loader-posts {
   background-color: white;
   padding: 1rem;
 }
 @media (min-width: 1100px) {
   .loader-list,
-  .loader-about {
+  .loader-about,
+  .loader-posts {
     padding: 2rem;
   }
 }
