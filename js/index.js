@@ -31,7 +31,7 @@ function checkForPostExcerpt(post) {
   if (post.excerpt.rendered) {
     excerpt = post.excerpt.rendered;
   } else if (!post.excerpt.rendered) {
-    console.log("You need to add a title to this/these post(s): ", post);
+    console.log("You need to add a excerpt/text-content to this/these post(s): ", post);
   }
 }
 

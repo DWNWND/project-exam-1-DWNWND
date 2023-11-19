@@ -41,7 +41,7 @@ function checkForPostExcerpt(post) {
   if (post.excerpt.rendered) {
     excerpt = post.excerpt.rendered;
   } else if (!post.excerpt.rendered) {
-    console.log("You need to add a title to this/these post(s): ", post);
+    console.log("You need to add a excerpt/text-content to this/these post(s): ", post);
   }
 }
 
@@ -71,7 +71,6 @@ async function renderCategoriezedPosts() {
         const imageApi = allCategorizedPosts[i]._links["wp:featuredmedia"]["0"].href;
         const img = await fetchSpesificImages(imageApi);
         featuredImg = img.source_url;
-        console.log(featuredImg);
         altText = img.alt_text;
       } else if (!allCategorizedPosts[i]._links["wp:featuredmedia"]) {
         console.log("You need to add a featured img to this/these post(s): ", post);
