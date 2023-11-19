@@ -1,4 +1,4 @@
-import { fetchAllBlogPosts, fetchAllPages } from "./api-call.js";
+import { fetchAllBlogPosts, fetchAllPages, fetchAllCategories } from "./api-call.js";
 import { showLoadingIndicator, showMoreBtn } from "./global.js";
 import { generalErrorMessage } from "./error-handling.js";
 
@@ -6,13 +6,14 @@ let postTitle;
 let featuredImg;
 let altText;
 let excerpt;
+let linkToMore;
 
 //check if the posts have a TITLE and console.log which post who lack one //check if the post has a featured img and console.log which post who lack one
 function checkForPostTitle(post) {
   if (post.title.rendered) {
     postTitle = post.title.rendered;
   } else if (!post.title.rendered) {
-    console.log("You need to add a title to this/these post(s): ", post);
+    console.log("You need to add a title to this post: ", post);
   }
 }
 
@@ -22,7 +23,7 @@ function checkForFeaturedImg(post) {
     featuredImg = post._embedded["wp:featuredmedia"]["0"].source_url;
     altText = post._embedded["wp:featuredmedia"]["0"].alt_text;
   } else if (!post._embedded["wp:featuredmedia"]) {
-    console.log("You need to add a featured img to this/these post(s): ", post);
+    console.log("You need to add a featured img to this post: ", post);
   }
 }
 
@@ -31,7 +32,7 @@ function checkForPostExcerpt(post) {
   if (post.excerpt.rendered) {
     excerpt = post.excerpt.rendered;
   } else if (!post.excerpt.rendered) {
-    console.log("You need to add a excerpt/text-content to this/these post(s): ", post);
+    console.log("You need to add a excerpt/text-content to this post: ", post);
   }
 }
 
@@ -60,6 +61,11 @@ async function renderNewlyPublishedPosts() {
     </article>`;
       //add alt-text in WP and link to the blogspeficis here
 
+      //link to show more posts like this - THIS ONE DIRECTS TO THE CATEGORY OF THE LAST POST RIGHT NOW.
+      //DIRECTING TO THE TAG OG THE POSTS IS MORE DIFFICULT - SAME ON THE OTHER
+      linkToMore = `/html/list.html?key=${allPosts[i].categories[0]}`;
+      console.log(linkToMore);
+
       if (i === 5) {
         break;
       }
@@ -84,7 +90,7 @@ async function renderNewlyPublishedPosts() {
 
     //add a link here to show more
     const newlyPublishedSection = document.querySelector(".newly-published-section");
-    showMoreBtn(newlyPublishedSection, "link");
+    showMoreBtn(newlyPublishedSection, linkToMore);
   } catch (error) {
     console.log(error);
     generalErrorMessage(error);
@@ -126,13 +132,17 @@ async function renderPopularPosts() {
           <figure class="figure-general"><img src="${featuredImg}" alt="${altText}"/></figure>
         </article>`;
 
+      //link to show more posts like this - THIS ONE DIRECTS TO THE CATEGORY OF THE LAST POST RIGHT NOW.
+      //DIRECTING TO THE TAG OG THE POSTS IS MORE DIFFICULT - SAME ON THE OTHER
+      linkToMore = `/html/list.html?key=${postsByTag[i].categories[0]}`;
+      console.log(linkToMore);
+
       if (i === 4) {
         break;
       }
     }
-    //add a link here to show more
     const popularTopicsSection = document.querySelector(".popular-topics-section");
-    showMoreBtn(popularTopicsSection, "link");
+    showMoreBtn(popularTopicsSection, linkToMore);
   } catch (error) {
     generalErrorMessage(error);
     console.log(error);

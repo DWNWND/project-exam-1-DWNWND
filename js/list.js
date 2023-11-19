@@ -32,7 +32,7 @@ function checkForPostTitle(post) {
   if (post.title.rendered) {
     postTitle = post.title.rendered;
   } else if (!post.title.rendered) {
-    console.log("You need to add a title to this/these post(s): ", post);
+    console.log("You need to add a title to this post: ", post);
   }
 }
 
@@ -41,7 +41,7 @@ function checkForPostExcerpt(post) {
   if (post.excerpt.rendered) {
     excerpt = post.excerpt.rendered;
   } else if (!post.excerpt.rendered) {
-    console.log("You need to add a excerpt/text-content to this/these post(s): ", post);
+    console.log("You need to add a excerpt/text-content to this post: ", post);
   }
 }
 
@@ -92,6 +92,9 @@ async function renderCategoriezedPosts() {
       </div>
     </article>
     `;
+      if (i === 10) {
+        break;
+      }
     }
   } catch (error) {
     generalErrorMessage(error);
@@ -100,5 +103,7 @@ async function renderCategoriezedPosts() {
 }
 renderCategoriezedPosts();
 
+//ADD A LOAD-MORE BUTTON - NEEDS TO BE DONE BEFORE DELIVERY
 const archiveResultSection = document.querySelector(".archive-result-section");
-showMoreBtn(archiveResultSection, "link");
+showMoreBtn(archiveResultSection, "#");
+// const moreBtn = document.querySelector(".more-btn");
