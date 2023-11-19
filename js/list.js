@@ -15,14 +15,38 @@ async function renderCategoryName() {
     metaTitle.textContent = currentCategory.name;
   } catch (error) {
     generalErrorMessage(error);
-    console.log(error)
+    console.log(error);
   }
 }
 renderCategoryName();
 
-//render filepath.....
+//REMEMBER TO render filepath.....
 
-const listView = document.querySelector(".archive-result-section");
+let postTitle;
+let featuredImg;
+let altText;
+let excerpt;
+
+//check if the posts have a TITLE and console.log which post who lack one //check if the post has a featured img and console.log which post who lack one
+function checkForPostTitle(post) {
+  if (post.title.rendered) {
+    postTitle = post.title.rendered;
+  } else if (!post.title.rendered) {
+    console.log("You need to add a title to this/these post(s): ", post);
+  }
+}
+
+//check if the posts have a EXCERPT and console.log which post who lack one //check if the post has a featured img and console.log which post who lack one
+function checkForPostExcerpt(post) {
+  if (post.excerpt.rendered) {
+    excerpt = post.excerpt.rendered;
+  } else if (!post.excerpt.rendered) {
+    console.log("You need to add a title to this/these post(s): ", post);
+  }
+}
+
+//dont know if i just forgot to delete this or not:
+// const listView = document.querySelector(".archive-result-section");
 
 //render categorizes posts
 async function renderCategoriezedPosts() {
@@ -39,20 +63,24 @@ async function renderCategoriezedPosts() {
 
     for (let i = 0; i < allCategorizedPosts.length; i++) {
       //render content
-      const postTitle = allCategorizedPosts[i].title.rendered;
-      const excerpt = allCategorizedPosts[i].excerpt.rendered;
+      checkForPostTitle(allCategorizedPosts[i]);
+      checkForPostExcerpt(allCategorizedPosts[i]);
+
+      //check if the posts have a FEATURED IMG and console.log which post who lack one
+      if (allCategorizedPosts[i]._links["wp:featuredmedia"]) {
+        const imageApi = allCategorizedPosts[i]._links["wp:featuredmedia"]["0"].href;
+        const img = await fetchSpesificImages(imageApi);
+        featuredImg = img.source_url;
+        console.log(featuredImg);
+        altText = img.alt_text;
+      } else if (!allCategorizedPosts[i]._links["wp:featuredmedia"]) {
+        console.log("You need to add a featured img to this/these post(s): ", post);
+      }
 
       //fetch and format publishdate
       const date = formatDate(allCategorizedPosts[i].date);
 
-      //format and render linked img
-      const imageApi = allCategorizedPosts[i]._links["wp:featuredmedia"]["0"].href;
-      const img = await fetchSpesificImages(imageApi);
-      const featuredImg = img.source_url;
-      const altText = img.alt_text;
-
       const displayCategorizedPosts = document.querySelector(".categorized-posts");
-
       //add post-articles HTML
       displayCategorizedPosts.innerHTML += `
     <article>
@@ -68,7 +96,7 @@ async function renderCategoriezedPosts() {
     }
   } catch (error) {
     generalErrorMessage(error);
-    console.log(error)
+    console.log(error);
   }
 }
 renderCategoriezedPosts();
