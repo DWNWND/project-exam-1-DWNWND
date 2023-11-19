@@ -9,7 +9,7 @@ const params = new URLSearchParams(queryString);
 export const id = params.get("key");
 
 //API call ALL posts (list)
-const postQueryString = "posts?_embed";
+const postQueryString = "posts?_embed&per_page=100";
 export async function fetchAllBlogPosts() {
   try {
     const response = await fetch(url + postQueryString);

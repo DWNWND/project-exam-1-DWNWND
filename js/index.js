@@ -2,6 +2,39 @@ import { fetchAllBlogPosts, fetchAllPages } from "./api-call.js";
 import { showLoadingIndicator, showMoreBtn } from "./global.js";
 import { generalErrorMessage } from "./error-handling.js";
 
+let postTitle;
+let featuredImg;
+let altText;
+let excerpt;
+
+//check if the posts have a TITLE and console.log which post who lack one //check if the post has a featured img and console.log which post who lack one
+function checkForPostTitle(post) {
+  if (post.title.rendered) {
+    postTitle = post.title.rendered;
+  } else if (!post.title.rendered) {
+    console.log("You need to add a title to this/these post(s): ", post);
+  }
+}
+
+//check if the posts have a FEATURED IMG and console.log which post who lack one //check if the post has a featured img and console.log which post who lack one
+function checkForFeaturedImg(post) {
+  if (post._embedded["wp:featuredmedia"]) {
+    featuredImg = post._embedded["wp:featuredmedia"]["0"].source_url;
+    altText = post._embedded["wp:featuredmedia"]["0"].alt_text;
+  } else if (!post._embedded["wp:featuredmedia"]) {
+    console.log("You need to add a featured img to this/these post(s): ", post);
+  }
+}
+
+//check if the posts have a EXCERPT and console.log which post who lack one //check if the post has a featured img and console.log which post who lack one
+function checkForPostExcerpt(post) {
+  if (post.excerpt.rendered) {
+    excerpt = post.excerpt.rendered;
+  } else if (!post.excerpt.rendered) {
+    console.log("You need to add a title to this/these post(s): ", post);
+  }
+}
+
 //render newly published blogposts to slider
 async function renderNewlyPublishedPosts() {
   try {
@@ -13,12 +46,12 @@ async function renderNewlyPublishedPosts() {
     loader.innerHTML = "";
 
     for (let i = 0; i < allPosts.length; i++) {
-      const postTitle = allPosts[i].title.rendered;
-      const featuredImg = allPosts[i]._embedded["wp:featuredmedia"]["0"].source_url;
-      const altText = allPosts[i]._embedded["wp:featuredmedia"]["0"].alt_text;
+      //render and check for content
+      checkForPostTitle(allPosts[i]);
+      checkForFeaturedImg(allPosts[i]);
+      checkForPostExcerpt(allPosts[i]);
 
       const slider = document.querySelector(".slider");
-
       slider.innerHTML += `
     <article>
       <h2>${postTitle}</h2>
@@ -69,23 +102,30 @@ async function renderPopularPosts() {
 
     loader.innerHTML = "";
 
-    for (let i = 0; i < allPosts.length; i++) {
-      if (allPosts[i].tags[0] === 11) {
-        const postTitle = allPosts[i].title.rendered;
-        const featuredImg = allPosts[i]._embedded["wp:featuredmedia"]["0"].source_url;
-        const altText = allPosts[i]._embedded["wp:featuredmedia"]["0"].alt_text;
-        const excerpt = allPosts[i].excerpt.rendered;
+    //filter out the right tag
+    const postsByTag = allPosts.filter((posts) => {
+      if (posts.tags[0] === 11) {
+        return posts;
+      }
+    });
 
-        const popularTopics = document.querySelector(".popular-topics");
+    //display the right/filtered posts
+    for (let i = 0; i < postsByTag.length; i++) {
+      //render and check for content
+      checkForPostTitle(postsByTag[i]);
+      checkForFeaturedImg(postsByTag[i]);
+      checkForPostExcerpt(postsByTag[i]);
 
-        popularTopics.innerHTML += `
+      //display posts
+      const popularTopics = document.querySelector(".popular-topics");
+      popularTopics.innerHTML += `
         <article>
           <h2>${postTitle}</h2>
           ${excerpt}
-          <a href="/html/post.html?key=${allPosts[i].id}">continue reading...</a>
+          <a href="/html/post.html?key=${postsByTag[i].id}">continue reading...</a>
           <figure class="figure-general"><img src="${featuredImg}" alt="${altText}"/></figure>
         </article>`;
-      }
+
       if (i === 4) {
         break;
       }
@@ -114,7 +154,7 @@ async function renderAboutSectionIndex() {
     const copy = allPages[1].content.rendered;
     aboutUs.innerHTML += `
       <figure class="figure-general">
-        <img src="/img/placeholder-2.jpg" />
+      <img src="/img/placeholder-2.jpg" />
       </figure>
       <article>
         ${copy}
