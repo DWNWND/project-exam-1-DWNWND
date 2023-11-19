@@ -17,6 +17,7 @@ export async function fetchAllBlogPosts() {
     return results;
   } catch (error) {
     apiErrorMessage(error);
+    console.log(error)
   }
 }
 
@@ -29,6 +30,7 @@ export async function fetchPostById() {
     return results;
   } catch (error) {
     apiErrorMessage(error);
+    console.log(error)
   }
 }
 
@@ -41,6 +43,7 @@ export async function fetchAllCategories() {
     return results;
   } catch (error) {
     apiErrorMessage(error);
+    console.log(error)
   }
 }
 
@@ -52,6 +55,7 @@ export async function fetchCategory() {
     return results;
   } catch (error) {
     apiErrorMessage(error);
+    console.log(error)
   }
 }
 
@@ -64,6 +68,7 @@ export async function fetchPostsByCategory() {
     return results;
   } catch (error) {
     apiErrorMessage(error);
+    console.log(error)
   }
 }
 
@@ -76,6 +81,7 @@ export async function fetchAllPages() {
     return results;
   } catch (error) {
     apiErrorMessage(error);
+    console.log(error)
   }
 }
 //API call post-spesific comments
@@ -86,6 +92,7 @@ export async function fetchComments(commentUrl) {
     return results;
   } catch (error) {
     apiErrorMessage(error);
+    console.log(error)
   }
 }
 
@@ -97,5 +104,6 @@ export async function fetchSpesificImages(imgUrl) {
     return results;
   } catch (error) {
     apiErrorMessage(error);
+    console.log(error)
   }
 }

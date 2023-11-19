@@ -11,6 +11,7 @@ export function showMoreBtn(htmlElement, link) {
     htmlElement.appendChild(moreBtn);
   } catch (error) {
     generalErrorMessage(error);
+    console.log(error)
   }
 }
 
@@ -35,6 +36,7 @@ export function formatDate(rawDate) {
     return dateArr;
   } catch (error) {
     generalErrorMessage(error);
+    console.log(error)
   }
 }
 
@@ -58,6 +60,7 @@ export function renderComments(comments, div) {
     }
   } catch (error) {
     generalErrorMessage(error);
+    console.log(error)
   }
 }
 
@@ -93,5 +96,6 @@ export async function renderRelatedPosts() {
     }
   } catch (error) {
     generalErrorMessage(error);
+    console.log(error)
   }
 }

@@ -187,6 +187,7 @@ async function renderBlogPost() {
     // });
   } catch (error) {
     generalErrorMessage(error);
+    console.log(error);
   }
 }
 renderBlogPost();

@@ -15,6 +15,7 @@ async function renderCategoryName() {
     metaTitle.textContent = currentCategory.name;
   } catch (error) {
     generalErrorMessage(error);
+    console.log(error)
   }
 }
 renderCategoryName();
@@ -67,6 +68,7 @@ async function renderCategoriezedPosts() {
     }
   } catch (error) {
     generalErrorMessage(error);
+    console.log(error)
   }
 }
 renderCategoriezedPosts();

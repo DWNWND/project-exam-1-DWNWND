@@ -22,6 +22,7 @@ form.addEventListener("submit", (event) => {
     }
   } catch (error) {
     generalErrorMessage(error);
+    console.log(error);
   }
 });
 
@@ -39,6 +40,7 @@ nameInput.addEventListener("input", (event) => {
     }
   } catch (error) {
     generalErrorMessage(error);
+    console.log(error);
   }
 });
 
@@ -56,6 +58,7 @@ email.addEventListener("input", (event) => {
     }
   } catch (error) {
     generalErrorMessage(error);
+    console.log(error);
   }
 });
 
@@ -73,6 +76,7 @@ subject.addEventListener("input", (event) => {
     }
   } catch (error) {
     generalErrorMessage(error);
+    console.log(error);
   }
 });
 
@@ -90,6 +94,7 @@ message.addEventListener("input", (event) => {
     }
   } catch (error) {
     generalErrorMessage(error);
+    console.log(error);
   }
 });
 
@@ -106,6 +111,7 @@ function showSubjectError() {
     subjectError.className = "error active";
   } catch (error) {
     generalErrorMessage(error);
+    console.log(error);
   }
 }
 function showEmailError() {
@@ -120,6 +126,7 @@ function showEmailError() {
     emailError.className = "error active";
   } catch (error) {
     generalErrorMessage(error);
+    console.log(error);
   }
 }
 function showMessageError() {
@@ -134,6 +141,7 @@ function showMessageError() {
     messageError.className = "error active";
   } catch (error) {
     generalErrorMessage(error);
+    console.log(error);
   }
 }
 function showNameError() {
@@ -148,5 +156,6 @@ function showNameError() {
     nameError.className = "error active";
   } catch (error) {
     generalErrorMessage(error);
+    console.log(error);
   }
 }

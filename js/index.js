@@ -53,6 +53,7 @@ async function renderNewlyPublishedPosts() {
     const newlyPublishedSection = document.querySelector(".newly-published-section");
     showMoreBtn(newlyPublishedSection, "link");
   } catch (error) {
+    console.log(error);
     generalErrorMessage(error);
   }
 }
@@ -94,6 +95,7 @@ async function renderPopularPosts() {
     showMoreBtn(popularTopicsSection, "link");
   } catch (error) {
     generalErrorMessage(error);
+    console.log(error);
   }
 }
 renderPopularPosts();
@@ -120,6 +122,7 @@ async function renderAboutSectionIndex() {
       </article>`;
   } catch (error) {
     generalErrorMessage(error);
+    console.log(error);
   }
 }
 renderAboutSectionIndex();

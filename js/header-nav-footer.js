@@ -57,6 +57,7 @@ async function renderCategories() {
     //add a slug with the category-name in the href?
   } catch (error) {
     generalErrorMessage(error);
+    console.log(error)
   }
 }
 renderCategories();
