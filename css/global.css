@@ -29,6 +29,8 @@ body {
   text-align: center;
   display: block;
   padding: 2rem 0;
+  cursor: pointer;
+  text-decoration: underline;
 }
 .directory {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;

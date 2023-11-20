@@ -1,4 +1,4 @@
-import { fetchAllBlogPosts, fetchAllPages, fetchAllCategories } from "./api-call.js";
+import { fetchAllBlogPosts, fetchAllPages } from "./api-call.js";
 import { showLoadingIndicator, showMoreBtn } from "./global.js";
 import { generalErrorMessage } from "./error-handling.js";
 

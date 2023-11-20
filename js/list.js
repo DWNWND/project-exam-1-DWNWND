@@ -53,45 +53,46 @@ const url = "https://www.dwnwnd-api.online/wp-json/wp/v2/";
 //getting the IDs
 const queryString = document.location.search;
 const params = new URLSearchParams(queryString);
-export const id = params.get("key");
+const id = params.get("id");
 
+console.log(id);
 //API call posts in category SPESIFIC (id-call)
-const categoryIDQueryString = "posts?categories?slug=";
+// const categoryIDQueryString = "posts?categories?slug=";
+
 let page = 1;
 
 //render categorizes posts
 async function renderCategoriezedPosts() {
   try {
-    // const loader = document.querySelector(".loader-list");
-    // showLoadingIndicator(loader);
+    const loader = document.querySelector(".loader-list");
+    showLoadingIndicator(loader);
 
     //fetch categorized posts
-    const response = await fetch(url + categoryIDQueryString + id + `?page=${page}`);
+    const response = await fetch(url + "posts?categories=" + id + `&page=${page}`);
     const allCategorizedPosts = await response.json();
 
     // const allCategorizedPosts = await fetchPostsByCategory();
 
-    // loader.innerHTML = "";
+    loader.innerHTML = "";
 
-    //fix the more-btn so tat is renders last + so that it only renders if theres more posts
+    allCategorizedPosts.forEach((post) => {
+      //  render content
+      console.log(post);
+      checkForPostTitle(post);
+      checkForPostExcerpt(post);
 
-    for (let i = 0; i < allCategorizedPosts.length; i++) {
-      //render content
-      checkForPostTitle(allCategorizedPosts[i]);
-      checkForPostExcerpt(allCategorizedPosts[i]);
-
-      //check if the posts have a FEATURED IMG and console.log which post who lack one
-      if (allCategorizedPosts[i]._links["wp:featuredmedia"]) {
-        const imageApi = allCategorizedPosts[i]._links["wp:featuredmedia"]["0"].href;
-        const img = await fetchSpesificImages(imageApi);
-        featuredImg = img.source_url;
-        altText = img.alt_text;
-      } else if (!allCategorizedPosts[i]._links["wp:featuredmedia"]) {
-        console.log("You need to add a featured img to this/these post(s): ", post);
-      }
+      // check if the posts have a FEATURED IMG and console.log which post who lack one
+      // if (post._links["wp:featuredmedia"]) {
+      //   const imageApi = post._links["wp:featuredmedia"]["0"].href;
+      //   const img = await fetchSpesificImages(imageApi);
+      //   featuredImg = img.source_url;
+      //   altText = img.alt_text;
+      // } else if (!post._links["wp:featuredmedia"]) {
+      //   console.log("You need to add a featured img to this/these post(s): ", post);
+      // }
 
       //fetch and format publishdate
-      const date = formatDate(allCategorizedPosts[i].date);
+      const date = formatDate(post.date);
 
       const displayCategorizedPosts = document.querySelector(".categorized-posts");
 
@@ -100,18 +101,54 @@ async function renderCategoriezedPosts() {
     <article>
       <h2>${postTitle}</h2>
       ${excerpt}
-      <figure class="figure-general"><img src="${featuredImg}" alt="${altText}" /></figure>
+    
       <div class="post-info">
         <div class="publish-date"><date>${date[0]}, ${date[1]}</date></div>
-        <a href="/html/post.html?key=${allCategorizedPosts[i].id}" class="continue-btn">continue reading...</a>
+        <a href="/html/post.html?key=${post.id}" class="continue-btn">continue reading...</a>
       </div>
     </article>
     `;
-      if (i === 10) {
-        break;
-      }
-    }
-    page++;
+
+    // <figure class="figure-general"><img src="${featuredImg}" alt="${altText}" /></figure>
+      page++;
+    });
+    // for (let i = 0; i < allCategorizedPosts.length; i++) {
+    //   //render content
+    //   checkForPostTitle(allCategorizedPosts[i]);
+    //   checkForPostExcerpt(allCategorizedPosts[i]);
+
+    //   //check if the posts have a FEATURED IMG and console.log which post who lack one
+    //   if (allCategorizedPosts[i]._links["wp:featuredmedia"]) {
+    //     const imageApi = allCategorizedPosts[i]._links["wp:featuredmedia"]["0"].href;
+    //     const img = await fetchSpesificImages(imageApi);
+    //     featuredImg = img.source_url;
+    //     altText = img.alt_text;
+    //   } else if (!allCategorizedPosts[i]._links["wp:featuredmedia"]) {
+    //     console.log("You need to add a featured img to this/these post(s): ", post);
+    //   }
+
+    //   //fetch and format publishdate
+    //   const date = formatDate(allCategorizedPosts[i].date);
+
+    //   const displayCategorizedPosts = document.querySelector(".categorized-posts");
+
+    //   //add post-articles HTML
+    //   displayCategorizedPosts.innerHTML += `
+    // <article>
+    //   <h2>${postTitle}</h2>
+    //   ${excerpt}
+    //   <figure class="figure-general"><img src="${featuredImg}" alt="${altText}" /></figure>
+    //   <div class="post-info">
+    //     <div class="publish-date"><date>${date[0]}, ${date[1]}</date></div>
+    //     <a href="/html/post.html?key=${allCategorizedPosts[i].id}" class="continue-btn">continue reading...</a>
+    //   </div>
+    // </article>
+    // `;
+    //   // if (i === 10) {
+    //   //   break;
+    //   // }
+    // }
+    // page++;
   } catch (error) {
     generalErrorMessage(error);
     console.log(error);

@@ -8,8 +8,8 @@ const queryString = document.location.search;
 const params = new URLSearchParams(queryString);
 export const id = params.get("key");
 
-//API call ALL posts (list)
-const postQueryString = "posts?_embed&page=100";
+//API call ALL posts (list) &page=100
+const postQueryString = "posts?_embed&per_page=100";
 export async function fetchAllBlogPosts() {
   try {
     const response = await fetch(url + postQueryString);
@@ -60,17 +60,17 @@ export async function fetchCategory() {
 }
 
 // //API call posts in category SPESIFIC (id-call)
-// const categoryIDQueryString = "posts?categories?slug=";
-// export async function fetchPostsByCategory() {
-//   try {
-//     const response = await fetch(url + categoryIDQueryString + id + "?page=");
-//     const results = await response.json();
-//     return results;
-//   } catch (error) {
-//     apiErrorMessage(error);
-//     console.log(error);
-//   }
-// }
+const categoryIDQueryString = "posts?categories?slug=";
+export async function fetchPostsByCategory() {
+  try {
+    const response = await fetch(url + categoryIDQueryString + id);
+    const results = await response.json();
+    return results;
+  } catch (error) {
+    apiErrorMessage(error);
+    console.log(error);
+  }
+}
 
 //API call all pages (list)
 const pagesQueryString = "pages";
