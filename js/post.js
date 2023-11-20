@@ -1,5 +1,5 @@
 import { fetchPostById, fetchSpesificImages, fetchComments } from "./api-call.js";
-import { formatDate, renderComments, renderRelatedPosts, showLoadingIndicator, showMoreBtn } from "./global.js";
+import { formatDate, renderComments, renderRelatedPosts, showLoadingIndicator } from "./global.js";
 import { generalErrorMessage } from "./error-handling.js";
 
 //see if you can make this code more readable/clean it up
@@ -30,6 +30,7 @@ async function renderBlogPost() {
     const img = await fetchSpesificImages(imageApi);
     const featuredImg = img.source_url;
     const altText = img.alt_text;
+    const caption = img.caption.rendered
 
     //update page-title with post-title (meta)
     const metaTitle = document.querySelector("#title");
@@ -64,7 +65,7 @@ async function renderBlogPost() {
     <section class="post-img-section">
         <figure class="post-img-wrapper" >
           <img src="${featuredImg}" alt="${altText}" class="post-img" />
-          <figcaption>caption</figcaption>
+          <figcaption>${caption}</figcaption>
         </figure>
     </section>
     <section class="post-copy-section">${copy}</section>
@@ -193,7 +194,3 @@ async function renderBlogPost() {
 renderBlogPost();
 
 renderRelatedPosts();
-
-//add a link here to show more
-const relatedPostsSection = document.querySelector(".related-posts-section");
-showMoreBtn(relatedPostsSection, "link");

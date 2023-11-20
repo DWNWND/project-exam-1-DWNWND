@@ -79,6 +79,15 @@ body {
   background-color: #f5f5f5;
   padding: 1rem;
 }
+ol {
+  margin-left: 3rem;
+}
+.has-large-font-size {
+  font-size: 1.4rem;
+}
+.has-medium-font-size {
+  font-size: 1.4rem;
+}
 @media (min-width: 1100px) {
   .loader-list,
   .loader-about,

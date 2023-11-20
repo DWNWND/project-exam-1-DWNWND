@@ -23,15 +23,14 @@ async function renderOurVisionSection() {
     const img = await fetchSpesificImages(imageApi);
     const featuredImg = img.source_url;
     const altText = img.alt_text;
-
-    console.log(allPages[1]);
+    const caption = img.caption.rendered;
 
     const aboutUs = document.querySelector(".about-section");
     aboutUs.innerHTML += `
     <article class="our-vision">
       <figure class="our-vision-img">
           <img src="${featuredImg}" alt="${altText}" />
-          <figcaption>caption: ${altText}</figcaption>
+          <figcaption>${caption}</figcaption>
       </figure>
       <div>
         <h2>${title}</h2>
@@ -91,7 +90,3 @@ async function renderOurTeamSection() {
 renderOurTeamSection();
 
 renderRelatedPosts();
-
-//add a link here to show more
-const relatedPostsSection = document.querySelector(".related-posts-section");
-showMoreBtn(relatedPostsSection, "link");

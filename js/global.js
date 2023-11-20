@@ -75,25 +75,36 @@ export async function renderRelatedPosts() {
 
     loader.innerHTML = "";
 
-    for (let i = 0; i < allPosts.length; i++) {
-      if (allPosts[i].tags[0] === 11) {
-        const postTitle = allPosts[i].title.rendered;
-        const excerpt = allPosts[i].excerpt.rendered;
+    //filter out the right tag
+    const postsByTag = allPosts.filter((posts) => {
+      if (posts.tags[0] === 11) {
+        return posts;
+      }
+    });
 
-        const relatedPosts = document.querySelector(".related-posts");
+    let linkToMore;
 
-        relatedPosts.innerHTML += `
+    for (let i = 0; i < postsByTag.length; i++) {
+      const postTitle = postsByTag[i].title.rendered;
+      const excerpt = postsByTag[i].excerpt.rendered;
+
+      const relatedPosts = document.querySelector(".related-posts");
+
+      relatedPosts.innerHTML += `
         <article>
           <h2>${postTitle}</h2>
           ${excerpt}
-          <a href="/html/post.html?key=${allPosts[i].id}">continue reading...</a>
+          <a href="/html/post.html?key=${postsByTag[i].id}">continue reading...</a>
         </article>`;
 
-        if (i === 2) {
-          break;
-        }
+      linkToMore = `/html/list.html?key=${postsByTag[i].categories[0]}`;
+
+      if (i === 2) {
+        break;
       }
     }
+    const relatedPostsSection = document.querySelector(".related-posts-section");
+    showMoreBtn(relatedPostsSection, linkToMore);
   } catch (error) {
     generalErrorMessage(error);
     console.log(error);
