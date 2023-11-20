@@ -15,6 +15,9 @@ nav a {
 nav li:hover {
   background-color: rgb(118, 118, 118);
 }
+.active {
+  background-color: rgb(227, 227, 227);
+}
 .logo-mobile {
   width: 100%;
   display: flex;

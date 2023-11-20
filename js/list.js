@@ -10,6 +10,8 @@ async function renderCategoryName() {
     const pageTitle = document.querySelector(".pagetitle");
     pageTitle.innerHTML += `${currentCategory.name}`;
 
+    // console.log(currentCategory.id)
+
     //(meta)
     const metaTitle = document.querySelector("#title");
     metaTitle.textContent = currentCategory.name;

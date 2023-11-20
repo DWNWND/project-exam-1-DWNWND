@@ -1,5 +1,5 @@
 //render categories
-import { fetchAllCategories } from "./api-call.js";
+import { fetchAllCategories, id } from "./api-call.js";
 import { generalErrorMessage } from "./error-handling.js";
 
 //see if you can make this code more readable/clean it up so you can add error-handling to more content
@@ -52,12 +52,19 @@ async function renderCategories() {
         continue;
       }
       categoriesUl.innerHTML += `
-    <li class="nav-item-cat"><a href="/html/list.html?key=${allCategories[i].id}">${allCategories[i].name}</a></li>`;
+    <li class="nav-item-cat ${allCategories[i].slug}"><a href="/html/list.html?key=${allCategories[i].slug}">${allCategories[i].name}</a></li>`;
     }
-    //add a slug with the category-name in the href?
+
+    const category = document.querySelectorAll(".nav-item-cat");
+    for (let i = 0; i < category.length; i++) {
+      if (category[i].className === "nav-item-cat " + id) {
+        console.log(category[i]);
+        category[i].classList.toggle("active");
+      }
+    }
   } catch (error) {
     generalErrorMessage(error);
-    console.log(error)
+    console.log(error);
   }
 }
 renderCategories();

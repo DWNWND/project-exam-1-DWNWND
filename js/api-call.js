@@ -17,7 +17,7 @@ export async function fetchAllBlogPosts() {
     return results;
   } catch (error) {
     apiErrorMessage(error);
-    console.log(error)
+    console.log(error);
   }
 }
 
@@ -30,7 +30,7 @@ export async function fetchPostById() {
     return results;
   } catch (error) {
     apiErrorMessage(error);
-    console.log(error)
+    console.log(error);
   }
 }
 
@@ -43,24 +43,24 @@ export async function fetchAllCategories() {
     return results;
   } catch (error) {
     apiErrorMessage(error);
-    console.log(error)
+    console.log(error);
   }
 }
 
 //API call category SPESIFIC (id-call)
 export async function fetchCategory() {
   try {
-    const response = await fetch(url + categoriesQueryString + "/" + id);
+    const response = await fetch(url + categoriesQueryString + "?slug=" + id);
     const results = await response.json();
     return results;
   } catch (error) {
     apiErrorMessage(error);
-    console.log(error)
+    console.log(error);
   }
 }
 
 //API call posts in category SPESIFIC (id-call)
-const categoryIDQueryString = "posts?categories=";
+const categoryIDQueryString = "posts?categories?slug=";
 export async function fetchPostsByCategory() {
   try {
     const response = await fetch(url + categoryIDQueryString + id);
@@ -68,7 +68,7 @@ export async function fetchPostsByCategory() {
     return results;
   } catch (error) {
     apiErrorMessage(error);
-    console.log(error)
+    console.log(error);
   }
 }
 
@@ -81,7 +81,7 @@ export async function fetchAllPages() {
     return results;
   } catch (error) {
     apiErrorMessage(error);
-    console.log(error)
+    console.log(error);
   }
 }
 //API call post-spesific comments
@@ -92,7 +92,7 @@ export async function fetchComments(commentUrl) {
     return results;
   } catch (error) {
     apiErrorMessage(error);
-    console.log(error)
+    console.log(error);
   }
 }
 
@@ -104,6 +104,6 @@ export async function fetchSpesificImages(imgUrl) {
     return results;
   } catch (error) {
     apiErrorMessage(error);
-    console.log(error)
+    console.log(error);
   }
 }
