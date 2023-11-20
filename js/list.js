@@ -1,4 +1,4 @@
-import { fetchPostsByCategory, fetchSpesificImages, fetchCategory } from "./api-call.js";
+import { fetchSpesificImages, fetchCategory } from "./api-call.js";
 import { formatDate, showLoadingIndicator, showMoreBtn } from "./global.js";
 import { generalErrorMessage } from "./error-handling.js";
 
@@ -47,19 +47,31 @@ function checkForPostExcerpt(post) {
   }
 }
 
-//dont know if i just forgot to delete this or not:
-// const listView = document.querySelector(".archive-result-section");
+//API-URL
+const url = "https://www.dwnwnd-api.online/wp-json/wp/v2/";
+
+//getting the IDs
+const queryString = document.location.search;
+const params = new URLSearchParams(queryString);
+export const id = params.get("key");
+
+//API call posts in category SPESIFIC (id-call)
+const categoryIDQueryString = "posts?categories?slug=";
+let page = 1;
 
 //render categorizes posts
 async function renderCategoriezedPosts() {
   try {
-    const loader = document.querySelector(".loader-list");
-    showLoadingIndicator(loader);
+    // const loader = document.querySelector(".loader-list");
+    // showLoadingIndicator(loader);
 
     //fetch categorized posts
-    const allCategorizedPosts = await fetchPostsByCategory();
+    const response = await fetch(url + categoryIDQueryString + id + `?page=${page}`);
+    const allCategorizedPosts = await response.json();
 
-    loader.innerHTML = "";
+    // const allCategorizedPosts = await fetchPostsByCategory();
+
+    // loader.innerHTML = "";
 
     //fix the more-btn so tat is renders last + so that it only renders if theres more posts
 
@@ -82,6 +94,7 @@ async function renderCategoriezedPosts() {
       const date = formatDate(allCategorizedPosts[i].date);
 
       const displayCategorizedPosts = document.querySelector(".categorized-posts");
+
       //add post-articles HTML
       displayCategorizedPosts.innerHTML += `
     <article>
@@ -98,6 +111,7 @@ async function renderCategoriezedPosts() {
         break;
       }
     }
+    page++;
   } catch (error) {
     generalErrorMessage(error);
     console.log(error);
@@ -106,6 +120,9 @@ async function renderCategoriezedPosts() {
 renderCategoriezedPosts();
 
 //ADD A LOAD-MORE BUTTON - NEEDS TO BE DONE BEFORE DELIVERY
-const archiveResultSection = document.querySelector(".archive-result-section");
-showMoreBtn(archiveResultSection, "#");
-// const moreBtn = document.querySelector(".more-btn");
+// const archiveResultSection = document.querySelector(".archive-result-section");
+// showMoreBtn(archiveResultSection, "#");
+
+const loadMoreButton = document.querySelector(".more-btn");
+
+loadMoreButton.addEventListener("click", renderCategoriezedPosts);

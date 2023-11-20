@@ -10,6 +10,12 @@
   color: white;
   width: 100%;
 }
+.post-count {
+  display: block;
+  padding-top: 5rem;
+  text-align: center;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
 .archive-result-section {
   background-color: white;
   /* padding: 3rem; */
