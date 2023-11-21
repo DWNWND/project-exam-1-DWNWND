@@ -1,12 +1,12 @@
 import { apiErrorMessage } from "./error-handling.js";
 
 //API-URL
-const url = "https://www.dwnwnd-api.online/wp-json/wp/v2/";
+export const url = "https://www.dwnwnd-api.online/wp-json/wp/v2/";
 
 //getting the IDs
 const queryString = document.location.search;
-const params = new URLSearchParams(queryString);
-export const id = params.get("key");
+export const params = new URLSearchParams(queryString);
+export const key = params.get("key");
 
 //API call ALL posts (list) &page=100
 const postQueryString = "posts?_embed&per_page=100";
@@ -25,7 +25,7 @@ export async function fetchAllBlogPosts() {
 const postsQueryString = "posts/";
 export async function fetchPostById() {
   try {
-    const response = await fetch(url + postsQueryString + id);
+    const response = await fetch(url + postsQueryString + key);
     const results = await response.json();
     return results;
   } catch (error) {
@@ -47,10 +47,10 @@ export async function fetchAllCategories() {
   }
 }
 
-//API call category SPESIFIC (id-call)
+//API call category SPESIFIC (key-call)
 export async function fetchCategory() {
   try {
-    const response = await fetch(url + categoriesQueryString + "?slug=" + id);
+    const response = await fetch(url + categoriesQueryString + "?slug=" + key);
     const results = await response.json();
     return results;
   } catch (error) {
@@ -59,11 +59,11 @@ export async function fetchCategory() {
   }
 }
 
-// //API call posts in category SPESIFIC (id-call)
+// //API call posts in category SPESIFIC (key-call)
 const categoryIDQueryString = "posts?categories?slug=";
 export async function fetchPostsByCategory() {
   try {
-    const response = await fetch(url + categoryIDQueryString + id);
+    const response = await fetch(url + categoryIDQueryString + key);
     const results = await response.json();
     return results;
   } catch (error) {

@@ -32,6 +32,9 @@ body {
   cursor: pointer;
   text-decoration: underline;
 }
+.hidden {
+  display: none;
+}
 .directory {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   font-weight: 200;

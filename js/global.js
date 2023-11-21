@@ -73,8 +73,6 @@ export async function renderRelatedPosts() {
     //fetch blogpost
     const allPosts = await fetchAllBlogPosts();
 
-    console.log(allPosts)
-
     loader.innerHTML = "";
 
     //filter out the right tag

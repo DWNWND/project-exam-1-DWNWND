@@ -1,5 +1,5 @@
 //render categories
-import { fetchAllCategories, id } from "./api-call.js";
+import { fetchAllCategories, key } from "./api-call.js";
 import { generalErrorMessage } from "./error-handling.js";
 
 //see if you can make this code more readable/clean it up so you can add error-handling to more content
@@ -57,7 +57,7 @@ async function renderCategories() {
 
     const category = document.querySelectorAll(".nav-item-cat");
     for (let i = 0; i < category.length; i++) {
-      if (category[i].className === "nav-item-cat " + id) {
+      if (category[i].className === "nav-item-cat " + key) {
         // console.log(category[i]);
         category[i].classList.toggle("active");
       }

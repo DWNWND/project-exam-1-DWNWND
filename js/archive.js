@@ -1,20 +1,17 @@
-import { fetchSpesificImages, fetchCategory } from "./api-call.js";
-import { formatDate, showLoadingIndicator, showMoreBtn } from "./global.js";
+import { fetchSpesificImages, fetchCategory, url, params } from "./api-call.js";
+import { formatDate, showLoadingIndicator } from "./global.js";
 import { generalErrorMessage } from "./error-handling.js";
 
-//render category pagetitle (meta and displayed)
 async function renderCategoryName() {
   try {
-    //(displayed)
+    //(title displayed on header)
     const currentCategory = await fetchCategory();
     const pageTitle = document.querySelector(".pagetitle");
-    pageTitle.innerHTML += `${currentCategory.name}`;
+    pageTitle.innerHTML += `${currentCategory[0].name}`;
 
-    // console.log(currentCategory.id)
-
-    //(meta)
+    //(title in meta)
     const metaTitle = document.querySelector("#title");
-    metaTitle.textContent = currentCategory.name;
+    metaTitle.textContent += " : " + currentCategory[0].name;
   } catch (error) {
     generalErrorMessage(error);
     console.log(error);
@@ -24,144 +21,77 @@ renderCategoryName();
 
 //REMEMBER TO render filepath.....
 
+const id = params.get("id");
+const loader = document.querySelector(".loader-list");
+const categorizedPostsWrapper = document.querySelector(".categorized-posts");
+const loadMoreBtn = document.querySelector(".more-btn");
+let page = 1;
 let postTitle;
 let featuredImg;
 let altText;
 let excerpt;
 
-//check if the posts have a TITLE and console.log which post who lack one //check if the post has a featured img and console.log which post who lack one
-function checkForPostTitle(post) {
-  if (post.title.rendered) {
+//check and render post content
+function renderPostContent(post) {
+  if (post.title.rendered && post.excerpt.rendered) {
     postTitle = post.title.rendered;
-  } else if (!post.title.rendered) {
-    console.log("You need to add a title to this post: ", post);
-  }
-}
-
-//check if the posts have a EXCERPT and console.log which post who lack one //check if the post has a featured img and console.log which post who lack one
-function checkForPostExcerpt(post) {
-  if (post.excerpt.rendered) {
     excerpt = post.excerpt.rendered;
-  } else if (!post.excerpt.rendered) {
-    console.log("You need to add a excerpt/text-content to this post: ", post);
+  } else if (!post.title.rendered || !post.excerpt.rendered) {
+    console.log("Theres content missing in this post:", post);
   }
 }
 
-//API-URL
-const url = "https://www.dwnwnd-api.online/wp-json/wp/v2/";
+showLoadingIndicator(loader);
 
-//getting the IDs
-const queryString = document.location.search;
-const params = new URLSearchParams(queryString);
-const id = params.get("id");
-
-// console.log(id);
-//API call posts in category SPESIFIC (id-call)
-// const categoryIDQueryString = "posts?categories?slug=";
-const loadMoreButton = document.querySelector(".more-btn");
-
-let page = 1;
-
-//render categorizes posts
 async function renderCategoriezedPosts() {
   try {
-    const loader = document.querySelector(".loader-list");
-    showLoadingIndicator(loader);
+    const response = await fetch(url + `posts?categories=${id}&page=${page}`);
 
-    //fetch categorized posts
-    const response = await fetch(url + "posts?categories=" + id + `&page=${page}`);
-    const allCategorizedPosts = await response.json();
+    if (response.ok) {
+      const categorizedPosts = await response.json();
+      loader.innerHTML = "";
 
-    // const allCategorizedPosts = await fetchPostsByCategory();
+      if (categorizedPosts.length === 0) {
+        loader.innerHTML = "We don't have any posts in this category yet..";
+        loadMoreBtn.classList.add("hidden");
+      } else {
+        for (let i = 0; i < categorizedPosts.length; i++) {
+          renderPostContent(categorizedPosts[i]);
 
-    loader.innerHTML = "";
+          //check and render img
+          if (categorizedPosts[i]._links["wp:featuredmedia"]) {
+            const imageApi = categorizedPosts[i]._links["wp:featuredmedia"]["0"].href;
+            const img = await fetchSpesificImages(imageApi);
+            featuredImg = img.source_url;
+            altText = img.alt_text;
+          } else if (!categorizedPosts[i]._links["wp:featuredmedia"]) {
+            console.log("You need to add a featured img to this/these post(s): ", post);
+          }
 
-    allCategorizedPosts.forEach((post) => {
-      //  render content
-      // console.log(post);
-      checkForPostTitle(post);
-      checkForPostExcerpt(post);
+          const date = formatDate(categorizedPosts[i].date);
 
-      // check if the posts have a FEATURED IMG and console.log which post who lack one
-      // if (post._links["wp:featuredmedia"]) {
-      //   const imageApi = post._links["wp:featuredmedia"]["0"].href;
-      //   const img = await fetchSpesificImages(imageApi);
-      //   featuredImg = img.source_url;
-      //   altText = img.alt_text;
-      // } else if (!post._links["wp:featuredmedia"]) {
-      //   console.log("You need to add a featured img to this/these post(s): ", post);
-      // }
-
-      //fetch and format publishdate
-      const date = formatDate(post.date);
-
-      const displayCategorizedPosts = document.querySelector(".categorized-posts");
-
-      //add post-articles HTML
-      displayCategorizedPosts.innerHTML += `
-    <article>
-      <h2>${postTitle}</h2>
-      ${excerpt}
-    
-      <div class="post-info">
-        <div class="publish-date"><date>${date[0]}, ${date[1]}</date></div>
-        <a href="/html/post.html?key=${post.id}" class="continue-btn">continue reading...</a>
-      </div>
-    </article>
-    `;
-
-      // <figure class="figure-general"><img src="${featuredImg}" alt="${altText}" /></figure>
-    });
-    // for (let i = 0; i < allCategorizedPosts.length; i++) {
-    //   //render content
-    //   checkForPostTitle(allCategorizedPosts[i]);
-    //   checkForPostExcerpt(allCategorizedPosts[i]);
-
-    //   //check if the posts have a FEATURED IMG and console.log which post who lack one
-    //   if (allCategorizedPosts[i]._links["wp:featuredmedia"]) {
-    //     const imageApi = allCategorizedPosts[i]._links["wp:featuredmedia"]["0"].href;
-    //     const img = await fetchSpesificImages(imageApi);
-    //     featuredImg = img.source_url;
-    //     altText = img.alt_text;
-    //   } else if (!allCategorizedPosts[i]._links["wp:featuredmedia"]) {
-    //     console.log("You need to add a featured img to this/these post(s): ", post);
-    //   }
-
-    //   //fetch and format publishdate
-    //   const date = formatDate(allCategorizedPosts[i].date);
-
-    //   const displayCategorizedPosts = document.querySelector(".categorized-posts");
-
-    //   //add post-articles HTML
-    //   displayCategorizedPosts.innerHTML += `
-    // <article>
-    //   <h2>${postTitle}</h2>
-    //   ${excerpt}
-    //   <figure class="figure-general"><img src="${featuredImg}" alt="${altText}" /></figure>
-    //   <div class="post-info">
-    //     <div class="publish-date"><date>${date[0]}, ${date[1]}</date></div>
-    //     <a href="/html/post.html?key=${allCategorizedPosts[i].id}" class="continue-btn">continue reading...</a>
-    //   </div>
-    // </article>
-    // `;
-    //   // if (i === 10) {
-    //   //   break;
-    //   // }
-    // }
-    page++;
+          categorizedPostsWrapper.innerHTML += `
+          <article>
+            <h2>${postTitle}</h2>
+            ${excerpt}
+            <figure class="figure-general"><img src="${featuredImg}" alt="${altText}" /></figure>
+            <div class="post-info">
+              <div class="publish-date"><date>${date[0]}, ${date[1]}</date></div>
+              <a href="/html/post.html?key=${categorizedPosts[i].id}" class="continue-btn">continue reading...</a>
+            </div>
+          </article>`;
+        }
+        page++;
+      }
+    } else {
+      loadMoreBtn.innerText = "All posts in this category are on display";
+      loadMoreBtn.classList.add("all-posts-are-displayed");
+    }
   } catch (error) {
-    loadMoreButton.innerText = "All posts in this category are on display";
-    loadMoreButton.classList.add("all-posts-are-displayed");
-
-    //fix this
-    // generalErrorMessage(error);
-    // console.log(error);
+    generalErrorMessage(error);
+    console.log(error);
   }
 }
 renderCategoriezedPosts();
 
-//ADD A LOAD-MORE BUTTON - NEEDS TO BE DONE BEFORE DELIVERY
-// const archiveResultSection = document.querySelector(".archive-result-section");
-// showMoreBtn(archiveResultSection, "#");
-
-loadMoreButton.addEventListener("click", renderCategoriezedPosts);
+loadMoreBtn.addEventListener("click", renderCategoriezedPosts);
