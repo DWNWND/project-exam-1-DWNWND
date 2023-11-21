@@ -1,3 +1,7 @@
+.all-posts-are-displayed {
+  text-decoration: none;
+  font-weight: 400;
+}
 .pagetitle {
   position: absolute;
   text-transform: lowercase;

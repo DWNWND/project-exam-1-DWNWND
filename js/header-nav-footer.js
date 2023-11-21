@@ -52,13 +52,13 @@ async function renderCategories() {
         continue;
       }
       categoriesUl.innerHTML += `
-    <li class="nav-item-cat ${allCategories[i].slug}"><a href="/html/list.html?key=${allCategories[i].slug}&id=${allCategories[i].id}">${allCategories[i].name}</a></li>`;
+    <li class="nav-item-cat ${allCategories[i].slug}"><a href="/html/archive.html?key=${allCategories[i].slug}&id=${allCategories[i].id}">${allCategories[i].name}</a></li>`;
     }
 
     const category = document.querySelectorAll(".nav-item-cat");
     for (let i = 0; i < category.length; i++) {
       if (category[i].className === "nav-item-cat " + id) {
-        console.log(category[i]);
+        // console.log(category[i]);
         category[i].classList.toggle("active");
       }
     }

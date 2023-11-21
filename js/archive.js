@@ -55,9 +55,10 @@ const queryString = document.location.search;
 const params = new URLSearchParams(queryString);
 const id = params.get("id");
 
-console.log(id);
+// console.log(id);
 //API call posts in category SPESIFIC (id-call)
 // const categoryIDQueryString = "posts?categories?slug=";
+const loadMoreButton = document.querySelector(".more-btn");
 
 let page = 1;
 
@@ -77,7 +78,7 @@ async function renderCategoriezedPosts() {
 
     allCategorizedPosts.forEach((post) => {
       //  render content
-      console.log(post);
+      // console.log(post);
       checkForPostTitle(post);
       checkForPostExcerpt(post);
 
@@ -109,8 +110,7 @@ async function renderCategoriezedPosts() {
     </article>
     `;
 
-    // <figure class="figure-general"><img src="${featuredImg}" alt="${altText}" /></figure>
-      page++;
+      // <figure class="figure-general"><img src="${featuredImg}" alt="${altText}" /></figure>
     });
     // for (let i = 0; i < allCategorizedPosts.length; i++) {
     //   //render content
@@ -148,10 +148,14 @@ async function renderCategoriezedPosts() {
     //   //   break;
     //   // }
     // }
-    // page++;
+    page++;
   } catch (error) {
-    generalErrorMessage(error);
-    console.log(error);
+    loadMoreButton.innerText = "All posts in this category are on display";
+    loadMoreButton.classList.add("all-posts-are-displayed");
+
+    //fix this
+    // generalErrorMessage(error);
+    // console.log(error);
   }
 }
 renderCategoriezedPosts();
@@ -159,7 +163,5 @@ renderCategoriezedPosts();
 //ADD A LOAD-MORE BUTTON - NEEDS TO BE DONE BEFORE DELIVERY
 // const archiveResultSection = document.querySelector(".archive-result-section");
 // showMoreBtn(archiveResultSection, "#");
-
-const loadMoreButton = document.querySelector(".more-btn");
 
 loadMoreButton.addEventListener("click", renderCategoriezedPosts);
