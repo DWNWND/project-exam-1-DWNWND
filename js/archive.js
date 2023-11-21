@@ -1,17 +1,46 @@
-import { fetchSpesificImages, fetchCategory, url, params } from "./api-call.js";
+import { fetchSpesificImages, url, params } from "./api-call.js";
 import { formatDate, showLoadingIndicator } from "./global.js";
 import { generalErrorMessage } from "./error-handling.js";
 
+// //API call category SPESIFIC (key-call)
+// async function fetchCategory() {
+//   try {
+//     const response = await fetch(url + categoriesQueryString + "?slug=" + key);
+//     const results = await response.json();
+//     return results;
+//   } catch (error) {
+//     apiErrorMessage(error);
+//     console.log(error);
+//   }
+// }
+
+const id = params.get("id");
+const tag = params.get("tag");
+const key = params.get("key");
+
+let keyTagId;
+
+const pageTitle = document.querySelector(".pagetitle");
+const metaTitle = document.querySelector("#title");
+
 async function renderCategoryName() {
   try {
-    //(title displayed on header)
-    const currentCategory = await fetchCategory();
-    const pageTitle = document.querySelector(".pagetitle");
-    pageTitle.innerHTML += `${currentCategory[0].name}`;
+    const responseTag = await fetch(url + "tags/" + tag);
+    const responseSlug = await fetch(url + "categories?slug=" + key);
 
-    //(title in meta)
-    const metaTitle = document.querySelector("#title");
-    metaTitle.textContent += " : " + currentCategory[0].name;
+    if (!key && responseTag.ok) {
+      const currentTag = await responseTag.json();
+      pageTitle.innerHTML += `${currentTag.name}`;
+      metaTitle.textContent += " : " + currentTag.name;
+      //ADD DISPLAY THE TAG-NAME ON THE PAGE
+    }
+    if (!tag && !responseTag.ok && responseSlug.ok) {
+      const currentCategory = await responseSlug.json();
+      pageTitle.innerHTML += `${currentCategory[0].name}`;
+      metaTitle.textContent += " : " + currentCategory[0].name;
+    } else if (!responseTag.ok && !responseSlug.ok) {
+      throw new Error("Something went wrong when fetching the category/tag");
+    }
   } catch (error) {
     generalErrorMessage(error);
     console.log(error);
@@ -19,9 +48,30 @@ async function renderCategoryName() {
 }
 renderCategoryName();
 
+// async function renderCategoryName() {
+//   try {
+//     const response = await fetch(url + categoriesQueryString + "?slug=" + key);
+
+//     if (response.ok) {
+//     const currentCategory = await response.json();
+//     //(title displayed on header)
+//     // const currentCategory = results
+//     const pageTitle = document.querySelector(".pagetitle");
+//     pageTitle.innerHTML += `${currentCategory[0].name}`;
+
+//     //(title in meta)
+//     const metaTitle = document.querySelector("#title");
+//     metaTitle.textContent += " : " + currentCategory[0].name;
+//     }
+//   } catch (error) {
+//     generalErrorMessage(error);
+//     console.log(error);
+//   }
+// }
+// renderCategoryName();
+
 //REMEMBER TO render filepath.....
 
-const id = params.get("id");
 const loader = document.querySelector(".loader-list");
 const categorizedPostsWrapper = document.querySelector(".categorized-posts");
 const loadMoreBtn = document.querySelector(".more-btn");
@@ -37,7 +87,8 @@ function renderPostContent(post) {
     postTitle = post.title.rendered;
     excerpt = post.excerpt.rendered;
   } else if (!post.title.rendered || !post.excerpt.rendered) {
-    console.log("Theres content missing in this post:", post);
+    // console.log("Theres content missing in this post:", post);
+    throw new Error("Theres content missing in this post:", post);
   }
 }
 
@@ -45,7 +96,21 @@ showLoadingIndicator(loader);
 
 async function renderCategoriezedPosts() {
   try {
-    const response = await fetch(url + `posts?categories=${id}&page=${page}`);
+    // const response = await fetch(url + `posts?categories=${id}&page=${page}`);
+    // const response = await fetch(url + `posts?tags=${tag}&page=${page}`);
+
+    // if (!id && tag) {
+    //   keyTagId = `tags=${tag}`;
+    //   console.log("this is a tag");
+    // }
+    // if (!tag && id) {
+    //   keyTagId = `categories=${id}`;
+    //   console.log("this is a category");
+    // } else if (!tag && !id) {
+    //   throw new Error("Something went wrong when fetching the url params");
+    // }
+
+    const response = await fetch(url + "posts?" + keyTagId + `&page=${page}`);
 
     if (response.ok) {
       const categorizedPosts = await response.json();

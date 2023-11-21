@@ -8,88 +8,71 @@ let altText;
 let excerpt;
 let linkToMore;
 
-//check if the posts have a TITLE and console.log which post who lack one //check if the post has a featured img and console.log which post who lack one
-function checkForPostTitle(post) {
-  if (post.title.rendered) {
+//check and render post content
+function renderPostContent(post) {
+  if (post.title.rendered && post.excerpt.rendered && post._embedded["wp:featuredmedia"]) {
     postTitle = post.title.rendered;
-  } else if (!post.title.rendered) {
-    console.log("You need to add a title to this post: ", post);
-  }
-}
-
-//check if the posts have a FEATURED IMG and console.log which post who lack one //check if the post has a featured img and console.log which post who lack one
-function checkForFeaturedImg(post) {
-  if (post._embedded["wp:featuredmedia"]) {
+    excerpt = post.excerpt.rendered;
     featuredImg = post._embedded["wp:featuredmedia"]["0"].source_url;
     altText = post._embedded["wp:featuredmedia"]["0"].alt_text;
-  } else if (!post._embedded["wp:featuredmedia"]) {
-    console.log("You need to add a featured img to this post: ", post);
+  } else if (!post.title.rendered || !post.excerpt.rendered || !post._embedded["wp:featuredmedia"]) {
+    console.log("Theres content missing in this post:", post);
   }
 }
 
-//check if the posts have a EXCERPT and console.log which post who lack one //check if the post has a featured img and console.log which post who lack one
-function checkForPostExcerpt(post) {
-  if (post.excerpt.rendered) {
-    excerpt = post.excerpt.rendered;
-  } else if (!post.excerpt.rendered) {
-    console.log("You need to add a excerpt/text-content to this post: ", post);
-  }
-}
+const newlyPublishedSection = document.querySelector(".newly-published-section");
+const slider = document.querySelector(".slider");
+const popularPostsSection = document.querySelector(".popular-posts-section");
+const popularPostsWrapper = document.querySelector(".popular-posts-wrapper");
+const aboutUsWrapper = document.querySelector(".about-us-wrapper");
+
+const prev = document.querySelector(".prev-btn");
+const next = document.querySelector(".next-btn");
+//how far the slider should scroll:
+const itemWidth = 250;
+const padding = 0;
+
+const loader1 = document.querySelector(".loader-1");
+const loader2 = document.querySelector(".loader-2");
+const loader3 = document.querySelector(".loader-3");
+
+showLoadingIndicator(loader1);
+showLoadingIndicator(loader2);
+showLoadingIndicator(loader3);
 
 //render newly published blogposts to slider
 async function renderNewlyPublishedPosts() {
   try {
-    const loader = document.querySelector(".loader-1");
-    showLoadingIndicator(loader);
-
     const allPosts = await fetchAllBlogPosts();
-
-    loader.innerHTML = "";
+    loader1.innerHTML = "";
 
     for (let i = 0; i < allPosts.length; i++) {
-      //render and check for content
-      checkForPostTitle(allPosts[i]);
-      checkForFeaturedImg(allPosts[i]);
-      checkForPostExcerpt(allPosts[i]);
+      renderPostContent(allPosts[i]);
 
-      const slider = document.querySelector(".slider");
       slider.innerHTML += `
-    <article>
-      <h2>${postTitle}</h2>
-      <figure class="figure-general"><img src="${featuredImg}" alt="${altText}"/></figure>
-      <a href="/html/post.html?key=${allPosts[i].id}" class="continue-btn">continue reading...</a>
-    </article>`;
-      //add alt-text in WP and link to the blogspeficis here
+      <article>
+        <h2>${postTitle}</h2>
+        <figure class="figure-general"><img src="${featuredImg}" alt="${altText}"/></figure>
+        <a href="/html/post.html?key=${allPosts[i].id}" class="continue-btn">continue reading...</a>
+      </article>`;
 
-      //link to show more posts like this - THIS ONE DIRECTS TO THE CATEGORY OF THE LAST POST RIGHT NOW.
-      //DIRECTING TO THE TAG OG THE POSTS IS MORE DIFFICULT - SAME ON THE OTHER
-      linkToMore = `/html/list.html?key=${allPosts[i].categories[0]}`;
-      console.log(linkToMore);
+      //THIS LINK DIRECTS TO THE CATEGORY OF THE LAST POST RIGHT NOW.
+      //DIRECTING TO THE TAG OF THE POSTS IS MORE DIFFICULT - SAME ON THE OTHER
+      linkToMore = `/html/archive.html?key=${allPosts[i].categories[0]}`;
 
       if (i === 5) {
         break;
       }
     }
-    // slider function
-    const prev = document.querySelector(".prev-btn");
-    const next = document.querySelector(".next-btn");
-    const carouselSlider = document.querySelector(".slider");
-
-    //how far the slider should scroll:
-    const itemWidth = 250;
-    const padding = 0;
 
     //scroll eventlisteners
     prev.addEventListener("click", () => {
-      carouselSlider.scrollLeft -= itemWidth + padding;
+      slider.scrollLeft -= itemWidth + padding;
     });
 
     next.addEventListener("click", () => {
-      carouselSlider.scrollLeft += itemWidth + padding;
+      slider.scrollLeft += itemWidth + padding;
     });
-
-    //add a link here to show more
-    const newlyPublishedSection = document.querySelector(".newly-published-section");
     showMoreBtn(newlyPublishedSection, linkToMore);
   } catch (error) {
     console.log(error);
@@ -98,15 +81,11 @@ async function renderNewlyPublishedPosts() {
 }
 renderNewlyPublishedPosts();
 
-//render posts for "most popular topics"
+//render posts for "most popular posts"
 async function renderPopularPosts() {
   try {
-    const loader = document.querySelector(".loader-2");
-    showLoadingIndicator(loader);
-
     const allPosts = await fetchAllBlogPosts();
-
-    loader.innerHTML = "";
+    loader2.innerHTML = "";
 
     //filter out the right tag
     const postsByTag = allPosts.filter((posts) => {
@@ -115,16 +94,13 @@ async function renderPopularPosts() {
       }
     });
 
-    //display the right/filtered posts
-    for (let i = 0; i < postsByTag.length; i++) {
-      //render and check for content
-      checkForPostTitle(postsByTag[i]);
-      checkForFeaturedImg(postsByTag[i]);
-      checkForPostExcerpt(postsByTag[i]);
+    linkToMore = `/html/archive.html?tag=11`;
 
-      //display posts
-      const popularTopics = document.querySelector(".popular-topics");
-      popularTopics.innerHTML += `
+    //display the filtered posts
+    for (let i = 0; i < postsByTag.length; i++) {
+      renderPostContent(postsByTag[i]);
+
+      popularPostsWrapper.innerHTML += `
         <article>
           <h2>${postTitle}</h2>
           ${excerpt}
@@ -132,17 +108,18 @@ async function renderPopularPosts() {
           <figure class="figure-general"><img src="${featuredImg}" alt="${altText}"/></figure>
         </article>`;
 
-      //link to show more posts like this - THIS ONE DIRECTS TO THE CATEGORY OF THE LAST POST RIGHT NOW.
-      //DIRECTING TO THE TAG OG THE POSTS IS MORE DIFFICULT - SAME ON THE OTHER
-      linkToMore = `/html/list.html?key=${postsByTag[i].categories[0]}`;
-      console.log(linkToMore);
+      console.log(postsByTag[i].tags);
+
+      //THIS LINK DIRECTS TO THE CATEGORY OF THE LAST POST RIGHT NOW.
+      //DIRECTING TO THE TAG OF THE POSTS IS MORE DIFFICULT - SAME ON THE OTHER
+      // linkToMore = `/html/archive.html?key=${postsByTag[i].categories[0]}`;
+      // console.log(linkToMore);
 
       if (i === 4) {
         break;
       }
     }
-    const popularTopicsSection = document.querySelector(".popular-topics-section");
-    showMoreBtn(popularTopicsSection, linkToMore);
+    showMoreBtn(popularPostsSection, linkToMore);
   } catch (error) {
     generalErrorMessage(error);
     console.log(error);
@@ -150,21 +127,16 @@ async function renderPopularPosts() {
 }
 renderPopularPosts();
 
-//render about us info/pages
+//render about us section
 async function renderAboutSectionIndex() {
   try {
-    const loader = document.querySelector(".loader-3");
-    showLoadingIndicator(loader);
-
     const allPages = await fetchAllPages();
+    loader3.innerHTML = "";
 
-    loader.innerHTML = "";
-
-    const aboutUs = document.querySelector(".about-us");
     const copy = allPages[1].content.rendered;
-    aboutUs.innerHTML += `
+    aboutUsWrapper.innerHTML += `
       <figure class="figure-general">
-      <img src="/img/placeholder-2.jpg" />
+        <img src="/img/placeholder-2.jpg" />
       </figure>
       <article>
         ${copy}

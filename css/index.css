@@ -8,7 +8,7 @@
   background-color: #e4eaf7;
   padding: 3rem;
 }
-.popular-topics-section {
+.popular-posts-section {
   background-color: white;
   padding: 3rem;
 }
@@ -19,7 +19,7 @@
 
 /* convert to all h1?? if applicable later on*/
 .newly-published-section h1,
-.popular-topics-section h1,
+.popular-posts-section h1,
 .about-us-section h1 {
   text-align: center;
   font-size: 2rem;
@@ -27,14 +27,14 @@
 .newly-published-section h1 {
   margin: 2rem 0 3rem 0;
 }
-.popular-topics-section h1 {
+.popular-posts-section h1 {
   margin: 2rem 0 5rem 0;
 }
 .about-us-section h1 {
   margin-top: 2rem;
   margin-bottom: 5rem;
 }
-.popular-topics-section .grid-display,
+.popular-posts-section .grid-display,
 .about-us-section .grid-display {
   display: grid;
   justify-content: center;
@@ -43,7 +43,7 @@
   margin-left: auto;
   margin-right: auto;
 }
-.popular-topics-section .grid-display {
+.popular-posts-section .grid-display {
   margin-bottom: 2rem;
   justify-content: center;
 }
@@ -52,7 +52,7 @@
   gap: 0.5rem;
   width: auto;
 }
-.popular-topics-section article {
+.popular-posts-section article {
   background-color: #eef1e9;
   filter: drop-shadow(4px 5px 5px rgba(0, 0, 0, 0.1));
   gap: 1rem;
@@ -64,7 +64,7 @@
   gap: 1rem;
 }
 .about-us-section figure,
-.popular-topics-section figure {
+.popular-posts-section figure {
   display: none;
 }
 .newly-published-section figure {
@@ -76,31 +76,31 @@
 
 @media (min-width: 490px) {
   .newly-published-section,
-  .popular-topics-section {
+  .popular-posts-section {
     padding: 4rem;
   }
 }
 
 @media (min-width: 600px) {
   .newly-published-section,
-  .popular-topics-section {
+  .popular-posts-section {
     padding: 5rem;
   }
   /* kan paddingen bli en global stil på alle sections? */
 
-  .popular-topics-section .grid-display,
+  .popular-posts-section .grid-display,
   .newly-published-section .grid-display {
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
   }
-  .popular-topics-section article:first-of-type {
+  .popular-posts-section article:first-of-type {
     grid-column-start: 1;
     grid-column-end: 3;
     grid-row-start: 1;
     grid-row-end: 2;
     /* height: 350px; */
   }
-  .popular-topics-section article:first-of-type figure {
+  .popular-posts-section article:first-of-type figure {
     display: flex;
     margin-top: auto;
   }
@@ -111,7 +111,7 @@
     height: auto;
   }
   .newly-published-section h1,
-  .popular-topics-section h1,
+  .popular-posts-section h1,
   .about-us-section h1 {
     font-size: 2.5rem;
   }
@@ -194,10 +194,10 @@
   }
 
   /* -------- popular topics-section ---------- */
-  .popular-topics-section .grid-display {
+  .popular-posts-section .grid-display {
     grid-template-columns: 1fr 1fr 1fr;
   }
-  .popular-topics-section figure {
+  .popular-posts-section figure {
     display: flex;
     margin-top: auto;
   }
@@ -205,7 +205,7 @@
 
 @media (min-width: 1300px) {
   .newly-published-section h1,
-  .popular-topics-section h1,
+  .popular-posts-section h1,
   .about-us-section h1 {
     font-size: 3rem;
   }
