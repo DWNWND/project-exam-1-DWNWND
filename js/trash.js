@@ -39,3 +39,45 @@
 //   }
 //   page++;
 // }
+
+
+  //TIDLIGERE VERSJON
+    // const responseTag = await fetch(url + "tags/" + tag);
+    // const responseSlug = await fetch(url + "categories?slug=" + key);
+
+    // if (!key && responseTag.ok) {
+    //   const currentTag = await responseTag.json();
+    //   pageTitle.innerHTML += `${currentTag.name}`;
+    //   metaTitle.textContent += " : " + currentTag.name;
+    //   //ADD DISPLAY THE TAG-NAME ON THE PAGE
+    // }
+    // if (!tag && !responseTag.ok && responseSlug.ok) {
+    //   const currentCategory = await responseSlug.json();
+    //   pageTitle.innerHTML += `${currentCategory[0].name}`;
+    //   metaTitle.textContent += " : " + currentCategory[0].name;
+
+    // } else if (!responseTag.ok && !responseSlug.ok) {
+    //   throw new Error("Something went wrong when fetching the category/tag");
+    // }
+
+    // async function renderCategoryName() {
+//   try {
+//     const response = await fetch(url + categoriesQueryString + "?slug=" + key);
+
+//     if (response.ok) {
+//     const currentCategory = await response.json();
+//     //(title displayed on header)
+//     // const currentCategory = results
+//     const pageTitle = document.querySelector(".pagetitle");
+//     pageTitle.innerHTML += `${currentCategory[0].name}`;
+
+//     //(title in meta)
+//     const metaTitle = document.querySelector("#title");
+//     metaTitle.textContent += " : " + currentCategory[0].name;
+//     }
+//   } catch (error) {
+//     generalErrorMessage(error);
+//     console.log(error);
+//   }
+// }
+// renderCategoryName();

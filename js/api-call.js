@@ -47,18 +47,6 @@ export async function fetchAllCategories() {
   }
 }
 
-// //API call category SPESIFIC (key-call)
-// export async function fetchCategory() {
-//   try {
-//     const response = await fetch(url + categoriesQueryString + "?slug=" + key);
-//     const results = await response.json();
-//     return results;
-//   } catch (error) {
-//     apiErrorMessage(error);
-//     console.log(error);
-//   }
-// }
-
 // //API call posts in category SPESIFIC (key-call)
 const categoryIDQueryString = "posts?categories?slug=";
 export async function fetchPostsByCategory() {

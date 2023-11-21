@@ -2,84 +2,57 @@ import { fetchSpesificImages, url, params } from "./api-call.js";
 import { formatDate, showLoadingIndicator } from "./global.js";
 import { generalErrorMessage } from "./error-handling.js";
 
-// //API call category SPESIFIC (key-call)
-// async function fetchCategory() {
-//   try {
-//     const response = await fetch(url + categoriesQueryString + "?slug=" + key);
-//     const results = await response.json();
-//     return results;
-//   } catch (error) {
-//     apiErrorMessage(error);
-//     console.log(error);
-//   }
-// }
-
 const id = params.get("id");
 const tag = params.get("tag");
 const key = params.get("key");
 
-let keyTagId;
-
 const pageTitle = document.querySelector(".pagetitle");
 const metaTitle = document.querySelector("#title");
+const loader = document.querySelector(".loader-list");
+const loadMoreBtn = document.querySelector(".more-btn");
+const categorizedPostsWrapper = document.querySelector(".categorized-posts");
 
-async function renderCategoryName() {
+let urlParam;
+let page = 1;
+let postTitle;
+let featuredImg;
+let altText;
+let excerpt;
+
+async function renderPageName() {
   try {
-    const responseTag = await fetch(url + "tags/" + tag);
-    const responseSlug = await fetch(url + "categories?slug=" + key);
+    if (!key && tag) {
+      urlParam = `tags/${tag}`;
+    }
+    if (key && !tag) {
+      urlParam = `categories?slug=${key}`;
+    } else if (!tag && !key) {
+      throw new Error("Something went wrong when fetching the url params");
+    }
 
-    if (!key && responseTag.ok) {
-      const currentTag = await responseTag.json();
+    const response = await fetch(url + urlParam);
+
+    if (!key && response.ok) {
+      const currentTag = await response.json();
       pageTitle.innerHTML += `${currentTag.name}`;
       metaTitle.textContent += " : " + currentTag.name;
       //ADD DISPLAY THE TAG-NAME ON THE PAGE
     }
-    if (!tag && !responseTag.ok && responseSlug.ok) {
-      const currentCategory = await responseSlug.json();
+    if (!tag && response.ok) {
+      const currentCategory = await response.json();
       pageTitle.innerHTML += `${currentCategory[0].name}`;
       metaTitle.textContent += " : " + currentCategory[0].name;
-    } else if (!responseTag.ok && !responseSlug.ok) {
-      throw new Error("Something went wrong when fetching the category/tag");
+    } else if (!response.ok) {
+      throw new Error("Something went wrong when fetching the API for category/tag");
     }
   } catch (error) {
     generalErrorMessage(error);
     console.log(error);
   }
 }
-renderCategoryName();
-
-// async function renderCategoryName() {
-//   try {
-//     const response = await fetch(url + categoriesQueryString + "?slug=" + key);
-
-//     if (response.ok) {
-//     const currentCategory = await response.json();
-//     //(title displayed on header)
-//     // const currentCategory = results
-//     const pageTitle = document.querySelector(".pagetitle");
-//     pageTitle.innerHTML += `${currentCategory[0].name}`;
-
-//     //(title in meta)
-//     const metaTitle = document.querySelector("#title");
-//     metaTitle.textContent += " : " + currentCategory[0].name;
-//     }
-//   } catch (error) {
-//     generalErrorMessage(error);
-//     console.log(error);
-//   }
-// }
-// renderCategoryName();
+renderPageName();
 
 //REMEMBER TO render filepath.....
-
-const loader = document.querySelector(".loader-list");
-const categorizedPostsWrapper = document.querySelector(".categorized-posts");
-const loadMoreBtn = document.querySelector(".more-btn");
-let page = 1;
-let postTitle;
-let featuredImg;
-let altText;
-let excerpt;
 
 //check and render post content
 function renderPostContent(post) {
@@ -87,7 +60,6 @@ function renderPostContent(post) {
     postTitle = post.title.rendered;
     excerpt = post.excerpt.rendered;
   } else if (!post.title.rendered || !post.excerpt.rendered) {
-    // console.log("Theres content missing in this post:", post);
     throw new Error("Theres content missing in this post:", post);
   }
 }
@@ -96,21 +68,16 @@ showLoadingIndicator(loader);
 
 async function renderCategoriezedPosts() {
   try {
-    // const response = await fetch(url + `posts?categories=${id}&page=${page}`);
-    // const response = await fetch(url + `posts?tags=${tag}&page=${page}`);
+    if (!id && tag) {
+      urlParam = `tags=${tag}`;
+    }
+    if (id && !tag) {
+      urlParam = `categories=${id}`;
+    } else if (!id && !tag) {
+      throw new Error("Something went wrong when fetching the url params");
+    }
 
-    // if (!id && tag) {
-    //   keyTagId = `tags=${tag}`;
-    //   console.log("this is a tag");
-    // }
-    // if (!tag && id) {
-    //   keyTagId = `categories=${id}`;
-    //   console.log("this is a category");
-    // } else if (!tag && !id) {
-    //   throw new Error("Something went wrong when fetching the url params");
-    // }
-
-    const response = await fetch(url + "posts?" + keyTagId + `&page=${page}`);
+    const response = await fetch(`${url}posts?${urlParam}&page=${page}`);
 
     if (response.ok) {
       const categorizedPosts = await response.json();
@@ -151,6 +118,7 @@ async function renderCategoriezedPosts() {
     } else {
       loadMoreBtn.innerText = "All posts in this category are on display";
       loadMoreBtn.classList.add("all-posts-are-displayed");
+      loadMoreBtn.removeEventListener("click", renderCategoriezedPosts);
     }
   } catch (error) {
     generalErrorMessage(error);

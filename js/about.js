@@ -1,5 +1,5 @@
-import { renderRelatedPosts, showLoadingIndicator, showMoreBtn } from "./global.js";
-import { fetchAllPages, fetchSpesificImages } from "./api-call.js";
+import { showLoadingIndicator, showMoreBtn } from "./global.js";
+import { fetchAllBlogPosts, fetchAllPages, fetchSpesificImages } from "./api-call.js";
 import { generalErrorMessage } from "./error-handling.js";
 
 //this variable is only outside of the function because in case your want a loadingindicator on the next function aswell
@@ -89,4 +89,53 @@ async function renderOurTeamSection() {
 }
 renderOurTeamSection();
 
-renderRelatedPosts();
+//DU ER HER --- JOBBER MED DET NEDENFOR:
+
+const loader2 = document.querySelector(".loader-related-posts");
+const relatedPostsSection = document.querySelector(".related-posts-section");
+showLoadingIndicator(loader2);
+
+async function renderOurStories() {
+  try {
+    const allPosts = await fetchAllBlogPosts();
+
+    loader2.innerHTML = "";
+
+    //filter out the right tag
+    const postsByTag = allPosts.filter((posts) => {
+      if (posts.tags[0] === 17) {
+        return posts;
+      }
+    });
+
+    let linkToMore;
+
+    for (let i = 0; i < postsByTag.length; i++) {
+      const postTitle = postsByTag[i].title.rendered;
+      const excerpt = postsByTag[i].excerpt.rendered;
+
+      const relatedPosts = document.querySelector(".related-posts");
+
+      relatedPosts.innerHTML += `
+        <article>
+          <h2>${postTitle}</h2>
+          ${excerpt}
+          <a href="/html/post.html?key=${postsByTag[i].id}">continue reading...</a>
+        </article>`;
+
+      linkToMore = `/html/list.html?key=${postsByTag[i].categories[0]}`;
+
+      if (i === 2) {
+        break;
+      }
+    }
+
+    const currentTag = postsByTag[0].tags[0];
+    linkToMore = `/html/archive.html?tag=${currentTag}`;
+    showMoreBtn(relatedPostsSection, linkToMore);
+  } catch (error) {
+    generalErrorMessage(error);
+    console.log(error);
+  }
+}
+renderOurStories();

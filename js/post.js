@@ -1,18 +1,23 @@
-import { fetchPostById, fetchSpesificImages, fetchComments } from "./api-call.js";
-import { formatDate, renderComments, renderRelatedPosts, showLoadingIndicator } from "./global.js";
+import { fetchPostById, fetchSpesificImages, fetchComments, fetchAllBlogPosts, fetchAllCategories } from "./api-call.js";
+import { formatDate, renderComments, showLoadingIndicator, showMoreBtn } from "./global.js";
 import { generalErrorMessage } from "./error-handling.js";
+
+const loader1 = document.querySelector(".loader-1");
+const loader2 = document.querySelector(".loader-2");
+showLoadingIndicator(loader1);
+showLoadingIndicator(loader2);
+
+let postCategory;
+let linkToMore;
 
 //see if you can make this code more readable/clean it up
 //render blog-post
 async function renderBlogPost() {
   try {
-    const loader = document.querySelector(".loader");
-    showLoadingIndicator(loader);
-
-    //fetch blogpost
     const blogPost = await fetchPostById();
+    loader1.innerHTML = "";
 
-    loader.innerHTML = "";
+    postCategory = blogPost.categories[0];
 
     //fetch comments
     const commentsUrl = blogPost._links.replies["0"].href;
@@ -30,7 +35,7 @@ async function renderBlogPost() {
     const img = await fetchSpesificImages(imageApi);
     const featuredImg = img.source_url;
     const altText = img.alt_text;
-    const caption = img.caption.rendered
+    const caption = img.caption.rendered;
 
     //update page-title with post-title (meta)
     const metaTitle = document.querySelector("#title");
@@ -193,4 +198,59 @@ async function renderBlogPost() {
 }
 renderBlogPost();
 
+const relatedPostsSection = document.querySelector(".related-posts-section");
+
+async function renderRelatedPosts() {
+  try {
+    const allPosts = await fetchAllBlogPosts();
+    loader2.innerHTML = "";
+
+    //filter out the right tag
+    const postsByCategory = allPosts.filter((posts) => {
+      if (posts.categories[0] === postCategory) {
+        return posts;
+      }
+    });
+
+    //WORKING ON FIKSING A LOAD MORE LINK ON THE POST PAGE - Du ER HER, NEDENFOR
+    const allCategories = await fetchAllCategories();
+
+    // console.log(allCategories.id)
+
+    const category = allCategories.filter((cat) => {
+      if (cat.id === postCategory) {
+        console.log(cat.id);
+        console.log(cat.slug);
+        linkToMore = `/html/archive.html?key=${cat.slug}&id=${postCategory}`;
+        return cat;
+      }
+    });
+
+    // linkToMore = `/html/archive.html?key=${category.slug}&id=${postCategory}`;
+
+    console.log(category.slug);
+
+    for (let i = 0; i < postsByCategory.length; i++) {
+      const postTitle = postsByCategory[i].title.rendered;
+      const excerpt = postsByCategory[i].excerpt.rendered;
+
+      const relatedPosts = document.querySelector(".related-posts");
+
+      relatedPosts.innerHTML += `
+        <article>
+          <h2>${postTitle}</h2>
+          ${excerpt}
+          <a href="/html/post.html?key=${postsByCategory[i].id}">continue reading...</a>
+        </article>`;
+
+      if (i === 2) {
+        break;
+      }
+    }
+    showMoreBtn(relatedPostsSection, linkToMore);
+  } catch (error) {
+    generalErrorMessage(error);
+    console.log(error);
+  }
+}
 renderRelatedPosts();

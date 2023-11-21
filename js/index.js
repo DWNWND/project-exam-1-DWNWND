@@ -94,8 +94,6 @@ async function renderPopularPosts() {
       }
     });
 
-    linkToMore = `/html/archive.html?tag=11`;
-
     //display the filtered posts
     for (let i = 0; i < postsByTag.length; i++) {
       renderPostContent(postsByTag[i]);
@@ -108,17 +106,12 @@ async function renderPopularPosts() {
           <figure class="figure-general"><img src="${featuredImg}" alt="${altText}"/></figure>
         </article>`;
 
-      console.log(postsByTag[i].tags);
-
-      //THIS LINK DIRECTS TO THE CATEGORY OF THE LAST POST RIGHT NOW.
-      //DIRECTING TO THE TAG OF THE POSTS IS MORE DIFFICULT - SAME ON THE OTHER
-      // linkToMore = `/html/archive.html?key=${postsByTag[i].categories[0]}`;
-      // console.log(linkToMore);
-
       if (i === 4) {
         break;
       }
     }
+    const currentTag = postsByTag[0].tags[0];
+    linkToMore = `/html/archive.html?tag=${currentTag}`;
     showMoreBtn(popularPostsSection, linkToMore);
   } catch (error) {
     generalErrorMessage(error);
@@ -140,7 +133,7 @@ async function renderAboutSectionIndex() {
       </figure>
       <article>
         ${copy}
-        <a href="#">more about us</a>
+        <a href="/html/about.html">more about us</a>
       </article>`;
   } catch (error) {
     generalErrorMessage(error);
