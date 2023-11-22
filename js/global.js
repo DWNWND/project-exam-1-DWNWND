@@ -64,6 +64,36 @@ export function renderComments(comments, div) {
   }
 }
 
+  //img-modal
+  export function addImgModal(src) {
+    //modal-dialog-element
+    const imgModal = document.createElement("dialog");
+    imgModal.classList.add("img-modal");
+    document.querySelector("main").append(imgModal);
+
+    //modal-content
+    const closeBtn = document.createElement("i");
+    closeBtn.classList.add("fa-solid", "fa-xmark", "closeBtn");
+    imgModal.append(closeBtn);
+
+    const bigImage = document.createElement("img");
+    bigImage.setAttribute("src", src);
+    imgModal.append(bigImage);
+
+    // close modal clicking X
+    closeBtn.addEventListener("click", () => {
+      imgModal.remove();
+    });
+
+    //close modal by clicking outside
+    function onClick(event) {
+      if (event.target === imgModal) {
+        imgModal.remove();
+      }
+    }
+    imgModal.addEventListener("click", onClick);
+  }
+
 //render related posts-section(this function does not fetch related posts (yet)- for the about page and blog spesific page)
 // export async function renderRelatedPosts() {
 //   try {

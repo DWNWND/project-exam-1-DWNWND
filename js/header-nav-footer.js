@@ -2,9 +2,10 @@
 import { fetchAllCategories, key } from "./api-call.js";
 import { generalErrorMessage } from "./error-handling.js";
 
-//see if you can make this code more readable/clean it up so you can add error-handling to more content
-// render header/navbar
 const navModal = document.querySelector(".nav-modal");
+const footer = document.querySelector("footer");
+
+//see if you can make this code more readable/clean it up so you can add error-handling to more content
 navModal.innerHTML += `
 <a href="#" class="hamburger-toggle closeBtn">
   <i class="fa-solid fa-xmark"></i>
@@ -48,7 +49,7 @@ async function renderCategories() {
     const categoriesUl = document.querySelector(".navbar-categories-alignment");
 
     for (let i = 0; i < allCategories.length; i++) {
-      if (allCategories[i].id === 1 || allCategories[i].id === 18) {
+      if (allCategories[i].id === 1 || allCategories[i].id === 18 || allCategories[i].id === 19) {
         continue;
       }
       categoriesUl.innerHTML += `
@@ -58,7 +59,6 @@ async function renderCategories() {
     const category = document.querySelectorAll(".nav-item-cat");
     for (let i = 0; i < category.length; i++) {
       if (category[i].className === "nav-item-cat " + key) {
-        // console.log(category[i]);
         category[i].classList.toggle("active");
       }
     }
@@ -90,7 +90,6 @@ function onClick(event) {
 navModal.addEventListener("click", onClick);
 
 // render footer
-const footer = document.querySelector("footer");
 footer.innerHTML += `
 <div class="some-footer-wrapper">
 <div class="some-cta">follow us for more inspiration</div>

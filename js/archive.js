@@ -11,6 +11,7 @@ const metaTitle = document.querySelector("#title");
 const loader = document.querySelector(".loader-list");
 const loadMoreBtn = document.querySelector(".more-btn");
 const categorizedPostsWrapper = document.querySelector(".categorized-posts");
+const pathDirectory = document.querySelector(".directory");
 
 let urlParam;
 let page = 1;
@@ -18,6 +19,8 @@ let postTitle;
 let featuredImg;
 let altText;
 let excerpt;
+
+showLoadingIndicator(loader);
 
 async function renderPageName() {
   try {
@@ -30,19 +33,24 @@ async function renderPageName() {
       throw new Error("Something went wrong when fetching the url params");
     }
 
-    const response = await fetch(url + urlParam);
+    const page = await fetch(url + urlParam);
 
-    if (!key && response.ok) {
-      const currentTag = await response.json();
+    if (!key && page.ok) {
+      const currentTag = await page.json();
       pageTitle.innerHTML += `${currentTag.name}`;
       metaTitle.textContent += " : " + currentTag.name;
-      //ADD DISPLAY THE TAG-NAME ON THE PAGE
+      pathDirectory.innerHTML = ` <a href="/./index.html">Home</a> > <a href="/html/archive.html?key=archive&id=19">Archive</a> > <a href="#">Category: ${currentTag.name}</a>`;
+      //ADD DISPLAY THE TAG-NAME ON THE PAGE SOMEWHERE
     }
-    if (!tag && response.ok) {
-      const currentCategory = await response.json();
+    if (!tag && page.ok) {
+      const currentCategory = await page.json();
       pageTitle.innerHTML += `${currentCategory[0].name}`;
       metaTitle.textContent += " : " + currentCategory[0].name;
-    } else if (!response.ok) {
+      pathDirectory.innerHTML = ` <a href="/./index.html">Home</a> > <a href="/html/archive.html?key=archive&id=19">Archive</a> > <a href="#">Category: ${currentCategory[0].name}</a>`;
+    }
+    if (key === "archive" && page.ok) {
+      pathDirectory.innerHTML = ` <a href="/./index.html">Home</a> > <a href="/html/archive.html?key=archive&id=19">Archive</a>`;
+    } else if (!page.ok) {
       throw new Error("Something went wrong when fetching the API for category/tag");
     }
   } catch (error) {
@@ -52,9 +60,6 @@ async function renderPageName() {
 }
 renderPageName();
 
-//REMEMBER TO render filepath.....
-
-//check and render post content
 function renderPostContent(post) {
   if (post.title.rendered && post.excerpt.rendered) {
     postTitle = post.title.rendered;
@@ -63,8 +68,6 @@ function renderPostContent(post) {
     throw new Error("Theres content missing in this post:", post);
   }
 }
-
-showLoadingIndicator(loader);
 
 async function renderCategoriezedPosts() {
   try {
@@ -77,10 +80,10 @@ async function renderCategoriezedPosts() {
       throw new Error("Something went wrong when fetching the url params");
     }
 
-    const response = await fetch(`${url}posts?${urlParam}&page=${page}`);
+    const posts = await fetch(`${url}posts?${urlParam}&page=${page}`);
 
-    if (response.ok) {
-      const categorizedPosts = await response.json();
+    if (posts.ok) {
+      const categorizedPosts = await posts.json();
       loader.innerHTML = "";
 
       if (categorizedPosts.length === 0) {

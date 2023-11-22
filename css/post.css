@@ -11,6 +11,7 @@
   top: 50%;
   transform: translate(-50%, -50%);
   flex-direction: column;
+  outline:none
 }
 .img-modal .closeBtn {
   margin-right: 0;
