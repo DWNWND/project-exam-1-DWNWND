@@ -2,6 +2,8 @@ import { fetchAllBlogPosts, url } from "./api-call.js";
 import { showLoadingIndicator, showMoreBtn, openPostOnClick } from "./global.js";
 import { generalErrorMessage } from "./error-handling.js";
 
+// REMEMBER TO FIX THE SIZE OF THE HEADER IMG BEFORE DELIVERY
+
 let postTitle;
 let featuredImg;
 let altText;
