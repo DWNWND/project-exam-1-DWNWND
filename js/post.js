@@ -2,8 +2,11 @@ import { fetchPostById, fetchSpesificImages, fetchComments, fetchAllBlogPosts, f
 import { formatDate, renderComments, showLoadingIndicator, showMoreBtn } from "./global.js";
 import { generalErrorMessage } from "./error-handling.js";
 
-const loader1 = document.querySelector(".loader-1");
-const loader2 = document.querySelector(".loader-2");
+const relatedPostsSection = document.querySelector(".related-posts-section");
+
+const loader1 = document.querySelector(".loader-posts");
+const loader2 = document.querySelector(".loader-related-posts");
+
 showLoadingIndicator(loader1);
 showLoadingIndicator(loader2);
 
@@ -197,8 +200,6 @@ async function renderBlogPost() {
   }
 }
 renderBlogPost();
-
-const relatedPostsSection = document.querySelector(".related-posts-section");
 
 async function renderRelatedPosts() {
   try {

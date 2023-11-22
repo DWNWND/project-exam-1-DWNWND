@@ -67,7 +67,9 @@ body {
   background-color: white;
 }
 .loader,
-.loader-test {
+.loader-test,
+.loader-posts,
+.loader-related-posts {
   font-size: 1rem;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   text-align: center;
@@ -76,7 +78,8 @@ body {
 }
 .loader-list,
 .loader-posts,
-.loader-related-posts.loader-about {
+.loader-related-posts.loader-about,
+.loader-related-posts {
   background-color: white;
   padding: 1rem;
 }
