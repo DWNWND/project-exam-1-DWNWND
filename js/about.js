@@ -44,7 +44,7 @@ async function fetchPages() {
       </div>`;
 
       aboutUs.innerHTML += `
-      <article class="the-team">
+      <div class="the-team">
         <div>
           <h2>${pages[2].title.rendered}</h2>
           <p>${pages[2].content.rendered}</p>
@@ -53,7 +53,7 @@ async function fetchPages() {
           <img src="${theTeamImg.source_url}" alt="${ourVisionImg.alt_text}" />
           <figcaption>${theTeamImg.caption.rendered}</figcaption>
         </figure>
-      </article>`;
+      </div>`;
     }
     if (!response.ok) {
       throw new Error("Error when executing fetchPages - fetching API");
