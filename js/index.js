@@ -1,4 +1,4 @@
-import { fetchAllBlogPosts, fetchAllPages } from "./api-call.js";
+import { fetchAllBlogPosts, url } from "./api-call.js";
 import { showLoadingIndicator, showMoreBtn } from "./global.js";
 import { generalErrorMessage } from "./error-handling.js";
 
@@ -8,7 +8,28 @@ let altText;
 let excerpt;
 let linkToMore;
 
-//check and render post content
+const newlyPublishedSection = document.querySelector(".newly-published-section");
+const slider = document.querySelector(".slider");
+const popularPostsSection = document.querySelector(".popular-posts-section");
+const popularPostsWrapper = document.querySelector(".popular-posts-wrapper");
+const aboutUsWrapper = document.querySelector(".about-us-wrapper");
+
+const prev = document.querySelector(".prev-btn");
+const next = document.querySelector(".next-btn");
+
+//how far the slider should scroll:
+const itemWidth = 250;
+const padding = 0;
+
+const loader1 = document.querySelector(".loader-newly-published");
+const loader2 = document.querySelector(".loader-popular-posts");
+const loader3 = document.querySelector(".loader-about-us-index");
+
+showLoadingIndicator(loader1);
+showLoadingIndicator(loader2);
+showLoadingIndicator(loader3);
+
+//control and render post content
 function renderPostContent(post) {
   if (post.title.rendered && post.excerpt.rendered && post._embedded["wp:featuredmedia"]) {
     postTitle = post.title.rendered;
@@ -20,26 +41,6 @@ function renderPostContent(post) {
   }
 }
 
-const newlyPublishedSection = document.querySelector(".newly-published-section");
-const slider = document.querySelector(".slider");
-const popularPostsSection = document.querySelector(".popular-posts-section");
-const popularPostsWrapper = document.querySelector(".popular-posts-wrapper");
-const aboutUsWrapper = document.querySelector(".about-us-wrapper");
-
-const prev = document.querySelector(".prev-btn");
-const next = document.querySelector(".next-btn");
-//how far the slider should scroll:
-const itemWidth = 250;
-const padding = 0;
-
-const loader1 = document.querySelector(".loader-1");
-const loader2 = document.querySelector(".loader-2");
-const loader3 = document.querySelector(".loader-3");
-
-showLoadingIndicator(loader1);
-showLoadingIndicator(loader2);
-showLoadingIndicator(loader3);
-
 //render newly published blogposts to slider
 async function renderNewlyPublishedPosts() {
   try {
@@ -48,31 +49,24 @@ async function renderNewlyPublishedPosts() {
 
     for (let i = 0; i < allPosts.length; i++) {
       renderPostContent(allPosts[i]);
-
       slider.innerHTML += `
       <article>
         <h2>${postTitle}</h2>
         <figure class="figure-general"><img src="${featuredImg}" alt="${altText}"/></figure>
         <a href="/html/post.html?key=${allPosts[i].id}" class="continue-btn">continue reading...</a>
       </article>`;
-
-      //THIS LINK DIRECTS TO THE CATEGORY OF THE LAST POST RIGHT NOW.
-      //DIRECTING TO THE TAG OF THE POSTS IS MORE DIFFICULT - SAME ON THE OTHER
-      linkToMore = `/html/archive.html?key=${allPosts[i].categories[0]}`;
-
       if (i === 5) {
         break;
       }
     }
-
     //scroll eventlisteners
     prev.addEventListener("click", () => {
       slider.scrollLeft -= itemWidth + padding;
     });
-
     next.addEventListener("click", () => {
       slider.scrollLeft += itemWidth + padding;
     });
+    linkToMore = `/html/archive.html?key=newly-published&id=18`;
     showMoreBtn(newlyPublishedSection, linkToMore);
   } catch (error) {
     console.log(error);
@@ -82,7 +76,7 @@ async function renderNewlyPublishedPosts() {
 renderNewlyPublishedPosts();
 
 //render posts for "most popular posts"
-async function renderPopularPosts() {
+async function renderPopularPostsTag11() {
   try {
     const allPosts = await fetchAllBlogPosts();
     loader2.innerHTML = "";
@@ -94,10 +88,8 @@ async function renderPopularPosts() {
       }
     });
 
-    //display the filtered posts
     for (let i = 0; i < postsByTag.length; i++) {
       renderPostContent(postsByTag[i]);
-
       popularPostsWrapper.innerHTML += `
         <article>
           <h2>${postTitle}</h2>
@@ -105,39 +97,41 @@ async function renderPopularPosts() {
           <a href="/html/post.html?key=${postsByTag[i].id}">continue reading...</a>
           <figure class="figure-general"><img src="${featuredImg}" alt="${altText}"/></figure>
         </article>`;
-
       if (i === 4) {
         break;
       }
     }
-    const currentTag = postsByTag[0].tags[0];
-    linkToMore = `/html/archive.html?tag=${currentTag}`;
+    linkToMore = `/html/archive.html?tag=11`;
     showMoreBtn(popularPostsSection, linkToMore);
   } catch (error) {
     generalErrorMessage(error);
     console.log(error);
   }
 }
-renderPopularPosts();
+renderPopularPostsTag11();
 
-//render about us section
-async function renderAboutSectionIndex() {
+async function fetchPages() {
   try {
-    const allPages = await fetchAllPages();
+    const response = await fetch(`${url}pages`);
     loader3.innerHTML = "";
 
-    const copy = allPages[1].content.rendered;
-    aboutUsWrapper.innerHTML += `
+    if (response.ok) {
+      const pages = await response.json();
+      aboutUsWrapper.innerHTML += `
       <figure class="figure-general">
         <img src="/img/placeholder-2.jpg" />
       </figure>
       <article>
-        ${copy}
+        ${pages[1].content.rendered}
         <a href="/html/about.html">more about us</a>
       </article>`;
+    }
+    if (!response.ok) {
+      throw new Error("Error when executing fetchPages About Section - fetching API");
+    }
   } catch (error) {
     generalErrorMessage(error);
     console.log(error);
   }
 }
-renderAboutSectionIndex();
+fetchPages();

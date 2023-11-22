@@ -48,7 +48,7 @@ async function renderCategories() {
     const categoriesUl = document.querySelector(".navbar-categories-alignment");
 
     for (let i = 0; i < allCategories.length; i++) {
-      if (allCategories[i].id === 1) {
+      if (allCategories[i].id === 1 || allCategories[i].id === 18) {
         continue;
       }
       categoriesUl.innerHTML += `

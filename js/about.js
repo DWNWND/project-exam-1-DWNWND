@@ -88,7 +88,7 @@ async function renderOurStoriesTag17() {
         break;
       }
     }
-    const linkToMore = `/html/archive.html?tag=${17}`;
+    const linkToMore = `/html/archive.html?tag=17`;
     showMoreBtn(relatedPostsSection, linkToMore);
   } catch (error) {
     generalErrorMessage(error);

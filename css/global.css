@@ -67,10 +67,12 @@ body {
   background-color: white;
 }
 .loader,
-.loader-test,
+.loader-newly-published,
+.loader-popular-posts,
+.loader-about-us-index .loader-test,
 .loader-posts,
 .loader-related-posts,
-.loader-about {
+.loader-about-us {
   font-size: 1rem;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   text-align: center;
@@ -84,7 +86,7 @@ body {
   background-color: white;
   padding: 1rem;
 }
-.loader-about {
+.loader-about-us {
   background-color: #f5f5f5;
   padding: 1rem;
 }
@@ -99,7 +101,7 @@ ol {
 }
 @media (min-width: 1100px) {
   .loader-list,
-  .loader-about,
+  .loader-about-us,
   .loader-posts,
   .loader-related-posts {
     padding: 2rem;

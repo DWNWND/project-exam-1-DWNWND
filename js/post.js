@@ -222,13 +222,10 @@ async function renderRelatedPosts() {
     });
 
     for (let i = 0; i < postsByCategory.length; i++) {
-      const postTitle = postsByCategory[i].title.rendered;
-      const excerpt = postsByCategory[i].excerpt.rendered;
-
       relatedPosts.innerHTML += `
         <article>
-          <h2>${postTitle}</h2>
-          ${excerpt}
+          <h2>${postsByCategory[i].title.rendered}</h2>
+          ${postsByCategory[i].excerpt.rendered}
           <a href="/html/post.html?key=${postsByCategory[i].id}">continue reading...</a>
         </article>`;
 
