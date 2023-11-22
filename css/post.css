@@ -225,10 +225,11 @@ h3 {
   .related-posts-section .grid-display {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    padding-top: 5rem;
+    padding: 0;
   }
   .related-posts-section {
     padding-bottom: 2rem;
+    padding-top:1rem;
   }
   .blogpost-section {
     padding-bottom: 7rem;

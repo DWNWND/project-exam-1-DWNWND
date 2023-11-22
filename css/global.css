@@ -69,7 +69,8 @@ body {
 .loader,
 .loader-test,
 .loader-posts,
-.loader-related-posts {
+.loader-related-posts,
+.loader-about {
   font-size: 1rem;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   text-align: center;
@@ -99,7 +100,8 @@ ol {
 @media (min-width: 1100px) {
   .loader-list,
   .loader-about,
-  .loader-posts {
+  .loader-posts,
+  .loader-related-posts {
     padding: 2rem;
   }
 }

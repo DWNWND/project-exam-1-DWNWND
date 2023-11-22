@@ -80,8 +80,13 @@ figure img {
     grid-template-rows: 1fr 120px auto auto;
   }
   .related-posts-section article {
-    grid-template-rows: 1fr 180px auto auto;
+    grid-template-rows: 1fr 160px auto auto;
   }
+  /* article a,
+  article p,
+  .publish-date {
+    font-size: 1rem;
+  } */
 }
 @media (min-width: 1130px) {
   .popular-posts-section article,

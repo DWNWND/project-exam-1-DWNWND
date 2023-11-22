@@ -100,12 +100,15 @@ h3 {
   .related-posts-section .grid-display {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    /* padding-top: 5rem; */
-  }
-  .related-posts-section {
     padding-bottom: 2rem;
+    padding-top:1rem;
   }
-}
+  }
+  /* .related-posts {
+    padding-bottom: 2rem;
+    padding-top:1rem;
+  }
+} */
 
 @media (min-width: 1100px) {
   .about-section article {

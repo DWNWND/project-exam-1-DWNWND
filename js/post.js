@@ -3,6 +3,7 @@ import { formatDate, renderComments, showLoadingIndicator, showMoreBtn } from ".
 import { generalErrorMessage } from "./error-handling.js";
 
 const relatedPostsSection = document.querySelector(".related-posts-section");
+const relatedPosts = document.querySelector(".related-posts");
 
 const loader1 = document.querySelector(".loader-posts");
 const loader2 = document.querySelector(".loader-related-posts");
@@ -204,38 +205,25 @@ renderBlogPost();
 async function renderRelatedPosts() {
   try {
     const allPosts = await fetchAllBlogPosts();
+    const allCategories = await fetchAllCategories();
     loader2.innerHTML = "";
 
-    //filter out the right tag
+    const category = allCategories.filter((cat) => {
+      if (cat.id === postCategory) {
+        return cat;
+      }
+    });
+    linkToMore = `/html/archive.html?key=${category[0].slug}&id=${category[0].id}`;
+
     const postsByCategory = allPosts.filter((posts) => {
       if (posts.categories[0] === postCategory) {
         return posts;
       }
     });
 
-    //WORKING ON FIKSING A LOAD MORE LINK ON THE POST PAGE - Du ER HER, NEDENFOR
-    const allCategories = await fetchAllCategories();
-
-    // console.log(allCategories.id)
-
-    const category = allCategories.filter((cat) => {
-      if (cat.id === postCategory) {
-        console.log(cat.id);
-        console.log(cat.slug);
-        linkToMore = `/html/archive.html?key=${cat.slug}&id=${postCategory}`;
-        return cat;
-      }
-    });
-
-    // linkToMore = `/html/archive.html?key=${category.slug}&id=${postCategory}`;
-
-    console.log(category.slug);
-
     for (let i = 0; i < postsByCategory.length; i++) {
       const postTitle = postsByCategory[i].title.rendered;
       const excerpt = postsByCategory[i].excerpt.rendered;
-
-      const relatedPosts = document.querySelector(".related-posts");
 
       relatedPosts.innerHTML += `
         <article>
