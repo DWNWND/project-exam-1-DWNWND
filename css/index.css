@@ -57,11 +57,20 @@
   filter: drop-shadow(4px 5px 5px rgba(0, 0, 0, 0.1));
   gap: 1rem;
 }
-.about-us-section article {
+.about-us-info {
   max-width: 350px;
   margin-left: auto;
   margin-right: auto;
   gap: 1rem;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 200;
+}
+.about-us-info a {
+  color: black;
+  padding-top: 1rem;
+  font-weight: 400;
+  display: block;
 }
 .about-us-section figure,
 .popular-posts-section figure {
@@ -125,8 +134,9 @@
     margin-right: auto;
     gap: 2rem;
   }
-  .about-us-section article {
+  .about-us-info {
     max-width: none;
+    font-size: 1rem;
   }
 }
 @media (min-width: 900px) {
@@ -163,7 +173,7 @@
   .prev-btn i,
   .next-btn i {
     font-size: 3rem;
-    color: white;
+    color: rgb(114, 111, 116);
   }
   .prev-btn i:hover,
   .next-btn i:hover {
@@ -173,7 +183,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 2rem;
+    /* gap: 2rem; */
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto
   }
   .slider article {
     filter: drop-shadow(4px 5px 3px rgba(0, 0, 0, 0.15));

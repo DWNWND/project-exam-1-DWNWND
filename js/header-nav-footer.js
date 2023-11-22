@@ -11,7 +11,7 @@ navModal.innerHTML += `
   <i class="fa-solid fa-xmark"></i>
 </a>
 <div class="logo-mobile">
-  <a href="/index.html"><img src="/img/logo-black.png" /></a>
+  <a href="/./index.html"><img src="/img/logo-black.png" /></a>
 </div>
 <div class="navbar-standard">
   <ul class="navbar-standard-alignment">

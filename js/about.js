@@ -1,4 +1,4 @@
-import { showLoadingIndicator, showMoreBtn } from "./global.js";
+import { showLoadingIndicator, showMoreBtn, openPostOnClick } from "./global.js";
 import { fetchAllBlogPosts, fetchSpesificImages, url } from "./api-call.js";
 import { generalErrorMessage } from "./error-handling.js";
 
@@ -6,7 +6,7 @@ const aboutUs = document.querySelector(".about-section");
 const relatedPostsSection = document.querySelector(".related-posts-section");
 const relatedPosts = document.querySelector(".related-posts");
 
-const loader1 = document.querySelector(".loader-about");
+const loader1 = document.querySelector(".loader-about-us");
 const loader2 = document.querySelector(".loader-related-posts");
 showLoadingIndicator(loader1);
 showLoadingIndicator(loader2);
@@ -26,7 +26,7 @@ async function fetchPages() {
       const theTeamImg = await fetchSpesificImages(theTeamImageApi);
 
       aboutUs.innerHTML += `
-      <article class="our-vision">
+      <div class="our-vision">
         <figure class="our-vision-img">
             <img src="${ourVisionImg.source_url}" alt="${ourVisionImg.alt_text}" />
             <figcaption>${ourVisionImg.caption.rendered}</figcaption>
@@ -41,7 +41,7 @@ async function fetchPages() {
             <figure><i class="fa-solid fa-comments"></i></figure>
           </div>
         </div>
-      </article>`;
+      </div>`;
 
       aboutUs.innerHTML += `
       <article class="the-team">
@@ -78,7 +78,7 @@ async function renderOurStoriesTag17() {
 
     for (let i = 0; i < postsByTag.length; i++) {
       relatedPosts.innerHTML += `
-        <article>
+        <article id="${postsByTag[i].id}">
           <h2>${postsByTag[i].title.rendered}</h2>
           ${postsByTag[i].excerpt.rendered}
           <a href="/html/post.html?key=${postsByTag[i].id}">continue reading...</a>
@@ -88,6 +88,8 @@ async function renderOurStoriesTag17() {
         break;
       }
     }
+    openPostOnClick();
+
     const linkToMore = `/html/archive.html?tag=17`;
     showMoreBtn(relatedPostsSection, linkToMore);
   } catch (error) {

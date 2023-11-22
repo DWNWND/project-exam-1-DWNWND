@@ -1,5 +1,5 @@
-import { fetchPostById, fetchSpesificImages, fetchComments, fetchAllBlogPosts, fetchAllCategories, url } from "./api-call.js";
-import { formatDate, renderComments, showLoadingIndicator, addImgModal, showMoreBtn } from "./global.js";
+import { fetchPostById, fetchSpesificImages, fetchComments, fetchAllCategories, url } from "./api-call.js";
+import { formatDate, renderComments, showLoadingIndicator, addImgModal, showMoreBtn, openPostOnClick } from "./global.js";
 import { generalErrorMessage } from "./error-handling.js";
 
 const metaTitle = document.querySelector("#title");
@@ -187,7 +187,7 @@ async function renderRelatedPosts() {
 
       for (let i = 0; i < posts.length; i++) {
         relatedPosts.innerHTML += `
-          <article>
+          <article id="${posts[i].id}">
             <h2>${posts[i].title.rendered}</h2>
             ${posts[i].excerpt.rendered}
             <a href="/html/post.html?key=${posts[i].id}">continue reading...</a>
@@ -196,11 +196,12 @@ async function renderRelatedPosts() {
           break;
         }
       }
+      openPostOnClick();
     } else if (!postsByCategory.ok) {
       throw new Error("Something went wrong when fetching the related posts");
     }
-    pathDirectory.innerHTML = ` <a href="/./index.html">Home</a> > <a href="/html/archive.html?key=archive&id=19">Archive</a> > <a href="${linkToMore}">Category: ${categoryName}</a> > <a href="#">${postTitle}</a>`;
     linkToMore = `/html/archive.html?key=${category[0].slug}&id=${category[0].id}`;
+    pathDirectory.innerHTML = ` <a href="/./index.html">Home</a> > <a href="/html/archive.html?key=archive&id=19">Archive</a> > <a href="${linkToMore}">Category: ${categoryName}</a> > <a href="#">${postTitle}</a>`;
     showMoreBtn(relatedPostsSection, linkToMore);
   } catch (error) {
     generalErrorMessage(error);

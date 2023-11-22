@@ -1,5 +1,5 @@
 import { fetchSpesificImages, url, params } from "./api-call.js";
-import { formatDate, showLoadingIndicator } from "./global.js";
+import { formatDate, showLoadingIndicator, openPostOnClick } from "./global.js";
 import { generalErrorMessage } from "./error-handling.js";
 
 const id = params.get("id");
@@ -106,7 +106,7 @@ async function renderCategoriezedPosts() {
           const date = formatDate(categorizedPosts[i].date);
 
           categorizedPostsWrapper.innerHTML += `
-          <article>
+          <article id="${categorizedPosts[i].id}">
             <h2>${postTitle}</h2>
             ${excerpt}
             <figure class="figure-general"><img src="${featuredImg}" alt="${altText}" /></figure>
@@ -116,6 +116,7 @@ async function renderCategoriezedPosts() {
             </div>
           </article>`;
         }
+        openPostOnClick();
         page++;
       }
     } else {

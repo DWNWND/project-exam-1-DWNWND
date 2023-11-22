@@ -31,6 +31,7 @@
   max-width: 1100px;
   margin-left: auto;
   margin-right: auto;
+  padding: 0 2rem 2rem 2rem;
 }
 .archive-result-section article {
   background-color: #e4eaf7;

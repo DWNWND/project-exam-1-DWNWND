@@ -1,5 +1,5 @@
 import { fetchAllBlogPosts, url } from "./api-call.js";
-import { showLoadingIndicator, showMoreBtn } from "./global.js";
+import { showLoadingIndicator, showMoreBtn, openPostOnClick } from "./global.js";
 import { generalErrorMessage } from "./error-handling.js";
 
 let postTitle;
@@ -50,15 +50,18 @@ async function renderNewlyPublishedPosts() {
     for (let i = 0; i < allPosts.length; i++) {
       renderPostContent(allPosts[i]);
       slider.innerHTML += `
-      <article>
+      <article id="${allPosts[i].id}">
         <h2>${postTitle}</h2>
         <figure class="figure-general"><img src="${featuredImg}" alt="${altText}"/></figure>
         <a href="/html/post.html?key=${allPosts[i].id}" class="continue-btn">continue reading...</a>
       </article>`;
+
       if (i === 5) {
         break;
       }
     }
+    openPostOnClick();
+
     //scroll eventlisteners
     prev.addEventListener("click", () => {
       slider.scrollLeft -= itemWidth + padding;
@@ -91,7 +94,7 @@ async function renderPopularPostsTag11() {
     for (let i = 0; i < postsByTag.length; i++) {
       renderPostContent(postsByTag[i]);
       popularPostsWrapper.innerHTML += `
-        <article>
+        <article id="${postsByTag[i].id}">
           <h2>${postTitle}</h2>
           ${excerpt}
           <a href="/html/post.html?key=${postsByTag[i].id}">continue reading...</a>
@@ -101,6 +104,7 @@ async function renderPopularPostsTag11() {
         break;
       }
     }
+    openPostOnClick();
     linkToMore = `/html/archive.html?tag=11`;
     showMoreBtn(popularPostsSection, linkToMore);
   } catch (error) {
@@ -121,10 +125,10 @@ async function fetchPages() {
       <figure class="figure-general">
         <img src="/img/placeholder-2.jpg" />
       </figure>
-      <article>
+      <div class="about-us-info">
         ${pages[1].content.rendered}
         <a href="/html/about.html">more about us</a>
-      </article>`;
+      </div>`;
     }
     if (!response.ok) {
       throw new Error("Error when executing fetchPages About Section - fetching API");

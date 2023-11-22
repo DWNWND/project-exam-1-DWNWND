@@ -1,4 +1,4 @@
-import { fetchAllBlogPosts } from "./api-call.js";
+// import { fetchAllBlogPosts } from "./api-call.js";
 import { generalErrorMessage } from "./error-handling.js";
 
 //show-more-button
@@ -14,6 +14,15 @@ export function showMoreBtn(htmlElement, link) {
     console.log(error);
   }
 }
+
+export function openPostOnClick() {
+  const allArticles = document.querySelectorAll("article");
+  allArticles.forEach(function (article) {
+    article.addEventListener("click", () => {
+      window.location.href = `/html/post.html?key=${article.id}`;
+    });
+  });
+  }
 
 // loading-indicator
 export function showLoadingIndicator(section) {
