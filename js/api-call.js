@@ -13,8 +13,12 @@ const postQueryString = "posts?_embed&per_page=100";
 export async function fetchAllBlogPosts() {
   try {
     const response = await fetch(url + postQueryString);
-    const results = await response.json();
-    return results;
+    if (response.ok) {
+      const results = await response.json();
+      return results;
+    } else {
+      throw new Error("Error when executing fetchAllBlogPosts - fetching API");
+    }
   } catch (error) {
     apiErrorMessage(error);
     console.log(error);
@@ -26,8 +30,12 @@ const postsQueryString = "posts/";
 export async function fetchPostById() {
   try {
     const response = await fetch(url + postsQueryString + key);
-    const results = await response.json();
-    return results;
+    if (response.ok) {
+      const results = await response.json();
+      return results;
+    } else {
+      throw new Error("Error when executing fetchPostById - fetching API");
+    }
   } catch (error) {
     apiErrorMessage(error);
     console.log(error);
@@ -39,8 +47,12 @@ const categoriesQueryString = "categories";
 export async function fetchAllCategories() {
   try {
     const response = await fetch(url + categoriesQueryString);
-    const results = await response.json();
-    return results;
+    if (response.ok) {
+      const results = await response.json();
+      return results;
+    } else {
+      throw new Error("Error when executing fetchAllCategories - fetching API");
+    }
   } catch (error) {
     apiErrorMessage(error);
     console.log(error);
@@ -52,8 +64,12 @@ const categoryIDQueryString = "posts?categories?slug=";
 export async function fetchPostsByCategory() {
   try {
     const response = await fetch(url + categoryIDQueryString + key);
-    const results = await response.json();
-    return results;
+    if (response.ok) {
+      const results = await response.json();
+      return results;
+    } else {
+      throw new Error("Error when executing fetchPostsByCategory - fetching API");
+    }
   } catch (error) {
     apiErrorMessage(error);
     console.log(error);
@@ -65,8 +81,12 @@ const pagesQueryString = "pages";
 export async function fetchAllPages() {
   try {
     const response = await fetch(url + pagesQueryString);
-    const results = await response.json();
-    return results;
+    if (response.ok) {
+      const results = await response.json();
+      return results;
+    } else {
+      throw new Error("Error when executing fetchAllPages - fetching API");
+    }
   } catch (error) {
     apiErrorMessage(error);
     console.log(error);
@@ -76,8 +96,12 @@ export async function fetchAllPages() {
 export async function fetchComments(commentUrl) {
   try {
     const response = await fetch(commentUrl);
-    const results = await response.json();
-    return results;
+    if (response.ok) {
+      const results = await response.json();
+      return results;
+    } else {
+      throw new Error("Error when executing fetchComments - fetching API");
+    }
   } catch (error) {
     apiErrorMessage(error);
     console.log(error);
@@ -88,8 +112,12 @@ export async function fetchComments(commentUrl) {
 export async function fetchSpesificImages(imgUrl) {
   try {
     const response = await fetch(imgUrl);
-    const results = await response.json();
-    return results;
+    if (response.ok) {
+      const results = await response.json();
+      return results;
+    } else {
+      throw new Error("Error when executing fetchSpesificImages - fetching API");
+    }
   } catch (error) {
     apiErrorMessage(error);
     console.log(error);
