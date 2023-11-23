@@ -47,16 +47,6 @@
   margin-bottom: 2rem;
   justify-content: center;
 }
-.newly-published-section article {
-  background-color: white;
-  gap: 0.5rem;
-  width: auto;
-}
-.popular-posts-section article {
-  background-color: #eef1e9;
-  filter: drop-shadow(4px 5px 5px rgba(0, 0, 0, 0.1));
-  gap: 1rem;
-}
 .about-us-info {
   max-width: 350px;
   margin-left: auto;
@@ -72,16 +62,6 @@
   font-weight: 400;
   display: block;
 }
-.about-us-section figure,
-.popular-posts-section figure {
-  display: none;
-}
-.newly-published-section figure {
-  display: flex;
-}
-.newly-published-section .continue-btn {
-  text-align: right;
-}
 
 @media (min-width: 490px) {
   .newly-published-section,
@@ -95,30 +75,14 @@
   .popular-posts-section {
     padding: 5rem;
   }
-  /* kan paddingen bli en global stil på alle sections? */
-
-  .popular-posts-section .grid-display,
+}
+@media (min-width: 700px) {
   .newly-published-section .grid-display {
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
   }
-  .popular-posts-section article:first-of-type {
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 1;
-    grid-row-end: 2;
-    /* height: 350px; */
-  }
-  .popular-posts-section article:first-of-type figure {
-    display: flex;
-    margin-top: auto;
-  }
 }
 @media (min-width: 750px) {
-  .about-us-section figure {
-    display: flex;
-    height: auto;
-  }
   .newly-published-section h1,
   .popular-posts-section h1,
   .about-us-section h1 {
@@ -186,33 +150,12 @@
     /* gap: 2rem; */
     max-width: 1200px;
     margin-left: auto;
-    margin-right: auto
-  }
-  .slider article {
-    filter: drop-shadow(4px 5px 3px rgba(0, 0, 0, 0.15));
-    scroll-snap-align: center;
-    min-width: 250px;
-    max-width: 250px;
-  }
-  .slider figure {
-    height: 175px;
-    order: 1;
-  }
-  .slider article h2 {
-    order: 2;
-    padding: 1rem 0;
-  }
-  .slider .continue-btn {
-    order: 3;
+    margin-right: auto;
   }
 
   /* -------- popular topics-section ---------- */
   .popular-posts-section .grid-display {
     grid-template-columns: 1fr 1fr 1fr;
-  }
-  .popular-posts-section figure {
-    display: flex;
-    margin-top: auto;
   }
 }
 
@@ -226,12 +169,5 @@
 @media (min-width: 1370px) {
   .slider {
     width: 1065px;
-  }
-  .slider article {
-    min-width: 320px;
-    max-width: 320px;
-  }
-  .slider figure {
-    height: 220px;
   }
 }

@@ -109,10 +109,10 @@ async function renderCategoriezedPosts() {
           <article id="${categorizedPosts[i].id}">
             <h2>${postTitle}</h2>
             ${excerpt}
-            <figure class="figure-general"><img src="${featuredImg}" alt="${altText}" /></figure>
-            <div class="post-info">
+            <figure><img src="${featuredImg}" alt="${altText}" /></figure>
+            <div class="post-metadata">
               <div class="publish-date"><date>${date[0]}, ${date[1]}</date></div>
-              <a href="/html/post.html?key=${categorizedPosts[i].id}" class="continue-btn">continue reading...</a>
+              <a href="/html/post.html?key=${categorizedPosts[i].id}" class="continue-reading-cta">continue reading...</a>
             </div>
           </article>`;
         }

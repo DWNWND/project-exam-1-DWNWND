@@ -15,11 +15,11 @@
   padding-bottom: 0;
   padding-top: 1rem;
 }
-.about-section h2 {
+/* .about-section h2 {
   font-family: "Vibur", cursive, "Times New Roman", Times, serif;
   font-size: 3rem;
   font-weight: 200;
-}
+} */
 .about-section figcaption {
   font-size: 0.8rem;
   font-weight: 200;
@@ -50,35 +50,6 @@
   font-size: 1.5rem;
 }
 
-/* related post section --- same styles as in the post */
-.related-posts-section {
-  background-color: white;
-}
-.related-posts-section .grid-display {
-  background-color: white;
-  padding: 0rem 3rem 1rem 3rem;
-  max-width: 1100px;
-  margin-right: auto;
-  margin-left: auto;
-}
-.related-posts-section article {
-  background-color: #eef1e9;
-  /* filter: drop-shadow(4px 5px 5px rgba(0, 0, 0, 0.1)); */
-  gap: 1rem;
-}
-.related-posts-title {
-  background-color: #f9f9f9;
-  border-top: 1.5px solid #000;
-  border-bottom: 1.5px solid #000;
-  text-align: center;
-  padding: 1rem;
-}
-h3 {
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-weight: 700;
-  font-size: 1.5rem;
-}
-
 @media (min-width: 450px) {
   .icons figure {
     height: 3.5rem;
@@ -100,24 +71,12 @@ h3 {
   }
 }
 
-/* related post section --- same styles as in the post */
-@media (min-width: 800px) {
-  .related-posts-section .grid-display {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    padding-bottom: 2rem;
-    padding-top: 1rem;
-  }
-}
-/* .related-posts {
-    padding-bottom: 2rem;
-    padding-top:1rem;
+/* @media (min-width: 800px) {
+  .our-vision,
+  .the-team {
+    font-size: 0.9rem;
   }
 } */
-.our-vision,
-.the-team {
-  font-size: 0.9rem;
-}
 
 @media (min-width: 1100px) {
   .our-vision,

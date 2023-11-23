@@ -54,8 +54,8 @@ async function renderNewlyPublishedPosts() {
       slider.innerHTML += `
       <article id="${allPosts[i].id}">
         <h2>${postTitle}</h2>
-        <figure class="figure-general"><img src="${featuredImg}" alt="${altText}"/></figure>
-        <a href="/html/post.html?key=${allPosts[i].id}" class="continue-btn">continue reading...</a>
+        <figure><img src="${featuredImg}" alt="${altText}"/></figure>
+        <a href="/html/post.html?key=${allPosts[i].id}" class="continue-reading-cta">continue reading...</a>
       </article>`;
 
       if (i === 5) {
@@ -100,7 +100,7 @@ async function renderPopularPostsTag11() {
           <h2>${postTitle}</h2>
           ${excerpt}
           <a href="/html/post.html?key=${postsByTag[i].id}">continue reading...</a>
-          <figure class="figure-general"><img src="${featuredImg}" alt="${altText}"/></figure>
+          <figure><img src="${featuredImg}" alt="${altText}"/></figure>
         </article>`;
       if (i === 4) {
         break;
@@ -116,6 +116,8 @@ async function renderPopularPostsTag11() {
 }
 renderPopularPostsTag11();
 
+
+//add the right image here!!!! 
 async function fetchPages() {
   try {
     const response = await fetch(`${url}pages`);
@@ -124,7 +126,7 @@ async function fetchPages() {
     if (response.ok) {
       const pages = await response.json();
       aboutUsWrapper.innerHTML += `
-      <figure class="figure-general">
+      <figure>
         <img src="/img/placeholder-2.jpg" />
       </figure>
       <div class="about-us-info">
