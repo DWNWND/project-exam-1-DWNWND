@@ -8,17 +8,31 @@
 }
 .some-cta {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  color: #53584a;
+  color: #840303ce;
+  text-shadow: 8px 6px 2px #ffffff;
   font-size: 5vw;
   font-weight: 600;
   padding: 1rem;
   text-align: center;
 }
+.some-icons {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+}
+.some-icons i:hover {
+  font-size: 1.7rem;
+}
 .some-icons a {
-  color: #53584a;
-  padding: 1rem;
-  margin: 0 0.3rem;
-  display: inline-block;
+  color: #ffffff;
+  display: flex;
+  background-color: #840303ce;
+  height: 4vh;
+  width: 4vh;
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
 }
 .some-icons i {
   font-size: 1.5rem;
@@ -51,6 +65,13 @@
   .some-icons i {
     font-size: 2rem;
   }
+  .some-icons a {
+    height: 5vh;
+    width: 5vh;
+  }
+  .some-icons i:hover {
+    font-size: 2.2rem;
+  }
   .some-cta {
     font-size: 2vw;
   }
@@ -64,5 +85,12 @@
   }
   .some-icons i {
     font-size: 2.5rem;
+  }
+  .some-icons a {
+    height: 6vh;
+    width: 6vh;
+  }
+  .some-icons i:hover {
+    font-size: 2.7rem;
   }
 }

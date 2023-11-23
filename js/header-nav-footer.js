@@ -53,13 +53,19 @@ async function renderCategories() {
         continue;
       }
       categoriesUl.innerHTML += `
-    <li class="nav-item-cat ${allCategories[i].slug}"><a href="/html/archive.html?key=${allCategories[i].slug}&id=${allCategories[i].id}">${allCategories[i].name}</a></li>`;
+    <li class="nav-item-cat ${allCategories[i].slug}"><a href="/html/archive.html?key=${allCategories[i].slug}&id=${allCategories[i].id}" class="cat-anchor ${allCategories[i].slug}" >${allCategories[i].name}</a></li>`;
     }
 
     const category = document.querySelectorAll(".nav-item-cat");
+    const categoryAnchorTag = document.querySelectorAll(".cat-anchor");
     for (let i = 0; i < category.length; i++) {
       if (category[i].className === "nav-item-cat " + key) {
         category[i].classList.toggle("active");
+      }
+    }
+    for (let i = 0; i < categoryAnchorTag.length; i++) {
+      if (categoryAnchorTag[i].className === "cat-anchor " + key) {
+        categoryAnchorTag[i].classList.toggle("active");
       }
     }
   } catch (error) {

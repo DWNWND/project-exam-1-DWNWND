@@ -1,7 +1,4 @@
 /* Navbar/header general styles: Mobile */
-ul {
-  list-style-type: none;
-}
 nav {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   display: flex;
@@ -13,10 +10,14 @@ nav a {
   text-decoration: none;
 }
 nav li:hover {
-  background-color: rgb(118, 118, 118);
+  background-color: rgba(118, 118, 118, 0.218);
 }
 .nav-item-cat.active {
-  background-color: rgb(227, 227, 227);
+  background-color: #840303ce;
+  border-radius: 25px;
+}
+.navbar-categories a.active {
+  color: white;
 }
 .logo-mobile {
   width: 100%;
