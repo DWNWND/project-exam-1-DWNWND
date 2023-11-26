@@ -2,6 +2,19 @@
 @import url("/css/footer.css");
 @import url("/css/thumbnails-figures.css");
 
+/* html,
+body {
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+main,
+header,
+footer {
+  flex: 1 0 auto;
+} */
 .about-section h1 {
   font-family: "Vibur", cursive, "Times New Roman", Times, serif;
   font-size: 3rem;
@@ -22,7 +35,6 @@ body {
   max-width: 1600px;
   margin-left: auto;
   margin-right: auto;
-  filter: drop-shadow(4px 5px 5px rgba(0, 0, 0, 0.175));
   background-color: white;
 }
 .grid-display {

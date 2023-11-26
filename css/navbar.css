@@ -12,11 +12,19 @@ nav a {
 nav li:hover {
   background-color: rgba(118, 118, 118, 0.218);
 }
-.nav-item-cat.active {
+.nav-item-cat {
+  transition-property: background-color;
+  transition-duration: 1s;
+  transition-timing-function: linear;
+  /* transition-delay: 1s; */
+}
+.nav-item-cat.active,
+.nav-item-cat:active {
   background-color: #840303ce;
   border-radius: 25px;
 }
-.navbar-categories a.active {
+.navbar-categories a.active,
+.navbar-categories a:active {
   color: white;
 }
 .logo-mobile {

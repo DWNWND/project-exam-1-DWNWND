@@ -52,6 +52,9 @@ async function renderBlogPost() {
     const commentsUrl = blogPost._links.replies["0"].href;
     const allComments = await fetchComments(commentsUrl);
 
+    console.log(blogPost);
+    console.log(commentsUrl);
+
     displayPost.innerHTML += `
     <div class="post-title">
       <h1>${postTitle}</h1>

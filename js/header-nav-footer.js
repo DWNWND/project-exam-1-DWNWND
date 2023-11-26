@@ -106,5 +106,29 @@ footer.innerHTML += `
 </div>
 </div>
 <div class="logo-footer-wrapper">
-<div class="logo-gray-footer"><img src="/img/logo-big-3.svg" /></div>
+<a href="/./index.html" class="logo-gray-footer"><img src="/img/logo-big-3.svg" /></a>
 </div>`;
+
+// scroll to top btn
+let scrollBtn = document.querySelector(".back-to-top");
+
+window.onscroll = function () {
+  showBtnOnScroll();
+};
+
+function showBtnOnScroll() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    scrollBtn.style.display = "block";
+  } else {
+    scrollBtn.style.display = "none";
+  }
+}
+
+function scrollToTop() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
+scrollBtn.addEventListener("click", () => {
+  scrollToTop();
+});
