@@ -1,3 +1,8 @@
+.about-section h1 {
+  font-family: "Vibur", cursive, "Times New Roman", Times, serif;
+  font-size: 3rem;
+  font-weight: 200;
+}
 .about-section {
   background-color: #f5f5f5;
 }
@@ -15,11 +20,6 @@
   padding-bottom: 0;
   padding-top: 1rem;
 }
-/* .about-section h2 {
-  font-family: "Vibur", cursive, "Times New Roman", Times, serif;
-  font-size: 3rem;
-  font-weight: 200;
-} */
 .about-section figcaption {
   font-size: 0.8rem;
   font-weight: 200;
@@ -85,20 +85,23 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 3rem;
-    gap: 1.5rem;
+    gap: 3rem;
     font-size: 0.9rem;
   }
   .our-vision-img {
     order: 0;
   }
+  .about-section {
+    padding-bottom: 5rem;
+  }
   .about-section img {
     height: 350px;
   }
-  .our-vision,
+  /* .our-vision,
   .the-team {
     padding: 7rem 3rem;
     gap: 3rem;
-  }
+  } */
   .our-vision > div,
   .the-team > div {
     display: flex;

@@ -9,14 +9,11 @@ nav {
 nav a {
   text-decoration: none;
 }
-nav li:hover {
-  background-color: rgba(118, 118, 118, 0.218);
+.nav-item-stand:hover {
+  background-color: rgba(128, 120, 191, 0.218);
 }
-.nav-item-cat {
-  transition-property: background-color;
-  transition-duration: 1s;
-  transition-timing-function: linear;
-  /* transition-delay: 1s; */
+.navbar-categories a:hover {
+  color: gray;
 }
 .nav-item-cat.active,
 .nav-item-cat:active {
@@ -125,8 +122,9 @@ nav li:hover {
 /* Modal menu: Mobile */
 .hamburger-toggle {
   position: absolute;
-  top: 0.9rem;
-  right: 1rem;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 1rem;
   font-size: 1.3rem;
   color: black;
 }
@@ -214,6 +212,7 @@ dialog::backdrop {
     left: 50%;
     transform: translate(-50%, -50%);
     filter: drop-shadow(4px 5px 5px rgba(0, 0, 0, 0.501));
+    max-width: 900px;
   }
   .header-general-wrapper {
     position: relative;

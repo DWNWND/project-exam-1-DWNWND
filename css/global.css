@@ -2,23 +2,10 @@
 @import url("/css/footer.css");
 @import url("/css/thumbnails-figures.css");
 
-/* html,
-body {
-  height: 100%;
-}
-body {
-  display: flex;
-  flex-direction: column;
-}
-main,
-header,
-footer {
-  flex: 1 0 auto;
-} */
-.about-section h1 {
-  font-family: "Vibur", cursive, "Times New Roman", Times, serif;
-  font-size: 3rem;
-  font-weight: 200;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 h2 {
   font-size: 1.1rem;
@@ -26,13 +13,8 @@ h2 {
 ul {
   list-style-type: none;
 }
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
 body {
-  max-width: 1600px;
+  /* max-width: 1600px; */
   margin-left: auto;
   margin-right: auto;
   background-color: white;
@@ -47,13 +29,17 @@ body {
 .more-btn {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   font-weight: 600;
-  color: black;
+  color: rgb(112, 112, 112);
+
   font-size: 0.9rem;
   text-align: center;
   display: block;
   padding: 2rem 0;
   cursor: pointer;
   text-decoration: underline;
+}
+.more-btn:hover {
+  color: black;
 }
 .hidden {
   display: none;
@@ -176,9 +162,9 @@ h3 {
   }
 }
 @media (min-width: 1600px) {
-  body {
+  /* body {
     margin-top: 2rem;
-  }
+  } */
   h2 {
     font-size: 1.5rem;
   }

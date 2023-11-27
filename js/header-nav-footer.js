@@ -36,7 +36,7 @@ navModal.innerHTML += `
 </div>
 <div class="header-general-wrapper">
   <img src="/img/header-img_unsplash.jpg" class="header-img" />
-  <img src="/img/logo-white-big.svg" class="logo-big" />
+  <a href="/./index.html"><img src="/img/logo-white-big.svg" class="logo-big" /></a>
 </div>
 <div class="navbar-categories">
   <ul class="navbar-categories-alignment">
