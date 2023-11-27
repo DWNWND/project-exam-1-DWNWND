@@ -1,43 +1,30 @@
 import { generalErrorMessage } from "./error-handling.js";
 
-//show error message when submitting form - does not work yet(fix the send button so that it actually submits)
-const form = document.querySelector("form");
-form.addEventListener("submit", (event) => {
-  try {
-    if (!subject.validity.valid) {
-      showSubjectError();
-      event.preventDefault();
-    }
-    if (!email.validity.valid) {
-      showEmailError();
-      event.preventDefault();
-    }
-    if (!message.validity.valid) {
-      showMessageError();
-      event.preventDefault();
-    }
-    if (!nameInput.validity.valid) {
-      showNameError();
-      event.preventDefault();
-    }
-  } catch (error) {
-    generalErrorMessage(error);
-    console.log(error);
-  }
-});
-
 // Name validation
 const nameInput = document.querySelector("#name");
 const nameError = document.querySelector(".validation-message-name");
+let nameValidity;
 
-nameInput.addEventListener("input", (event) => {
+function showNameError() {
+  if (nameInput.value === "" || nameInput.value.length < 5) {
+    nameInput.className = "invalid";
+    nameError.className = "error active";
+    nameValidity = false;
+  }
+  if (nameInput.value === "") {
+    nameError.textContent = "You need to enter a name.";
+  }
+  if (nameInput.value.length < 5) {
+    nameError.textContent = `The name should be at least 5 characters; you entered ${nameInput.value.length}.`;
+  } else {
+    nameError.textContent = "";
+    nameInput.className = "valid";
+    nameValidity = true;
+  }
+}
+nameInput.addEventListener("input", () => {
   try {
-    if (nameInput.validity.valid) {
-      nameError.textContent = "";
-      nameError.className = "error";
-    } else {
-      showNameError();
-    }
+    showNameError();
   } catch (error) {
     generalErrorMessage(error);
     console.log(error);
@@ -47,15 +34,35 @@ nameInput.addEventListener("input", (event) => {
 // Email validation
 const email = document.querySelector("#email");
 const emailError = document.querySelector(".validation-message-email");
+let emailValidity;
 
-email.addEventListener("input", (event) => {
+function checkIfEmail(email) {
+  const regEx = /\S+@\S+\.\S+/;
+  const result = regEx.test(email);
+  return result;
+}
+
+function showEmailError(checkedEmail) {
+  if (email.value === "" || !checkedEmail) {
+    email.className = "invalid";
+    emailError.className = "error active";
+    emailValidity = false;
+  }
+  if (email.value === "") {
+    emailError.textContent = "You need to enter an email address.";
+  }
+  if (!checkedEmail) {
+    emailError.textContent = "Entered value needs to be an email address.";
+  } else if (checkedEmail) {
+    emailError.textContent = "";
+    email.className = "valid";
+    emailValidity = true;
+  }
+}
+email.addEventListener("input", () => {
   try {
-    if (email.validity.valid) {
-      emailError.textContent = "";
-      emailError.className = "error";
-    } else {
-      showEmailError();
-    }
+    const checkedEmail = checkIfEmail(email.value);
+    showEmailError(checkedEmail);
   } catch (error) {
     generalErrorMessage(error);
     console.log(error);
@@ -65,15 +72,28 @@ email.addEventListener("input", (event) => {
 // Subject validation
 const subject = document.querySelector("#subject");
 const subjectError = document.querySelector(".validation-message-subject");
+let subjectValidity;
 
-subject.addEventListener("input", (event) => {
+function showSubjectError() {
+  if (subject.value === "" || subject.value.length < 15) {
+    subject.className = "invalid";
+    subjectError.className = "error active";
+    subjectValidity = false;
+  }
+  if (subject.value === "") {
+    subjectError.textContent = "You need to enter an subject.";
+  }
+  if (subject.value.length < 15) {
+    subjectError.textContent = `The subject should be at least 15 characters; you entered ${subject.value.length}.`;
+  } else {
+    subjectError.textContent = "";
+    subject.className = "valid";
+    subjectValidity = true;
+  }
+}
+subject.addEventListener("input", () => {
   try {
-    if (subject.validity.valid) {
-      subjectError.textContent = "";
-      subjectError.className = "error";
-    } else {
-      showSubjectError();
-    }
+    showSubjectError();
   } catch (error) {
     generalErrorMessage(error);
     console.log(error);
@@ -83,79 +103,65 @@ subject.addEventListener("input", (event) => {
 // Message validation
 const message = document.querySelector("#message");
 const messageError = document.querySelector(".validation-message-message");
+let messageValidity;
 
-message.addEventListener("input", (event) => {
+function showMessageError() {
+  if (message.value === "" || message.value.length < 25) {
+    message.className = "invalid";
+    messageError.className = "error active";
+    messageValidity = false;
+  }
+  if (message.value === "") {
+    messageError.textContent = "You need to enter a message.";
+  }
+  if (message.value.length < 25) {
+    messageError.textContent = `The subject should be at least 25 characters; you entered ${message.value.length}.`;
+  } else {
+    messageError.textContent = "";
+    message.className = "valid";
+    messageValidity = true;
+  }
+}
+
+message.addEventListener("input", () => {
   try {
-    if (message.validity.valid) {
-      messageError.textContent = "";
-      messageError.className = "error";
-    } else {
-      showMessageError();
-    }
+    showMessageError();
   } catch (error) {
     generalErrorMessage(error);
     console.log(error);
   }
 });
 
-// error-messages
-function showSubjectError() {
-  try {
-    if (subject.validity.valueMissing) {
-      subjectError.textContent = "You need to enter an subject.";
-    } else if (subject.validity.typeMismatch) {
-      subjectError.textContent = "Entered value needs to be a subject.";
-    } else if (subject.validity.tooShort) {
-      subjectError.textContent = `The subject should be at least ${subject.minLength} characters; you entered ${subject.value.length}.`;
-    }
-    subjectError.className = "error active";
-  } catch (error) {
-    generalErrorMessage(error);
-    console.log(error);
+const checkbox = document.querySelector("#checkbox");
+const checkboxLabel = document.querySelector(".checkbox-label");
+
+checkbox.addEventListener("click", () => {
+  checkboxLabel.classList.toggle("checked");
+  if (checkbox.checked) {
+    checkboxLabel.textContent = "You have accept whatever to be able to send your message";
   }
-}
-function showEmailError() {
-  try {
-    if (email.validity.valueMissing) {
-      emailError.textContent = "You need to enter an email address.";
-    } else if (email.validity.typeMismatch) {
-      emailError.textContent = "Entered value needs to be an email address.";
-    } else if (email.validity.tooShort) {
-      emailError.textContent = `Email should be at least ${email.minLength} characters; you entered ${email.value.length}.`;
-    }
-    emailError.className = "error active";
-  } catch (error) {
-    generalErrorMessage(error);
-    console.log(error);
+  if (!checkbox.checked) {
+    checkboxLabel.textContent = "Accept whatever to be able to send your message";
   }
-}
-function showMessageError() {
-  try {
-    if (message.validity.valueMissing) {
-      messageError.textContent = "You need to enter a message.";
-    } else if (message.validity.typeMismatch) {
-      messageError.textContent = "Entered value needs to be a message.";
-    } else if (message.validity.tooShort) {
-      messageError.textContent = `The message should be at least ${message.minLength} characters; you entered ${message.value.length}.`;
-    }
-    messageError.className = "error active";
-  } catch (error) {
-    generalErrorMessage(error);
-    console.log(error);
+});
+
+//show error message when submitting form -
+//fix the send button so that it actually submits
+
+const form = document.querySelector("form");
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const checkedEmail = checkIfEmail(email.value);
+  showNameError();
+  showEmailError(checkedEmail);
+  showSubjectError();
+  showMessageError();
+
+  if (nameValidity && messageValidity && subjectValidity && emailValidity && checkbox.checked) {
+    console.log("ok");
+    alert("Thank you for your message. We will answer you as soon as we can.");
+    // form.submit();
+    form.reset();
   }
-}
-function showNameError() {
-  try {
-    if (nameInput.validity.valueMissing) {
-      nameError.textContent = "You need to enter a name.";
-    } else if (nameInput.validity.typeMismatch) {
-      nameError.textContent = "Entered value needs to be a name.";
-    } else if (nameInput.validity.tooShort) {
-      nameError.textContent = `The name should be at least ${nameInput.minLength} characters; you entered ${nameInput.value.length}.`;
-    }
-    nameError.className = "error active";
-  } catch (error) {
-    generalErrorMessage(error);
-    console.log(error);
-  }
-}
+});

@@ -52,8 +52,8 @@ async function renderBlogPost() {
     const commentsUrl = blogPost._links.replies["0"].href;
     const allComments = await fetchComments(commentsUrl);
 
-    console.log(blogPost);
-    console.log(commentsUrl);
+    // console.log(blogPost);
+    // console.log(commentsUrl);
 
     displayPost.innerHTML += `
     <div class="post-title">
@@ -117,6 +117,8 @@ async function renderBlogPost() {
       <form class="comment-form">
         <label for="author">Author</label>
         <input class="new-comment-field" type="text" name="author" id="author" placeholder="Name" required>
+        <label for="email">Email</label>
+        <input class="new-comment-field" type="email" name="email" id="email" placeholder="Email" required>
         <label for="author">Comment</label>
         <textarea class="new-comment-field" name="comment" id="comment" placeholder="Type comment here..." required></textarea>
       </form>
@@ -136,35 +138,45 @@ async function renderBlogPost() {
 
     //This function does not yet work
     //send new comment - POST to REST API
-    // function addComment() {
-    //   const postId = blogPost.id;
-    //   const commentAuthor = document.querySelector("#author").value;
-    //   const commentContent = document.querySelector("#comment").value;
-    //   const commentObj = {
-    //     post: postId,
-    //     author_name: commentAuthor,
-    //     content: commentContent,
-    //   };
-    //   const postComment = {
-    //     method: "POST",
-    //     body: JSON.stringify(commentObj),
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //   };
-    //   // FIX THIS IF YOU HAVE TIME/
-    //   // fetch(commentsUrl, postComment)
-    //   //   .then((response) => response.json())
-    //   //   .then((data) => {
-    //   //     console.log(data);
-    //   //     // location.reload();
-    //   //   });
-    // }
-    // const sendBtn = document.querySelector(".send-CTA");
-    // sendBtn.addEventListener("click", () => {
-    //   console.log("this function is now working yet");
-    //   // addComment();
-    // });
+    function addComment() {
+      const postId = blogPost.id;
+      const commentAuthor = document.querySelector("#author").value;
+      const commentEmail = document.querySelector("#email").value;
+      const commentContent = document.querySelector("#comment").value;
+      const commentObj = {
+        post: postId,
+        email: commentEmail,
+        author_name: commentAuthor,
+        content: commentContent,
+      };
+
+      const postComment = {
+        method: "POST",
+        body: JSON.stringify(commentObj),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      // FIX THIS IF YOU HAVE TIME/
+      fetch(commentsUrl, postComment)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data.data.status);
+
+          if (data.data.status === 401) {
+            const errorWhenSending = document.createElement("div");
+            errorWhenSending.classList.add("comment-login-error");
+            errorWhenSending.innerHTML += "Sorry, you must be logged in to post comments";
+            addNewCommentsForm.appendChild(errorWhenSending);
+          }
+          // location.reload();
+        });
+    }
+    const sendBtn = document.querySelector(".send-CTA");
+    sendBtn.addEventListener("click", () => {
+      // console.log("this function is now working yet");
+      addComment();
+    });
   } catch (error) {
     generalErrorMessage(error);
     console.log(error);

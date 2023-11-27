@@ -54,27 +54,31 @@
           <fieldset class="message">
             <legend>Write us a letter, a poem, a prince, a price, what ever you may think suffice</legend>
             <label for="subject">Subject</label>
-            <input type="text" name="subject" id="subject" placeholder="Subject" minlength="15" maxlength="30" autocomplete="off" required />
+            <input type="text" name="subject" id="subject" placeholder="Subject" autocomplete="off"  /> 
+            <!-- minlength="15" maxlength="30" -->
             <p class="validation-message-subject error">Required*</p>
             <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Fill this box with your favourite song lyrics or something else thats on your mind." minlength="25" maxlength="300" autocomplete="off" required></textarea>
+            <textarea id="message" name="message" placeholder="Fill this box with your favourite song lyrics or something else thats on your mind." autocomplete="off" ></textarea>
+            <!-- minlength="25" maxlength="300"  -->
             <p class="validation-message-message error">Required*</p>
           </fieldset>
           <fieldset class="info">
             <label for="name">Name</label>
-            <input type="text" name="name" id="name" placeholder="Your preferred reference" minlength="5" maxlength="30" autocomplete="given-name" required />
+            <input type="text" name="name" id="name" placeholder="Your preferred reference" autocomplete="given-name" /> 
+            <!-- minlength="5" maxlength="30" -->
             <p class="validation-message-name error">Required*</p>
             <label for="email">Email address</label>
-            <input type="email" name="email" id="email" placeholder="Your email of choice" autocomplete="email" required />
+            <input type="text" name="email" id="email" placeholder="Your email of choice" autocomplete="email"  />
+            <!-- type="email" -->
             <p class="validation-message-email error">Required*</p>
           </fieldset>
           <fieldset class="terms">
             <input type="checkbox" name="terms" id="checkbox" value="terms" />
-            <label for="checkbox">accept whatever to be able to send your message</label>
+            <label for="checkbox" class="checkbox-label">Accept whatever to be able to send your message</label>
           </fieldset>
           <!-- fix this submitbutton thing befor delivering (here an in the commentsection) -->
           <!-- ALSO VALIDATION THROUGH JAVA INSTEAD -->
-          <input type="button" value="SEND" class="send-CTA" />
+          <input type="submit" value="SEND" class="send-CTA" />
         </form>
       </section>
     </main>

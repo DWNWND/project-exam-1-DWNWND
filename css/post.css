@@ -1,3 +1,10 @@
+.comment-login-error {
+  color: #840303;
+  padding: 0.6rem;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  text-align: center;
+  font-size: 0.9rem;
+}
 .logo-big-post {
   top: 60%;
 }
@@ -14,7 +21,7 @@
   top: 50%;
   transform: translate(-50%, -50%);
   flex-direction: column;
-  outline:none
+  outline: none;
 }
 .img-modal .closeBtn {
   margin-right: 0;

@@ -13,7 +13,7 @@ nav a {
   background-color: rgba(128, 120, 191, 0.218);
 }
 .navbar-categories a:hover {
-  color: gray;
+  color: #840303ce;
 }
 .nav-item-cat.active,
 .nav-item-cat:active {

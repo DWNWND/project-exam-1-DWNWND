@@ -1,13 +1,17 @@
-input:valid,
-textarea:valid {
-  color: green;
+/* input:valid,
+textarea:valid */
+.valid,
+.checked {
+  color: black;
   /* border: 1px solid black; */
 }
-input:invalid,
-textarea:invalid {
+/* input:invalid,
+textarea:invalid */
+.invalid {
   color: #840303;
   /* border: 1px dashed #840303; */
 }
+
 .contact-section {
   background-color: white;
   padding: 3rem 3rem 5rem 3rem;
