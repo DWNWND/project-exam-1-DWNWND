@@ -1,87 +1,12 @@
+.archive-result-section {
+  background-color: white;
+}
 .all-posts-are-displayed {
   text-decoration: none;
   font-weight: 400;
 }
-.pagetitle {
-  position: absolute;
-  text-transform: lowercase;
-  top: 80%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: "Times New Roman", Times, serif;
-  font-size: 15vw;
-  text-align: center;
-  color: white;
-  width: 100%;
-}
-.post-count {
-  display: block;
-  padding-top: 5rem;
-  text-align: center;
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-}
-.archive-result-section {
-  background-color: white;
-}
-.archive-result-section .grid-display {
-  display: grid;
-  justify-content: center;
-  gap: 1.5rem;
-  max-width: 1500px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0 2rem 2rem 2rem;
-}
-.sorting-options {
-  padding: 1rem;
-  margin-right: 1rem;
-}
-#sort-sub-category {
-  border-width: 0;
-  border-style: none;
-  border-color: none;
-  font-size: 1rem;
-}
-#sort-year,
-#sort-author {
-  border-width: 0 0 0 2px;
-  border-style: solid;
-  border-color: black;
-  font-size: 1rem;
-}
-.sorting-box {
-  display: flex;
-  border-width: 2px 0;
-  border-style: solid;
-  border-color: black;
-  background-color: white;
-}
-.sorting-header {
-  text-transform: uppercase;
-  font-size: 1.5rem;
-  background-color: white;
-  padding: 2rem 0.8rem 1rem 0.8rem;
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-weight: 700;
-}
-@media (min-width: 730px) {
-  .archive-result-section .grid-display {
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-  }
-}
-@media (min-width: 850px) {
-  .archive-result-section .grid-display {
-    padding: 0 4rem 2rem 4rem;
-  }
-}
+/* check if you can get this to work */
 @media (min-width: 1130px) {
-  .archive-result-section .grid-display {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-  /* .archive-result-section .grid-display {
-    grid-template-columns: 1fr 1fr 1fr;
-  } */
   .grid-design-1 {
     grid-column-start: 1;
     grid-column-end: 3;

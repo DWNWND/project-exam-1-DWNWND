@@ -9,7 +9,9 @@ article {
   border: 2px solid transparent;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 }
-
+article h2 {
+  font-size: 1.1rem;
+}
 .popular-posts-section article,
 .archive-result-section article,
 .related-posts-section article {
@@ -108,14 +110,19 @@ figure img {
   }
 }
 @media (min-width: 800px) {
-  .related-posts-section article {
-    background-color: #eef1e9;
-    grid-template-rows: 1fr 230px auto auto;
+  article h2 {
+    font-size: 1.3rem;
   }
   article a,
   article p,
   .post-metadata {
     font-size: 0.9rem;
+  }
+}
+@media (min-width: 900px) {
+  .related-posts-section article {
+    background-color: #eef1e9;
+    grid-template-rows: 1fr 230px auto auto;
   }
 }
 @media (min-width: 1000px) {
@@ -185,9 +192,15 @@ figure img {
 }
 
 @media (min-width: 1600px) {
+  article h2 {
+    font-size: 1.5rem;
+  }
   article a,
   article p,
   .post-metadata {
     font-size: 1rem;
+  }
+  .related-posts-section article {
+    grid-template-rows: 1fr 200px auto auto;
   }
 }

@@ -8,7 +8,7 @@ let nameValidity;
 function showNameError() {
   if (nameInput.value === "" || nameInput.value.length < 5) {
     nameInput.className = "invalid";
-    nameError.className = "error active";
+    nameError.className = "invalid-validation";
     nameValidity = false;
   }
   if (nameInput.value === "") {
@@ -45,7 +45,7 @@ function checkIfEmail(email) {
 function showEmailError(checkedEmail) {
   if (email.value === "" || !checkedEmail) {
     email.className = "invalid";
-    emailError.className = "error active";
+    emailError.className = "invalid-message";
     emailValidity = false;
   }
   if (email.value === "") {
@@ -77,7 +77,7 @@ let subjectValidity;
 function showSubjectError() {
   if (subject.value === "" || subject.value.length < 15) {
     subject.className = "invalid";
-    subjectError.className = "error active";
+    subjectError.className = "invalid-message";
     subjectValidity = false;
   }
   if (subject.value === "") {
@@ -108,7 +108,7 @@ let messageValidity;
 function showMessageError() {
   if (message.value === "" || message.value.length < 25) {
     message.className = "invalid";
-    messageError.className = "error active";
+    messageError.className = "invalid-message";
     messageValidity = false;
   }
   if (message.value === "") {

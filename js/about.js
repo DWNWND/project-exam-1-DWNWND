@@ -32,7 +32,7 @@ async function fetchPages() {
             <figcaption>${ourVisionImg.caption.rendered}</figcaption>
         </figure>
         <div>
-          <h1>${pages[1].title.rendered}</h1>
+          <h1 class="heading-about-us-page">${pages[1].title.rendered}</h1>
           <p>${pages[1].content.rendered}</p>
           <div class="icons">
             <figure><i class="fa-solid fa-screwdriver-wrench"></i></figure>
@@ -46,7 +46,7 @@ async function fetchPages() {
       aboutUs.innerHTML += `
       <div class="the-team">
         <div>
-          <h1>${pages[2].title.rendered}</h1>
+          <h1 class="heading-about-us-page">${pages[2].title.rendered}</h1>
           <p>${pages[2].content.rendered}</p>
         </div>
         <figure class="the-team-img">

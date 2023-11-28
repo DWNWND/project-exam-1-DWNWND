@@ -52,12 +52,9 @@ async function renderBlogPost() {
     const commentsUrl = blogPost._links.replies["0"].href;
     const allComments = await fetchComments(commentsUrl);
 
-    // console.log(blogPost);
-    // console.log(commentsUrl);
-
     displayPost.innerHTML += `
-    <div class="post-title">
-      <h1>${postTitle}</h1>
+    <div class="post-title-wrapper">
+      <h1 class="post-title">${postTitle}</h1>
     </div>
     <div class="post-body">
       <section class="post-info-section">
@@ -136,6 +133,10 @@ async function renderBlogPost() {
       addNewCommentsForm.classList.toggle("active");
     });
 
+    const errorWhenSending = document.createElement("div");
+    errorWhenSending.classList.add("comment-login-error");
+    addNewCommentsForm.appendChild(errorWhenSending);
+
     //This function does not yet work
     //send new comment - POST to REST API
     function addComment() {
@@ -143,9 +144,10 @@ async function renderBlogPost() {
       const commentAuthor = document.querySelector("#author").value;
       const commentEmail = document.querySelector("#email").value;
       const commentContent = document.querySelector("#comment").value;
+
       const commentObj = {
         post: postId,
-        email: commentEmail,
+        author_email: commentEmail,
         author_name: commentAuthor,
         content: commentContent,
       };
@@ -161,13 +163,11 @@ async function renderBlogPost() {
       fetch(commentsUrl, postComment)
         .then((response) => response.json())
         .then((data) => {
+          console.log(data);
           console.log(data.data.status);
 
-          if (data.data.status === 401) {
-            const errorWhenSending = document.createElement("div");
-            errorWhenSending.classList.add("comment-login-error");
-            errorWhenSending.innerHTML += "Sorry, you must be logged in to post comments";
-            addNewCommentsForm.appendChild(errorWhenSending);
+          if (data.data.status === 401 || data.data.status === 400 ) {
+            errorWhenSending.innerText = `${data.message}`;
           }
           // location.reload();
         });

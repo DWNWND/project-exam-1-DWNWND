@@ -122,9 +122,9 @@ nav a {
 /* Modal menu: Mobile */
 .hamburger-toggle {
   position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  padding: 1rem;
+  /* top: 0.5rem; */
+  right: 0rem;
+  padding: 0.8rem 1.2rem;
   font-size: 1.3rem;
   color: black;
 }

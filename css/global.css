@@ -7,11 +7,11 @@
   margin: 0;
   padding: 0;
 }
-h2 {
-  font-size: 1.1rem;
-}
 ul {
   list-style-type: none;
+}
+ol {
+  margin-left: 3rem;
 }
 body {
   /* max-width: 1600px; */
@@ -19,13 +19,58 @@ body {
   margin-right: auto;
   background-color: white;
 }
+h1.pagetitle,
+h1.heading-general,
+h1.post-title {
+  font-family: "Times New Roman", Times, serif;
+  text-align: center;
+}
+h1.pagetitle {
+  position: absolute;
+  text-transform: lowercase;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 15vw;
+  color: white;
+  width: 100%;
+}
+h1.heading-general,
+h1.post-title {
+  font-size: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+h1.heading-about-us-page {
+  font-family: "Vibur", cursive, "Times New Roman", Times, serif;
+  font-size: 3rem;
+  font-weight: 200;
+}
+h1.heading-related-posts {
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+.has-large-font-size {
+  font-size: 1.4rem;
+}
+.has-medium-font-size {
+  font-size: 1.4rem;
+}
 .grid-display {
   display: grid;
-  /* justify-content: center; denne stilen funker ikke for postene på index.html*/
+  /* justify-content: center; denne stilen funker ikke for postene på index.html -usikker på om dette fortsatt gjelder*/
   gap: 1.5rem;
   margin-left: auto;
   margin-right: auto;
+  padding: 0rem 1.5rem 0.5rem 1.5rem;
+  justify-content: center;
+  max-width: 1500px;
 }
+.related-posts-section .grid-display {
+  max-width: 1100px;
+}
+
 .more-btn {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   font-weight: 600;
@@ -78,13 +123,7 @@ body {
 .error-section {
   background-color: white;
 }
-.loader,
-.loader-newly-published,
-.loader-popular-posts,
-.loader-about-us-index .loader-test,
-.loader-posts,
-.loader-related-posts,
-.loader-about-us {
+.loader {
   font-size: 1rem;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   text-align: center;
@@ -93,7 +132,6 @@ body {
 }
 .loader-list,
 .loader-posts,
-.loader-related-posts.loader-about,
 .loader-related-posts {
   background-color: white;
   padding: 1rem;
@@ -102,23 +140,8 @@ body {
   background-color: #f5f5f5;
   padding: 1rem;
 }
-ol {
-  margin-left: 3rem;
-}
-.has-large-font-size {
-  font-size: 1.4rem;
-}
-.has-medium-font-size {
-  font-size: 1.4rem;
-}
 .related-posts-section {
   background-color: white;
-}
-.related-posts-section .grid-display {
-  padding: 0rem 1.5rem 0.5rem 1.5rem;
-  max-width: 1100px;
-  margin-right: auto;
-  margin-left: auto;
 }
 .related-posts-title {
   background-color: #f9f9f9;
@@ -127,25 +150,37 @@ ol {
   text-align: center;
   padding: 1rem;
 }
-h3 {
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-weight: 700;
-  font-size: 1.5rem;
-}
 
 @media (min-width: 500px) {
-  .related-posts-section .grid-display {
+  .grid-display {
     padding: 0rem 3rem 1rem 3rem;
+    gap: 2rem;
   }
 }
+@media (min-width: 700px) {
+  .newly-published-section .grid-display {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 750px) {
+  h1.heading-general,
+  h1.post-title {
+    font-size: 2.5rem;
+  }
+  .about-us-section .grid-display {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 @media (min-width: 800px) {
-  .related-posts-section .grid-display {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+  .grid-display {
     padding: 0 1.5rem;
   }
-  h2 {
-    font-size: 1.3rem;
+}
+@media (min-width: 900px) {
+  .newly-published-section .grid-display,
+  .related-posts-section .grid-display {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
 @media (min-width: 1100px) {
@@ -156,16 +191,20 @@ h3 {
     padding: 2rem;
   }
 }
+@media (min-width: 1130px) {
+  .popular-posts-section .grid-display,
+  .archive-result-section .grid-display {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  h1.heading-related-posts {
+    font-size: 2rem;
+  }
+}
 @media (min-width: 1300px) {
   .more-btn {
     font-size: 1.1rem;
   }
-}
-@media (min-width: 1600px) {
-  /* body {
-    margin-top: 2rem;
-  } */
-  h2 {
-    font-size: 1.5rem;
+  h1.heading-general {
+    font-size: 3rem;
   }
 }
