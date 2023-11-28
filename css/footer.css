@@ -33,7 +33,6 @@
 .some-cta {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   color: #53584A;
-  /* text-shadow: 8px 6px 2px #ffffff; */
   font-size: 5vw;
   font-weight: 600;
   padding: 1rem;
@@ -69,7 +68,6 @@
 @media (min-width: 500px) {
   .logo-gray-footer img {
     width: 30vw;
-    /* filter: none; */
   }
   .some-cta {
     font-size: 4vw;
@@ -85,10 +83,6 @@
   .some-icons i {
     font-size: 2rem;
   }
-  /* .some-icons a {
-    height: 5vh;
-    width: 5vh;
-  } */
   .some-icons i:hover {
     font-size: 2.2rem;
   }
@@ -106,10 +100,6 @@
   .some-icons i {
     font-size: 2.5rem;
   }
-  /* .some-icons a {
-    height: 7vh;
-    width: 7vh;
-  } */
   .some-icons i:hover {
     font-size: 2.7rem;
   }

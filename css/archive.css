@@ -5,7 +5,7 @@
   text-decoration: none;
   font-weight: 400;
 }
-/* check if you can get this to work */
+/* check if you can get this pattern thing to work */
 @media (min-width: 1130px) {
   .grid-design-1 {
     grid-column-start: 1;

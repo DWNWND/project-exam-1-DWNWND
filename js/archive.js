@@ -40,7 +40,6 @@ async function renderPageName() {
       pageTitle.innerHTML += `${currentTag.name}`;
       metaTitle.textContent += " : " + currentTag.name;
       pathDirectory.innerHTML = ` <a href="/./index.html">Home</a> > <a href="/html/archive.html?key=archive&id=19">Archive</a> > <a href="#">Category: ${currentTag.name}</a>`;
-      //ADD DISPLAY THE TAG-NAME ON THE PAGE SOMEWHERE
     }
     if (!tag && page.ok) {
       const currentCategory = await page.json();

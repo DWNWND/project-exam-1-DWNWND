@@ -73,6 +73,8 @@ export function renderComments(comments, div) {
   }
 }
 
+
+//CLEAN UP THE IMAGE MODAL - CHECK HOW YOU DID FOR ALEX
   //img-modal
   export function addImgModal(src) {
     //modal-dialog-element

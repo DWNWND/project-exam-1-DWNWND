@@ -117,7 +117,7 @@ async function renderPopularPostsTag11() {
 renderPopularPostsTag11();
 
 
-//add the right image here!!!! 
+//add the right images here!
 async function fetchPages() {
   try {
     const response = await fetch(`${url}pages`);

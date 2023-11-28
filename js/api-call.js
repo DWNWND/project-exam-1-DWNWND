@@ -76,22 +76,6 @@ export async function fetchPostsByCategory() {
   }
 }
 
-// //API call all pages (list)
-// const pagesQueryString = "pages";
-// export async function fetchAllPages() {
-//   try {
-//     const response = await fetch(url + pagesQueryString);
-//     if (response.ok) {
-//       const results = await response.json();
-//       return results;
-//     } else {
-//       throw new Error("Error when executing fetchAllPages - fetching API");
-//     }
-//   } catch (error) {
-//     apiErrorMessage(error);
-//     console.log(error);
-//   }
-// }
 //API call post-spesific comments
 export async function fetchComments(commentUrl) {
   try {

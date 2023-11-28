@@ -198,15 +198,6 @@ label:last-of-type {
   }
 }
 @media (min-width: 800px) {
-  /* .related-posts-section .grid-display {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    padding: 0;
-  }
-  .related-posts-section {
-    padding-bottom: 2rem;
-    padding-top:1rem;
-  } */
   .blogpost-section {
     padding-bottom: 7rem;
   }
