@@ -22,7 +22,7 @@ export function openPostOnClick() {
       window.location.href = `/html/post.html?key=${article.id}`;
     });
   });
-  }
+}
 
 // loading-indicator
 export function showLoadingIndicator(section) {
@@ -73,34 +73,33 @@ export function renderComments(comments, div) {
   }
 }
 
-
 //CLEAN UP THE IMAGE MODAL - CHECK HOW YOU DID FOR ALEX
-  //img-modal
-  export function addImgModal(src) {
-    //modal-dialog-element
-    const imgModal = document.createElement("dialog");
-    imgModal.classList.add("img-modal");
-    document.querySelector("main").append(imgModal);
+//img-modal
+export function addImgModal(src) {
+  //modal-dialog-element
+  const imgModal = document.createElement("dialog");
+  imgModal.classList.add("img-modal", "modal");
+  document.querySelector("main").append(imgModal);
 
-    //modal-content
-    const closeBtn = document.createElement("i");
-    closeBtn.classList.add("fa-solid", "fa-xmark", "closeBtn");
-    imgModal.append(closeBtn);
+  //modal-content
+  const closeBtn = document.createElement("i");
+  closeBtn.classList.add("fa-solid", "fa-xmark", "closeBtn");
+  imgModal.append(closeBtn);
 
-    const bigImage = document.createElement("img");
-    bigImage.setAttribute("src", src);
-    imgModal.append(bigImage);
+  const bigImage = document.createElement("img");
+  bigImage.setAttribute("src", src);
+  imgModal.append(bigImage);
 
-    // close modal clicking X
-    closeBtn.addEventListener("click", () => {
+  // close modal clicking X
+  closeBtn.addEventListener("click", () => {
+    imgModal.remove();
+  });
+
+  //close modal by clicking outside
+  function onClick(event) {
+    if (event.target === imgModal) {
       imgModal.remove();
-    });
-
-    //close modal by clicking outside
-    function onClick(event) {
-      if (event.target === imgModal) {
-        imgModal.remove();
-      }
     }
-    imgModal.addEventListener("click", onClick);
   }
+  imgModal.addEventListener("click", onClick);
+}

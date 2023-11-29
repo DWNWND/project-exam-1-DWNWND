@@ -6,19 +6,41 @@ nav {
   position: relative;
   background-color: white;
 }
+
+nav li {
+  padding: 0.3rem 0;
+}
 nav a {
   text-decoration: none;
+  color: black;
+  padding: 0.3rem 1rem;
 }
-.nav-item-stand:hover {
-  background-color: rgba(128, 120, 191, 0.218);
+.navbar-categories a {
+  font-weight: 500;
+  text-align: right;
+  text-transform: uppercase;
+}
+.newsletter-signup-index a,
+.navbar-categories a {
+  display: block;
 }
 .navbar-categories a:hover {
   color: #840303ce;
 }
+.nav-item-stand:hover,
+.nav-item-cat.active,
+.nav-item-cat:active {
+  border-radius: 25px;
+}
+.nav-item-stand:hover {
+  background-color: rgba(128, 120, 191, 0.218);
+}
+.nav-item-cat {
+  margin: 0.5rem;
+}
 .nav-item-cat.active,
 .nav-item-cat:active {
   background-color: #840303ce;
-  border-radius: 25px;
 }
 .navbar-categories a.active,
 .navbar-categories a:active {
@@ -33,46 +55,34 @@ nav a {
 .logo-mobile img {
   width: 6rem;
 }
-.nav-item-stand,
-.nav-item-cat {
-  text-transform: uppercase;
-}
 .navbar-standard,
 .navbar-categories,
 .nav-item-stand a,
 .newsletter-signup a {
   display: block;
 }
-.navbar-standard {
+.navbar-standard,
+.navbar-categories {
   background-color: white;
 }
 .navbar-categories {
-  background-color: white;
   border-bottom: 2px solid black;
   border-top: 2px solid black;
-}
-.navbar-standard a {
-  color: black;
-  padding: 0.3rem 1rem;
-}
-.navbar-categories a {
-  color: rgb(0, 0, 0);
-  display: block;
-  padding: 0.3rem 1rem;
-  font-weight: 500;
-  text-align: right;
 }
 .newsletter-signup {
   text-align: center;
   font-weight: 600;
 }
-.navbar-standard li,
-.navbar-categories li {
-  padding: 0.3rem 0;
-}
 .icon-links,
 .header-general-wrapper {
   display: none;
+}
+.hamburger-toggle {
+  position: absolute;
+  right: 0rem;
+  padding: 0.8rem 1.2rem;
+  font-size: 1.3rem;
+  color: black;
 }
 
 /* Navbar general(exl.index.html): Mobile */
@@ -103,37 +113,6 @@ nav a {
   font-weight: 600;
   background-color: white;
 }
-.newsletter-signup-index a {
-  display: block;
-  color: black;
-  padding: 0.3rem 1rem;
-}
-/* Modal menu: Mobile */
-.hamburger-toggle {
-  position: absolute;
-  right: 0rem;
-  padding: 0.8rem 1.2rem;
-  font-size: 1.3rem;
-  color: black;
-}
-.nav-modal {
-  width: 100%;
-  max-width: 100%;
-  max-height: 100%;
-  background: rgb(255, 255, 255);
-  transition: all ease 0.5s;
-  border: none;
-  position: fixed;
-}
-/* everything considering closeBtn can be moved to global - because its also on the modals for img- maybe everything considering modal. an maybe use the modal pseudo command */
-.closeBtn:hover {
-  color: rgb(80, 50, 50);
-  cursor: pointer;
-}
-dialog::backdrop {
-  background-color: rgba(0, 0, 0, 0.174);
-  cursor: pointer;
-}
 
 /* Open screensize header */
 @media (min-width: 800px) {
@@ -146,7 +125,6 @@ dialog::backdrop {
   .pagetitle {
     display: none;
   }
-  dialog,
   .navbar-standard,
   .navbar-categories,
   .nav-icon-stand {
@@ -155,8 +133,8 @@ dialog::backdrop {
   .nav-icon-stand a {
     display: inline-block;
   }
-  .nav-modal {
-    position: relative;
+  .nav-item-cat {
+    margin: 0;
   }
   .navbar-categories {
     padding: 0.3rem 1rem;
@@ -174,12 +152,31 @@ dialog::backdrop {
     justify-content: center;
     gap: 1.6rem;
   }
+  .navbar-standard li {
+    padding: 0;
+  }
+  .standard-links,
+  .icon-links {
+    display: flex;
+    align-items: center;
+  }
+  .icon-links {
+    width: 205px;
+    margin-left: auto;
+    gap: 20px;
+  }
+  .header-general-wrapper a {
+    padding: 0;
+  }
   .navbar-standard a {
-    text-align: center;
     width: 100%;
   }
-  .navbar-categories a {
+  .navbar-categories a,
+  .navbar-standard a {
     text-align: center;
+  }
+  .nav-icon-stand i {
+    font-size: 1.5rem;
   }
   .logo-big {
     display: block;
@@ -201,33 +198,15 @@ dialog::backdrop {
     width: 100%;
     height: 100%;
   }
-  .standard-links,
-  .icon-links {
-    display: flex;
-    align-items: center;
-  }
-  .icon-links {
-    width: 205px;
-    margin-left: auto;
-    gap: 20px;
-  }
-  .navbar-standard li {
-    padding: 0;
-  }
-  .nav-icon-stand i {
-    font-size: 1.5rem;
-  }
 }
 @media (min-width: 1100px) {
-  .navbar-categories {
+  .navbar-categories,
+  .navbar-categories-alignment {
     display: flex;
     align-items: center;
     justify-content: center;
   }
   .navbar-categories-alignment {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     gap: 1.6rem;
   }
 }

@@ -9,7 +9,7 @@
   top: 60%;
 }
 /* modal */
-.img-modal {
+/* .img-modal {
   display: flex;
   width: 70%;
   max-width: 100%;
@@ -22,18 +22,18 @@
   transform: translate(-50%, -50%);
   flex-direction: column;
   outline: none;
-}
-.img-modal .closeBtn {
+} */
+/* .img-modal .closeBtn {
   margin-right: 0;
   margin-left: auto;
   padding: 1rem;
   font-size: 1.3rem;
-}
-.img-modal img {
+} */
+/* .img-modal img {
   width: 100%;
   height: 90vh;
   object-fit: cover;
-}
+} */
 
 /* blogpost */
 .blogpost-section {

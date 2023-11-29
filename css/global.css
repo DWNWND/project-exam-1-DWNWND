@@ -1,6 +1,7 @@
 @import url("/css/navbar.css");
 @import url("/css/footer.css");
 @import url("/css/thumbnails-figures.css");
+@import url("/css/modals.css");
 
 * {
   box-sizing: border-box;
