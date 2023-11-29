@@ -17,7 +17,7 @@
 }
 .contact-section {
   background-color: white;
-  padding: 3rem 3rem 5rem 3rem;
+  padding: 1.5rem;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 .contact-section form,
@@ -55,7 +55,7 @@
 }
 .contact-section legend {
   text-align: center;
-  padding: 2rem 3rem 3rem 3rem;
+  padding-bottom: 3rem;
   font-size: 1.2rem;
 }
 #subject,
@@ -98,9 +98,15 @@
   .send-CTA {
     padding: 0.8rem;
   }
+  .contact-section {
+    padding: 3rem 3rem 5rem 3rem;
+  }
   .contact-section form {
     max-width: 550px;
     margin-left: auto;
     margin-right: auto;
+  }
+  .contact-section legend {
+    padding: 2rem 3rem 3rem 3rem;
   }
 }
