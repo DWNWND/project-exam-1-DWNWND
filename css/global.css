@@ -55,6 +55,9 @@ h1.heading-related-posts {
   font-weight: 700;
   font-size: 1.5rem;
 }
+h2.heading-comments {
+  font-size: 1rem;
+}
 .has-large-font-size {
   font-size: 1.4rem;
 }
@@ -77,7 +80,7 @@ h1.heading-related-posts {
 .more-btn {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   font-weight: 600;
-  color: rgb(112, 112, 112);
+  color: rgb(0, 0, 0);
   font-size: 0.9rem;
   text-align: center;
   display: block;
@@ -86,7 +89,7 @@ h1.heading-related-posts {
   text-decoration: underline;
 }
 .more-btn:hover {
-  color: black;
+  color: rgb(81, 81, 81);
 }
 .directory {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;

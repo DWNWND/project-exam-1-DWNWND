@@ -111,14 +111,14 @@ async function renderBlogPost() {
     const addNewCommentsForm = document.createElement("form");
     addNewCommentsForm.classList.add("formelement");
     addNewCommentsForm.innerHTML += `
-      <h4>Write us a comment</h4>
+      <h2 class="heading-comments">Write us a comment</h2>
       <form class="comment-form">
         <label for="author">Author</label>
-        <input class="new-comment-field" type="text" name="author" id="author" placeholder="Name" required>
+        <input name="author" id="author" class="new-comment-field" type="text" placeholder="Name" required>
         <label for="email">Email</label>
-        <input class="new-comment-field" type="email" name="email" id="email" placeholder="Email" required>
-        <label for="author">Comment</label>
-        <textarea class="new-comment-field" name="comment" id="comment" placeholder="Type comment here..." required></textarea>
+        <input name="email" id="email" class="new-comment-field" type="email" placeholder="Email" required>
+        <label for="comment">Comment</label>
+        <textarea  name="comment" id="comment" class="new-comment-field" placeholder="Type comment here..." required></textarea>
       </form>
       <input type="button" value="post comment" class="send-CTA">`;
     commentSection.appendChild(addNewCommentsForm);

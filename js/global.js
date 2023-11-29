@@ -7,7 +7,7 @@ export function showMoreBtn(htmlElement, link) {
     const moreBtn = document.createElement("a");
     moreBtn.setAttribute("href", link);
     moreBtn.classList.add("more-btn");
-    moreBtn.innerText = "click for more";
+    moreBtn.innerText = "click here more similar posts";
     htmlElement.appendChild(moreBtn);
   } catch (error) {
     generalErrorMessage(error);
