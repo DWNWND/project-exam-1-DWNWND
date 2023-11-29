@@ -11,7 +11,7 @@ navModal.innerHTML += `
   <i class="fa-solid fa-xmark"></i>
 </a>
 <div class="logo-mobile">
-  <a href="/./index.html"><img src="/img/logo-black.png" /></a>
+  <a href="/./index.html"><img src="/img/logo-black.png" alt="small Microtic logo - Home button"/></a>
 </div>
 <div class="navbar-standard">
   <ul class="navbar-standard-alignment">
@@ -35,8 +35,8 @@ navModal.innerHTML += `
   </ul>
 </div>
 <div class="header-general-wrapper">
-  <img src="/img/header-img_unsplash.jpg" class="header-img" />
-  <a href="/./index.html"><img src="/img/logo-white-big.svg" class="logo-big" /></a>
+  <img src="/img/header-img_unsplash.jpg" class="header-img" alt="header - image of a girl in the back of a van with the doors open to a snowey landscape"/>
+  <a href="/./index.html"><img src="/img/logo-white-big.svg" class="logo-big" alt="bit Microtic logo"/></a>
 </div>
 <div class="navbar-categories">
   <ul class="navbar-categories-alignment">
@@ -106,7 +106,7 @@ footer.innerHTML += `
 </div>
 </div>
 <div class="logo-footer-wrapper">
-<a href="/./index.html" class="logo-gray-footer"><img src="/img/logo-big-3.svg" /></a>
+<a href="/./index.html" class="logo-gray-footer"><img src="/img/logo-big-3.svg" alt="big Microtic logo"/></a>
 </div>`;
 
 // scroll to top btn

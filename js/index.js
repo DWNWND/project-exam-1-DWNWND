@@ -1,4 +1,4 @@
-import { fetchAllBlogPosts, url } from "./api-call.js";
+import { fetchAllBlogPosts, url, fetchSpesificImages } from "./api-call.js";
 import { showLoadingIndicator, showMoreBtn, openPostOnClick } from "./global.js";
 import { generalErrorMessage } from "./error-handling.js";
 
@@ -116,7 +116,6 @@ async function renderPopularPostsTag11() {
 }
 renderPopularPostsTag11();
 
-
 //add the right images here!
 async function fetchPages() {
   try {
@@ -125,9 +124,12 @@ async function fetchPages() {
 
     if (response.ok) {
       const pages = await response.json();
+      const ourVisionImageApi = pages[1]._links["wp:featuredmedia"]["0"].href;
+      const ourVisionImg = await fetchSpesificImages(ourVisionImageApi);
+
       aboutUsWrapper.innerHTML += `
       <figure>
-        <img src="/img/placeholder-2.jpg" />
+        <img src="${ourVisionImg.source_url}" alt="${ourVisionImg.alt_text}"/>
       </figure>
       <div class="about-us-info">
         ${pages[1].content.rendered}

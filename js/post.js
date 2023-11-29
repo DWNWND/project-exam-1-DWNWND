@@ -86,9 +86,10 @@ async function renderBlogPost() {
     image.forEach(function (img) {
       img.addEventListener("click", (event) => {
         const imgSrc = event.target.src;
+        const imgAlt = event.target.alt;
 
         //add dialog to DOM and add the fetched img src to the dialog
-        addImgModal(imgSrc);
+        addImgModal(imgSrc, imgAlt);
 
         //fetch dialoge and open it as modal
         const newModal = document.querySelector(".img-modal");
@@ -166,7 +167,7 @@ async function renderBlogPost() {
           console.log(data);
           console.log(data.data.status);
 
-          if (data.data.status === 401 || data.data.status === 400 ) {
+          if (data.data.status === 401 || data.data.status === 400) {
             errorWhenSending.innerText = `${data.message}`;
           }
           // location.reload();

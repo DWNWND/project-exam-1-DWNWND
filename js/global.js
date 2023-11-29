@@ -75,7 +75,7 @@ export function renderComments(comments, div) {
 
 //CLEAN UP THE IMAGE MODAL - CHECK HOW YOU DID FOR ALEX
 //img-modal
-export function addImgModal(src) {
+export function addImgModal(src, alt) {
   //modal-dialog-element
   const imgModal = document.createElement("dialog");
   imgModal.classList.add("img-modal", "modal");
@@ -88,6 +88,7 @@ export function addImgModal(src) {
 
   const bigImage = document.createElement("img");
   bigImage.setAttribute("src", src);
+  bigImage.setAttribute("alt", alt);
   imgModal.append(bigImage);
 
   // close modal clicking X
