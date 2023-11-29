@@ -67,15 +67,13 @@ figcaption {
   flex-direction: column;
   gap: 1rem;
 }
-.view-more-comments-CTA {
+.view-more-comments-CTA,
+.send-CTA {
   background-color: #5c4e43;
   color: white;
 }
-
 /* same on the contact page */
 .send-CTA {
-  background-color: #aea7a2;
-  color: rgb(255, 255, 255);
   border: none;
   margin-top: 1rem;
 }
