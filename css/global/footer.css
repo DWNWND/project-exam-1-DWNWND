@@ -3,7 +3,6 @@
   position: fixed;
   bottom: 20px;
   right: 30px;
-  color: #840303ce;
   cursor: pointer;
   padding: 0.8rem;
   border-radius: 50%;
@@ -13,12 +12,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.back-to-top:hover {
   background-color: rgba(118, 118, 118, 0.218);
   color: white;
   filter: drop-shadow(4px 5px 5px rgba(0, 0, 0, 0.175));
+}
+
+.back-to-top:hover {
+  color: #840303ce;
 }
 
 /* footer */

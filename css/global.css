@@ -1,7 +1,7 @@
-@import url("/css/navbar.css");
-@import url("/css/footer.css");
-@import url("/css/thumbnails-figures.css");
-@import url("/css/modals.css");
+@import url("/css/global/navbar.css");
+@import url("/css/global/footer.css");
+@import url("/css/global/thumbnails-figures.css");
+@import url("/css/global/modals.css");
 
 * {
   box-sizing: border-box;
@@ -74,12 +74,10 @@ h1.heading-related-posts {
 .related-posts-section .grid-display {
   max-width: 1100px;
 }
-
 .more-btn {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   font-weight: 600;
   color: rgb(112, 112, 112);
-
   font-size: 0.9rem;
   text-align: center;
   display: block;
@@ -172,7 +170,6 @@ h1.heading-related-posts {
     grid-template-columns: 1fr 1fr;
   }
 }
-
 @media (min-width: 800px) {
   .grid-display {
     padding: 0 1.5rem;

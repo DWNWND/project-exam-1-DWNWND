@@ -118,7 +118,7 @@ window.onscroll = function () {
 
 function showBtnOnScroll() {
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    scrollBtn.style.display = "block";
+    scrollBtn.style.display = "flex";
   } else {
     scrollBtn.style.display = "none";
   }
