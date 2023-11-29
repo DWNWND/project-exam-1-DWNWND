@@ -8,7 +8,7 @@ let nameValidity;
 function showNameError() {
   if (nameInput.value === "" || nameInput.value.length < 5) {
     nameInput.className = "invalid";
-    nameError.className = "invalid-validation";
+    nameError.className = "invalid-message";
     nameValidity = false;
   }
   if (nameInput.value === "") {
