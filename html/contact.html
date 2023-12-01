@@ -23,8 +23,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://kit.fontawesome.com/279950e6bf.js" crossorigin="anonymous"></script>
-    <script defer type="module" src="/js/header-nav-footer.js"></script>
-    <script defer type="module" src="/js/contact.js"></script>
     <link rel="stylesheet" href="/css/global.css" />
     <link rel="stylesheet" href="/css/contact.css" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -50,29 +48,35 @@
     </header>
     <main>
       <section class="contact-section">
-        <!-- Add loader and check this form element-->
         <form action="" method="POST">
-          <legend>Write us a letter, a poem, a prince, a price, what ever you may think suffice</legend>
-          <label for="subject">Subject</label>
-          <input type="text" name="subject" id="subject" placeholder="Subject" autocomplete="off" />
-          <p class="validation-message validation-message-subject error">Required*</p>
-          <label for="message">Message</label>
-          <textarea id="message" name="message" placeholder="Fill this box with your favourite song lyrics or something else thats on your mind." autocomplete="off"></textarea>
-          <p class="validation-message validation-message-message error">Required*</p>
-          <label for="name">Name</label>
-          <input type="text" name="name" id="name" placeholder="Your preferred reference" autocomplete="given-name" />
-          <p class="validation-message validation-message-name">Required*</p>
-          <label for="email">Email address</label>
-          <input type="text" name="email" id="email" placeholder="Your email of choice" autocomplete="email" />
-          <p class="validation-message validation-message-email error">Required*</p>
-          <input type="checkbox" name="terms" id="checkbox" value="terms" />
-          <label for="checkbox" class="checkbox-label">Accept whatever to be able to send your message</label>
-          <!-- fix this submitbutton thing befor delivering (here an in the commentsection) -->
+          <fieldset class="message">
+            <legend>Write us a letter, a poem, a prince, a price, what ever you may think suffice</legend>
+            <label for="subject">Subject</label>
+            <input type="text" name="subject" id="subject" placeholder="Subject" autocomplete="off" />
+            <p class="validation-message validation-message-subject error">Required*</p>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Fill this box with your favourite song lyrics or something else thats on your mind." autocomplete="off"></textarea>
+            <p class="validation-message validation-message-message error">Required*</p>
+          </fieldset>
+          <fieldset class="info">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" placeholder="Your preferred reference" autocomplete="given-name" />
+            <p class="validation-message validation-message-name">Required*</p>
+            <label for="email">Email address</label>
+            <input type="text" name="email" id="email" placeholder="Your email of choice" autocomplete="email" />
+            <p class="validation-message validation-message-email error">Required*</p>
+          </fieldset>
+          <fieldset class="terms">
+            <input type="checkbox" name="terms" id="checkbox" value="terms" />
+            <label for="checkbox" class="checkbox-label">Accept whatever to be able to send your message</label>
+          </fieldset>
           <input type="submit" value="SEND" class="send-CTA" />
         </form>
       </section>
     </main>
     <footer></footer>
     <div class="back-to-top"><i class="fa-solid fa-chevron-up"></i></div>
+    <script type="module" src="/js/header-nav-footer.js"></script>
+    <script type="module" src="/js/contact.js"></script>
   </body>
 </html>
