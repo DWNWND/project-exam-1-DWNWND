@@ -37,13 +37,13 @@ async function renderPageName() {
 
     if (!key && page.ok) {
       const currentTag = await page.json();
-      pageTitle.innerHTML += `${currentTag.name}`;
+      pageTitle.innerText = `${currentTag.name}`;
       metaTitle.textContent += " : " + currentTag.name;
       pathDirectory.innerHTML = ` <a href="/./index.html">Home</a> > <a href="/html/archive.html?key=archive&id=19">Archive</a> > <a href="#">Category: ${currentTag.name}</a>`;
     }
     if (!tag && page.ok) {
       const currentCategory = await page.json();
-      pageTitle.innerHTML += `${currentCategory[0].name}`;
+      pageTitle.innerText = `${currentCategory[0].name}`;
       metaTitle.textContent += " : " + currentCategory[0].name;
       pathDirectory.innerHTML = ` <a href="/./index.html">Home</a> > <a href="/html/archive.html?key=archive&id=19">Archive</a> > <a href="#">Category: ${currentCategory[0].name}</a>`;
     }
