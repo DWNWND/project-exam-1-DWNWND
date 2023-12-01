@@ -16,7 +16,6 @@
   color: white;
   filter: drop-shadow(4px 5px 5px rgba(0, 0, 0, 0.175));
 }
-
 .back-to-top:hover {
   color: #840303ce;
 }
@@ -38,7 +37,6 @@
   padding: 1rem;
   text-align: center;
 }
-
 .some-icons {
   display: flex;
   flex-direction: row;

@@ -189,7 +189,6 @@ figure img {
     height: 220px;
   }
 }
-
 @media (min-width: 1600px) {
   article h2 {
     font-size: 1.5rem;

@@ -36,7 +36,6 @@ dialog::backdrop {
   max-height: 90vh;
   object-fit: contain;
 }
-
 @media (min-width: 800px) {
   dialog {
     display: block;
