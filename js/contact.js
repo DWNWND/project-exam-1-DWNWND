@@ -145,9 +145,7 @@ checkbox.addEventListener("click", () => {
   }
 });
 
-//show error message when submitting form -
-//fix the send button so that it actually submits
-
+//sending form - i did not manage to finish this funciton so that it actually sends the message
 const form = document.querySelector("form");
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -161,9 +159,5 @@ form.addEventListener("submit", (event) => {
   if (nameValidity && messageValidity && subjectValidity && emailValidity && checkbox.checked) {
     form.innerHTML = `<span class="message-sent">Thank you for your message.</span>
                       <span class="message-sent">We will answer you as soon as possible.</span>`;
-
-    // alert("Thank you for your message. We will answer you as soon as we can.");
-    // form.submit();
-    // form.reset();
   }
 });

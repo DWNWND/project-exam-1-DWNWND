@@ -1,11 +1,9 @@
-//render categories
 import { fetchAllCategories, key } from "./api-call.js";
 import { generalErrorMessage } from "./error-handling.js";
 
 const navModal = document.querySelector(".nav-modal");
 const footer = document.querySelector("footer");
 
-//see if you can make this code more readable/clean it up so you can add error-handling to more content
 navModal.innerHTML += `
 <a href="#" class="hamburger-toggle closeBtn">
   <i class="fa-solid fa-xmark"></i>

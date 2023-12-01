@@ -2,8 +2,6 @@ import { fetchAllBlogPosts, url, fetchSpesificImages } from "./api-call.js";
 import { showLoadingIndicator, showMoreBtn, openPostOnClick } from "./global.js";
 import { generalErrorMessage } from "./error-handling.js";
 
-// REMEMBER TO FIX THE SIZE OF THE HEADER IMG BEFORE DELIVERY
-
 let postTitle;
 let featuredImg;
 let altText;
@@ -116,7 +114,6 @@ async function renderPopularPostsTag11() {
 }
 renderPopularPostsTag11();
 
-//add the right images here!
 async function fetchPages() {
   try {
     const response = await fetch(`${url}pages`);

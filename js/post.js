@@ -1,5 +1,5 @@
 import { fetchPostById, fetchSpesificImages, fetchComments, fetchAllCategories, url } from "./api-call.js";
-import { formatDate, showLoadingIndicator, addImgModal, showMoreBtn, openPostOnClick } from "./global.js";
+import { formatDate, showLoadingIndicator, showMoreBtn, openPostOnClick } from "./global.js";
 import { generalErrorMessage } from "./error-handling.js";
 
 const metaTitle = document.querySelector("#title");
@@ -20,7 +20,6 @@ let categoryName;
 let postTitle;
 let linkToMore;
 
-//see if you can make this code more readable/clean it up
 //render blog-post
 async function renderBlogPost() {
   try {
@@ -88,8 +87,6 @@ async function renderBlogPost() {
       img.addEventListener("click", (event) => {
         const imgSrc = event.target.src;
         const imgAlt = event.target.alt;
-
-        //add dialog to DOM and add the fetched img src to the dialog
         addImgModal(imgSrc, imgAlt);
 
         //fetch dialoge and open it as modal
@@ -111,9 +108,7 @@ async function renderBlogPost() {
           div.innerHTML += `<div class="no-comments">no comments yet</div>`;
         } else {
           for (let i = 0; i < comments.length; i++) {
-            //fetch and format date
             const date = formatDate(comments[i].date);
-
             div.innerHTML += `
             <div class="comment">
               <h4>${comments[i].author_name}</h4>
@@ -130,7 +125,6 @@ async function renderBlogPost() {
     renderComments(allComments, commentsDiv);
 
     //add new-comment-form
-    // fix this submitbutton thing before delivering (here an in the contactpage)
     const addNewCommentsForm = document.createElement("form");
     addNewCommentsForm.classList.add("formelement");
     addNewCommentsForm.innerHTML += `
@@ -161,21 +155,18 @@ async function renderBlogPost() {
     errorWhenSending.classList.add("comment-login-error");
     addNewCommentsForm.appendChild(errorWhenSending);
 
-    //This function does not yet work
-    //send new comment - POST to REST API
+    //send new comment - POST to REST API - i did not manage to get this working, don't want to remove it so that i can continue trying later.
     function addComment() {
       const postId = blogPost.id;
       const commentAuthor = document.querySelector("#author").value;
       const commentEmail = document.querySelector("#email").value;
       const commentContent = document.querySelector("#comment").value;
-
       const commentObj = {
         post: postId,
         author_email: commentEmail,
         author_name: commentAuthor,
         content: commentContent,
       };
-
       const postComment = {
         method: "POST",
         body: JSON.stringify(commentObj),
@@ -183,13 +174,13 @@ async function renderBlogPost() {
           "Content-Type": "application/json",
         },
       };
-      // FIX THIS IF YOU HAVE TIME/
+
       fetch(commentsUrl, postComment)
         .then((response) => response.json())
         .then((data) => {
           if (data.data.status === 401 || data.data.status === 400) {
-            errorWhenSending.innerText = `Sorry, the comment function is not working right now. We are working on the issue.`
-            console.log("Error when trying to submit a comment: ", data.message)
+            errorWhenSending.innerText = `Sorry, the comment function is not working right now. We are working on the issue.`;
+            console.log("Error when trying to submit a comment: ", data.message);
           }
         });
     }
@@ -244,3 +235,34 @@ async function renderRelatedPosts() {
   }
 }
 renderRelatedPosts();
+
+//img-modal
+function addImgModal(src, alt) {
+  //modal-dialog-element
+  const imgModal = document.createElement("dialog");
+  imgModal.classList.add("img-modal", "modal");
+  document.querySelector("main").append(imgModal);
+
+  //modal-content
+  const closeBtn = document.createElement("i");
+  closeBtn.classList.add("fa-solid", "fa-xmark", "closeBtn");
+  imgModal.append(closeBtn);
+
+  const bigImage = document.createElement("img");
+  bigImage.setAttribute("src", src);
+  bigImage.setAttribute("alt", alt);
+  imgModal.append(bigImage);
+
+  // close modal clicking X
+  closeBtn.addEventListener("click", () => {
+    imgModal.remove();
+  });
+
+  //close modal by clicking outside
+  function onClick(event) {
+    if (event.target === imgModal) {
+      imgModal.remove();
+    }
+  }
+  imgModal.addEventListener("click", onClick);
+}
