@@ -1,5 +1,5 @@
 import { fetchPostById, fetchSpesificImages, fetchComments, fetchAllCategories, url } from "./api-call.js";
-import { formatDate, renderComments, showLoadingIndicator, addImgModal, showMoreBtn, openPostOnClick } from "./global.js";
+import { formatDate, showLoadingIndicator, addImgModal, showMoreBtn, openPostOnClick } from "./global.js";
 import { generalErrorMessage } from "./error-handling.js";
 
 const metaTitle = document.querySelector("#title");
@@ -66,7 +66,8 @@ async function renderBlogPost() {
           <a href="#">share this post</a>
         </div>
         <div class="meta-data">
-          <div class="date">updated: ${date[0]}, ${date[1]}</div>
+          <div class="date">Last updated: </div>
+          <div>${date[0]}, ${date[1]}</div>
           <div class="author">author: xxx </div>
         </div>
       </section>
@@ -100,11 +101,33 @@ async function renderBlogPost() {
     //add active/open comment-section
     const commentSection = document.querySelector(".comment-section");
     const commentsDiv = document.createElement("div");
+    commentSection.appendChild(commentsDiv);
     commentsDiv.classList.add("open-comment-section");
 
     //render comments
+    function renderComments(comments, div) {
+      try {
+        if (comments.length === 0) {
+          div.innerHTML += `<div class="no-comments">no comments yet</div>`;
+        } else {
+          for (let i = 0; i < comments.length; i++) {
+            //fetch and format date
+            const date = formatDate(comments[i].date);
+
+            div.innerHTML += `
+            <div class="comment">
+              <h4>${comments[i].author_name}</h4>
+              <p class="meta-data">${date[0]}, ${date[1]}</p>
+              <p class="comment-content">${comments[i].content.rendered}</p>
+            </div>`;
+          }
+        }
+      } catch (error) {
+        generalErrorMessage(error);
+        console.log(error);
+      }
+    }
     renderComments(allComments, commentsDiv);
-    commentSection.appendChild(commentsDiv);
 
     //add new-comment-form
     // fix this submitbutton thing before delivering (here an in the contactpage)
@@ -164,18 +187,14 @@ async function renderBlogPost() {
       fetch(commentsUrl, postComment)
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
-          console.log(data.data.status);
-
           if (data.data.status === 401 || data.data.status === 400) {
-            errorWhenSending.innerText = `${data.message}`;
+            errorWhenSending.innerText = `Sorry, the comment function is not working right now. We are working on the issue.`
+            console.log("Error when trying to submit a comment: ", data.message)
           }
-          // location.reload();
         });
     }
     const sendBtn = document.querySelector(".send-CTA");
     sendBtn.addEventListener("click", () => {
-      // console.log("this function is now working yet");
       addComment();
     });
   } catch (error) {

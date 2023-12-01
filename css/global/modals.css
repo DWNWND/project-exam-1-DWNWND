@@ -17,7 +17,7 @@ dialog::backdrop {
 .img-modal {
   display: flex;
   flex-direction: column;
-  width: 70%;
+  padding: 0 1rem 1rem 1rem;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -33,9 +33,8 @@ dialog::backdrop {
   font-size: 1.3rem;
 }
 .img-modal img {
-  width: 100%;
-  height: 90vh;
-  object-fit: cover;
+  max-height: 90vh;
+  object-fit: contain;
 }
 
 @media (min-width: 800px) {

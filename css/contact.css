@@ -15,6 +15,11 @@
   color: #840303;
   padding-bottom: 0.8rem;
 }
+.message-sent {
+  font-size: 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
 .contact-section {
   background-color: white;
   padding: 1.5rem;
@@ -53,6 +58,7 @@
 .info label {
   display: none;
 }
+
 .contact-section legend {
   text-align: center;
   padding-bottom: 3rem;
@@ -67,7 +73,7 @@
   font-weight: 200;
 }
 #message {
-  min-height: 100px;
+  min-height: 10vh;
 }
 .terms {
   font-size: 0.8rem;

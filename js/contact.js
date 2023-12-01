@@ -159,9 +159,11 @@ form.addEventListener("submit", (event) => {
   showMessageError();
 
   if (nameValidity && messageValidity && subjectValidity && emailValidity && checkbox.checked) {
-    console.log("ok");
-    alert("Thank you for your message. We will answer you as soon as we can.");
+    form.innerHTML = `<span class="message-sent">Thank you for your message.</span>
+                      <span class="message-sent">We will answer you as soon as possible.</span>`;
+
+    // alert("Thank you for your message. We will answer you as soon as we can.");
     // form.submit();
-    form.reset();
+    // form.reset();
   }
 });

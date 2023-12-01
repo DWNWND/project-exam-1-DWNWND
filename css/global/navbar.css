@@ -6,7 +6,6 @@ nav {
   position: relative;
   background-color: white;
 }
-
 nav li {
   padding: 0.3rem 0;
 }
@@ -35,7 +34,8 @@ nav a {
 .nav-item-stand:hover {
   background-color: rgba(128, 120, 191, 0.218);
 }
-.nav-item-cat {
+.nav-item-cat,
+.nav-item-stand {
   margin: 0.5rem;
 }
 .nav-item-cat.active,
