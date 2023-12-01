@@ -52,27 +52,21 @@
       <section class="contact-section">
         <!-- Add loader and check this form element-->
         <form action="" method="POST">
-          <fieldset class="message">
-            <legend>Write us a letter, a poem, a prince, a price, what ever you may think suffice</legend>
-            <label for="subject">Subject</label>
-            <input type="text" name="subject" id="subject" placeholder="Subject" autocomplete="off" />
-            <p class="validation-message validation-message-subject error">Required*</p>
-            <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Fill this box with your favourite song lyrics or something else thats on your mind." autocomplete="off"></textarea>
-            <p class="validation-message validation-message-message error">Required*</p>
-          </fieldset>
-          <fieldset class="info">
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" placeholder="Your preferred reference" autocomplete="given-name" />
-            <p class="validation-message validation-message-name">Required*</p>
-            <label for="email">Email address</label>
-            <input type="text" name="email" id="email" placeholder="Your email of choice" autocomplete="email" />
-            <p class="validation-message validation-message-email error">Required*</p>
-          </fieldset>
-          <fieldset class="terms">
-            <input type="checkbox" name="terms" id="checkbox" value="terms" />
-            <label for="checkbox" class="checkbox-label">Accept whatever to be able to send your message</label>
-          </fieldset>
+          <legend>Write us a letter, a poem, a prince, a price, what ever you may think suffice</legend>
+          <label for="subject">Subject</label>
+          <input type="text" name="subject" id="subject" placeholder="Subject" autocomplete="off" />
+          <p class="validation-message validation-message-subject error">Required*</p>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Fill this box with your favourite song lyrics or something else thats on your mind." autocomplete="off"></textarea>
+          <p class="validation-message validation-message-message error">Required*</p>
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" placeholder="Your preferred reference" autocomplete="given-name" />
+          <p class="validation-message validation-message-name">Required*</p>
+          <label for="email">Email address</label>
+          <input type="text" name="email" id="email" placeholder="Your email of choice" autocomplete="email" />
+          <p class="validation-message validation-message-email error">Required*</p>
+          <input type="checkbox" name="terms" id="checkbox" value="terms" />
+          <label for="checkbox" class="checkbox-label">Accept whatever to be able to send your message</label>
           <!-- fix this submitbutton thing befor delivering (here an in the commentsection) -->
           <input type="submit" value="SEND" class="send-CTA" />
         </form>
