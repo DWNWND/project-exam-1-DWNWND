@@ -1,0 +1,204 @@
+article:hover {
+  border: 2px solid black;
+  cursor: pointer;
+}
+article {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 1.3rem;
+  border: 2px solid transparent;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+article h2 {
+  font-size: 1.1rem;
+}
+.popular-posts-section article,
+.archive-result-section article,
+.related-posts-section article {
+  background-color: #e4eaf7;
+  gap: 1rem;
+}
+.newly-published-section article {
+  background-color: white;
+  grid-template-rows: 1fr auto auto;
+  gap: 0.5rem;
+  width: auto;
+}
+.popular-posts-section article {
+  grid-template-rows: 1fr 200px auto auto;
+  filter: drop-shadow(4px 5px 5px rgba(0, 0, 0, 0.1));
+}
+article p,
+article a,
+.post-metadata {
+  color: black;
+  font-size: 0.8rem;
+  font-weight: 200;
+}
+.post-metadata {
+  display: flex;
+  justify-content: space-between;
+}
+.continue-reading-cta {
+  align-self: end;
+}
+.newly-published-section .continue-reading-cta {
+  text-align: right;
+}
+article figure {
+  height: 100px;
+}
+figure img {
+  width: 100%;
+  object-fit: cover;
+}
+.archive-result-section figure,
+.newly-published-section figure {
+  display: flex;
+}
+.about-us-section figure,
+.popular-posts-section figure {
+  display: none;
+}
+
+@media (min-width: 350px) {
+  .popular-posts-section article {
+    grid-template-rows: 1fr 140px auto auto;
+  }
+}
+@media (min-width: 450px) {
+  .popular-posts-section article {
+    grid-template-rows: 1fr 120px auto auto;
+  }
+}
+@media (min-width: 500px) {
+  .popular-posts-section article {
+    grid-template-rows: 1fr 100px auto auto;
+  }
+}
+@media (min-width: 700px) {
+  .popular-posts-section article,
+  .archive-result-section article {
+    background-color: #eef1e9;
+  }
+  .popular-posts-section article {
+    grid-template-rows: 1fr 170px auto auto;
+  }
+  .archive-result-section article {
+    width: auto;
+    filter: drop-shadow(4px 5px 5px rgba(0, 0, 0, 0.1));
+  }
+  .popular-posts-section article:first-of-type,
+  .archive-result-section article:first-of-type {
+    grid-template-rows: 1fr auto auto auto;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+  .popular-posts-section article:first-of-type figure,
+  .archive-result-section article:first-of-type figure {
+    display: flex;
+    margin-top: auto;
+  }
+}
+@media (min-width: 750px) {
+  .about-us-section figure {
+    display: flex;
+    height: auto;
+  }
+}
+@media (min-width: 800px) {
+  article h2 {
+    font-size: 1.3rem;
+  }
+  article a,
+  article p,
+  .post-metadata {
+    font-size: 0.9rem;
+  }
+}
+@media (min-width: 900px) {
+  .related-posts-section article {
+    background-color: #eef1e9;
+    grid-template-rows: 1fr 230px auto auto;
+  }
+}
+@media (min-width: 1000px) {
+  .popular-posts-section article {
+    grid-template-rows: 1fr 120px auto auto;
+  }
+  .related-posts-section article {
+    grid-template-rows: 1fr 160px auto auto;
+  }
+}
+@media (min-width: 1130px) {
+  .popular-posts-section article,
+  .popular-posts-section article:first-of-type {
+    grid-template-rows: 1fr 170px auto auto;
+  }
+  .newly-published-section article {
+    grid-template-rows: auto 1fr auto;
+  }
+  .slider article {
+    filter: drop-shadow(4px 5px 3px rgba(0, 0, 0, 0.15));
+    scroll-snap-align: center;
+    min-width: 250px;
+    max-width: 250px;
+  }
+  .slider figure {
+    height: 175px;
+    order: 1;
+  }
+  .slider article h2 {
+    order: 2;
+    padding: 1rem 0;
+  }
+  .slider .continue-reading-cta {
+    order: 3;
+  }
+  .popular-posts-section figure,
+  .archive-result-section figure {
+    display: flex;
+    margin-top: auto;
+  }
+  .archive-result-section article:first-of-type figure,
+  .popular-posts-section article:first-of-type figure {
+    height: 250px;
+  }
+  .archive-result-section article:first-of-type,
+  .popular-posts-section article:first-of-type {
+    grid-template-rows: auto 1fr auto;
+  }
+  .archive-result-section article:first-of-type {
+    background-color: rgb(245, 237, 227);
+  }
+  .popular-posts-section article:first-of-type {
+    background-color: #f7f3e4;
+  }
+  .continue-reading-cta {
+    display: none;
+  }
+}
+@media (min-width: 1370px) {
+  .slider article {
+    min-width: 320px;
+    max-width: 320px;
+  }
+  .slider figure {
+    height: 220px;
+  }
+}
+@media (min-width: 1600px) {
+  article h2 {
+    font-size: 1.5rem;
+  }
+  article a,
+  article p,
+  .post-metadata {
+    font-size: 1rem;
+  }
+  .related-posts-section article {
+    grid-template-rows: 1fr 200px auto auto;
+  }
+}

@@ -1,0 +1,46 @@
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.174);
+  cursor: pointer;
+}
+.modal {
+  max-width: 100%;
+  max-height: 100%;
+  outline: none;
+  border: none;
+  transition: all ease 0.5s;
+  background: rgb(255, 255, 255);
+}
+.nav-modal {
+  width: 100%;
+  position: fixed;
+}
+.img-modal {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem 1rem 1rem;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.closeBtn:hover {
+  color: rgb(80, 50, 50);
+  cursor: pointer;
+}
+.img-modal .closeBtn {
+  margin-right: 0;
+  margin-left: auto;
+  padding: 1rem;
+  font-size: 1.3rem;
+}
+.img-modal img {
+  max-height: 90vh;
+  object-fit: contain;
+}
+@media (min-width: 800px) {
+  dialog {
+    display: block;
+  }
+  .nav-modal {
+    position: relative;
+  }
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Hotjar Tracking Code for Microtic - Exam 2023 -->
+    <script>
+      (function (h, o, t, j, a, r) {
+        h.hj =
+          h.hj ||
+          function () {
+            (h.hj.q = h.hj.q || []).push(arguments);
+          };
+        h._hjSettings = { hjid: 3746934, hjsv: 6 };
+        a = o.getElementsByTagName("head")[0];
+        r = o.createElement("script");
+        r.async = 1;
+        r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+        a.appendChild(r);
+      })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
+    </script>
+    <title>MICROTIC</title>
+    <meta name="description" content="Explore unconventional living with Microtic - a blog celebrating liveaboards, tiny homes, van life, and innovative lifestyles." />
+    <link rel="icon" href="/img/favIcon.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/279950e6bf.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="#" class="hamburger-toggle openBtn">
+          <i class="fa-solid fa-bars"></i>
+        </a>
+        <dialog class="nav-modal modal"></dialog>
+        <div class="header-index-mobile-wrapper">
+          <img src="/img/header-img_unsplash.jpg" class="header-img-general" alt="header - image of a girl in the back of a van with the doors open to a snowey landscape" />
+          <img src="/img/logo-white-big.svg" class="logo-big-index" alt="big Microtic logo" />
+        </div>
+        <div class="newsletter-signup-index"><a href="#">newsletter signup</a></div>
+      </nav>
+    </header>
+    <main>
+      <section class="newly-published-section">
+        <h1 class="heading-general">newly published</h1>
+        <div class="loader loader-newly-published"></div>
+        <div class="slider-wrapper">
+          <div id="prev-btn" class="prev-btn"><i class="fa-solid fa-chevron-left" aria-hidden="false"></i></div>
+          <div class="grid-display slider"></div>
+          <div id="next-btn" class="next-btn"><i class="fa-solid fa-chevron-right" aria-hidden="false"></i></div>
+        </div>
+      </section>
+      <section class="popular-posts-section">
+        <h1 class="heading-general">our most popular posts</h1>
+        <div class="loader loader-popular-posts"></div>
+        <div class="grid-display popular-posts-wrapper"></div>
+      </section>
+      <section class="about-us-section">
+        <h1 class="heading-general">about us</h1>
+        <div class="loader loader-about-us-index"></div>
+        <div class="grid-display about-us-wrapper"></div>
+      </section>
+    </main>
+    <footer></footer>
+    <div class="back-to-top"><i class="fa-solid fa-chevron-up"></i></div>
+    <script type="module" src="js/header-nav-footer.js"></script>
+    <script type="module" src="js/index.js"></script>
+  </body>
+</html>
