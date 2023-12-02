@@ -2,7 +2,8 @@
 project-exam-1-DWNWND created by GitHub Classroom
 
 This is my (Thea Oland) delivery for Project Exam 1, Front-end Development 1. year.
-Netlify: https://spiffy-halva-4ffb7c.netlify.app/
+
+Deployed site: https://spiffy-halva-4ffb7c.netlify.app/
 
 ## Project Exam 1
 
