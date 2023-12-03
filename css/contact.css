@@ -57,7 +57,6 @@
 .info label {
   display: none;
 }
-
 .contact-section legend {
   text-align: center;
   padding-bottom: 3rem;
@@ -82,27 +81,7 @@
   border: none;
   gap: 1rem;
 }
-.send-CTA {
-  font-weight: 200;
-  font-size: 1.1rem;
-  border: none;
-  border-radius: 20px;
-  padding: 0.5rem;
-  cursor: pointer;
-}
-.send-CTA {
-  background-color: #840303;
-  color: rgb(255, 255, 255);
-  border: none;
-  margin-top: 1rem;
-  text-transform: uppercase;
-  font-weight: 500;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-}
 @media (min-width: 600px) {
-  .send-CTA {
-    padding: 0.8rem;
-  }
   .contact-section {
     padding: 3rem 3rem 5rem 3rem;
   }

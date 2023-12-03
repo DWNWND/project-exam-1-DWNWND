@@ -11,17 +11,16 @@
 .hidden {
   display: none;
 }
+body {
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+}
 ul {
   list-style-type: none;
 }
 ol {
   margin-left: 3rem;
-}
-body {
-  /* max-width: 1600px; */
-  margin-left: auto;
-  margin-right: auto;
-  background-color: white;
 }
 h1.pagetitle,
 h1.heading-general,
@@ -57,6 +56,7 @@ h1.heading-related-posts {
 }
 h2.heading-comments {
   font-size: 1rem;
+  margin: 0.5rem 0 1rem 0;
 }
 .has-large-font-size {
   font-size: 1.4rem;
@@ -64,9 +64,10 @@ h2.heading-comments {
 .has-medium-font-size {
   font-size: 1.4rem;
 }
+
+/* GRID-DISPLAY */
 .grid-display {
   display: grid;
-  /* justify-content: center; denne stilen funker ikke for postene på index.html -usikker på om dette fortsatt gjelder*/
   gap: 1.5rem;
   margin-left: auto;
   margin-right: auto;
@@ -77,6 +78,8 @@ h2.heading-comments {
 .related-posts-section .grid-display {
   max-width: 1100px;
 }
+
+/* BTNS/CTA */
 .more-btn {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   font-weight: 600;
@@ -91,6 +94,28 @@ h2.heading-comments {
 .more-btn:hover {
   color: rgb(81, 81, 81);
 }
+.send-CTA,
+.view-more-comments-CTA {
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  margin-top: 1rem;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.message-send-CTA {
+  background-color: #840303;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.view-more-comments-CTA,
+.comment-send-CTA {
+  background-color: #5c4e43;
+}
+
+/* DIRECTORIES */
 .directory {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   font-weight: 200;
@@ -106,6 +131,8 @@ h2.heading-comments {
 .directory a:hover {
   text-decoration: underline;
 }
+
+/* ERROR-MESSAGE */
 .error-message-wrapper {
   color: red;
   font-size: 1rem;
@@ -125,6 +152,8 @@ h2.heading-comments {
 .error-section {
   background-color: white;
 }
+
+/* LOADERS */
 .loader {
   font-size: 1rem;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -142,6 +171,8 @@ h2.heading-comments {
   background-color: #f5f5f5;
   padding: 1rem;
 }
+
+/* RELATED POSTS */
 .related-posts-section {
   background-color: white;
 }
@@ -157,6 +188,10 @@ h2.heading-comments {
   .grid-display {
     padding: 0rem 3rem 1rem 3rem;
     gap: 2rem;
+  }
+  .view-more-comments-CTA,
+  .send-CTA {
+    padding: 0.8rem;
   }
 }
 @media (min-width: 700px) {

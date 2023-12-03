@@ -137,7 +137,7 @@ async function renderBlogPost() {
         <label for="comment">Comment</label>
         <textarea  name="comment" id="comment" class="new-comment-field" placeholder="Type comment here..." required></textarea>
       </form>
-      <input type="button" value="post comment" class="send-CTA">`;
+      <input type="button" value="post comment" class="send-CTA comment-send-CTA">`;
     commentSection.appendChild(addNewCommentsForm);
 
     //open/close the comment section
@@ -180,7 +180,6 @@ async function renderBlogPost() {
         .then((data) => {
           if (data.data.status === 401 || data.data.status === 400) {
             errorWhenSending.innerText = `Sorry, the comment function is not working right now. We are working on the issue.`;
-            console.log("Error when trying to submit a comment: ", data.message);
           }
         });
     }

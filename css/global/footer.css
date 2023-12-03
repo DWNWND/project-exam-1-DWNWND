@@ -20,7 +20,7 @@
   color: #840303ce;
 }
 
-/* footer */
+/* FOOTER */
 .some-footer-wrapper {
   display: flex;
   flex-direction: column;
@@ -31,7 +31,7 @@
 }
 .some-cta {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  color: #53584A;
+  color: #53584a;
   font-size: 5vw;
   font-weight: 600;
   padding: 1rem;
@@ -46,7 +46,7 @@
   font-size: 1.8rem;
 }
 .some-icons a {
-  color:  #53584A;
+  color: #53584a;
   text-decoration: none;
 }
 .some-icons i {
