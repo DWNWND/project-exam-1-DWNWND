@@ -21,6 +21,7 @@ This site was made for my first project exam in my first year of studying Fronte
 - CSS
 - JS
 - Wordpress API
+- Copy by ChatGPT
 
 ## Getting Started
 
