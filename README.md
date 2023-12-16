@@ -48,3 +48,5 @@ Noroff Online Studies
 The artists at Unsplash.com
 
 Fontawesome.com
+
+OpenAi
