@@ -121,12 +121,14 @@ async function fetchPages() {
 
     if (response.ok) {
       const pages = await response.json();
-      const ourVisionImageApi = pages[1]._links["wp:featuredmedia"]["0"].href;
+
+      const ourVisionImageApi = pages[1]._links["wp:attachment"]["0"].href;
       const ourVisionImg = await fetchSpesificImages(ourVisionImageApi);
+      const newAboutImage = "../img/chang-duong-Sj0iMtq_Z4w-unsplash.jpg"
 
       aboutUsWrapper.innerHTML += `
       <figure>
-        <img src="${ourVisionImg.source_url}" alt="${ourVisionImg.alt_text}"/>
+        <img src="${newAboutImage}" alt="${ourVisionImg.alt_text}"/>
       </figure>
       <div class="about-us-info">
         ${pages[1].content.rendered}

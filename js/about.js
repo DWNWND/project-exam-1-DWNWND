@@ -19,17 +19,17 @@ async function fetchPages() {
     if (response.ok) {
       const pages = await response.json();
 
-      const ourVisionImageApi = pages[1]._links["wp:featuredmedia"]["0"].href;
+      const ourVisionImageApi = pages[1]._links["wp:attachment"]["0"].href;
       const ourVisionImg = await fetchSpesificImages(ourVisionImageApi);
+      const newAboutImage = "../img/chang-duong-Sj0iMtq_Z4w-unsplash.jpg"
 
-      const theTeamImageApi = pages[2]._links["wp:featuredmedia"]["0"].href;
+      const theTeamImageApi = pages[2]._links["wp:attachment"]["0"].href;
       const theTeamImg = await fetchSpesificImages(theTeamImageApi);
 
       aboutUs.innerHTML += `
       <div class="our-vision">
         <figure class="our-vision-img">
-            <img src="${ourVisionImg.source_url}" alt="${ourVisionImg.alt_text}" />
-            <figcaption>${ourVisionImg.caption.rendered}</figcaption>
+            <img src="${newAboutImage}" alt="${ourVisionImg.alt_text}" />
         </figure>
         <div>
           <h1 class="heading-about-us-page">${pages[1].title.rendered}</h1>
@@ -43,6 +43,8 @@ async function fetchPages() {
         </div>
       </div>`;
 
+      // <figcaption>${ourVisionImg.caption.rendered}</figcaption>
+
       aboutUs.innerHTML += `
       <div class="the-team">
         <div>
@@ -50,10 +52,11 @@ async function fetchPages() {
           <p>${pages[2].content.rendered}</p>
         </div>
         <figure class="the-team-img">
-          <img src="${theTeamImg.source_url}" alt="${ourVisionImg.alt_text}" />
-          <figcaption>${theTeamImg.caption.rendered}</figcaption>
+          <img src="${newAboutImage}" alt="${ourVisionImg.alt_text}" />
         </figure>
       </div>`;
+
+      // <figcaption>${theTeamImg.caption.rendered}</figcaption>
     }
     if (!response.ok) {
       throw new Error("Error when executing fetchPages - fetching API");
